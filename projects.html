@@ -61,21 +61,48 @@
         return (ai === -1 ? 999 : ai) - (bi === -1 ? 999 : bi);
       });
 
+      // 精选项目配置：截图放在 screenshots/ 目录下，文件名 {项目名}.jpg
+      const featured = {
+        'RocoKingdomTranslator': { desc: '洛克王国语翻译器——一个有趣的在线翻译工具', screenshot: 'screenshots/RocoKingdomTranslator.jpg' },
+        'Harmony_EyesNote': { desc: '鸿蒙应用——眨眼笔记，基于鸿蒙系统的笔记应用', screenshot: 'screenshots/Harmony_EyesNote.jpg' },
+        'Android_Calculators': { desc: '安卓计算器App，支持多种运算', screenshot: 'screenshots/Android_Calculators.jpg' },
+        'Python_Visual_Focus_Training_System': { desc: '视觉专注训练系统，基于Python实现', screenshot: 'screenshots/Python_Visual_Focus_Training_System.jpg' },
+        'GaokaoHelper': { desc: 'AI大语言模型多角色对话工具，专注高考志愿填报辅助', screenshot: 'screenshots/GaokaoHelper.jpg' },
+        'WChatXiaoChengxu_jizhangben': { desc: '微信小程序记账本，支持云开发', screenshot: 'screenshots/WChatXiaoChengxu_jizhangben.jpg' },
+      };
+
       let activeTab = sortedLangs[0];
       container.innerHTML = `
         <div class="project-tabs">${sortedLangs.map(l => `<button class="tab-btn${l === activeTab ? ' active' : ''}" data-tab="${l}">${l} (${groups[l].length})</button>`).join('')}</div>
         <div class="tab-content">${sortedLangs.map(l => `
           <div class="tab-panel${l === activeTab ? ' active' : ''}" data-panel="${l}">
-            <div class="project-grid">${groups[l].map(p => `
-              <a href="${p.url}" class="project-card" target="_blank" rel="noopener">
-                <h3>${p.name}</h3>
-                <p>${p.description}</p>
-                <div class="project-meta">
-                  ${p.language ? `<span class="lang">${p.language}</span>` : ''}
-                  <span class="stars">★ ${p.stars}</span>
-                </div>
-              </a>
-            `).join('')}</div>
+            <div class="featured-section">
+              <h3 class="featured-title">精选</h3>
+              ${groups[l].filter(p => featured[p.name]).length ? `
+              <div class="featured-grid">${groups[l].filter(p => featured[p.name]).map(p => `
+                <a href="${p.url}" class="featured-card" target="_blank" rel="noopener">
+                  <div class="featured-screenshot"><img src="${featured[p.name].screenshot}" alt="${p.name}" onerror="this.style.display='none'"></div>
+                  <div class="featured-info">
+                    <h4>${p.name}</h4>
+                    <p>${featured[p.name].desc}</p>
+                    <div class="project-meta"><span class="lang">${p.language}</span><span class="stars">★ ${p.stars}</span></div>
+                  </div>
+                </a>
+              `).join('')}</div>` : '<p class="empty" style="text-align:left;padding:8px 0">暂无精选</p>'}
+            </div>
+            <div class="all-projects-section">
+              <h3 class="featured-title">全部项目 <span class="count">(${groups[l].length})</span></h3>
+              <div class="project-grid">${groups[l].map(p => `
+                <a href="${p.url}" class="project-card" target="_blank" rel="noopener">
+                  <h3>${p.name}</h3>
+                  <p>${p.description}</p>
+                  <div class="project-meta">
+                    ${p.language ? `<span class="lang">${p.language}</span>` : ''}
+                    <span class="stars">★ ${p.stars}</span>
+                  </div>
+                </a>
+              `).join('')}</div>
+            </div>
           </div>
         `).join('')}</div>`;
 
