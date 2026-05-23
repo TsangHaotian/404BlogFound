@@ -89,7 +89,7 @@
         grid.innerHTML = '<p class="empty">暂无 GitHub 项目展示。</p>';
         return;
       }
-      grid.innerHTML = projects.slice(0, 3).map(p => `
+      grid.innerHTML = projects.slice(0, 6).map(p => `
         <a href="${p.url}" class="project-card" target="_blank" rel="noopener">
           <h3>${p.name}</h3>
           <p>${p.description}</p>
