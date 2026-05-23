@@ -15,22 +15,25 @@ import (
 
 // Fetcher GitHub API 数据获取器
 type Fetcher struct {
-	username string
-	client   *http.Client
-	cache    []model.Project
-	cacheMu  sync.RWMutex
-	cachedAt time.Time
-	ttl      time.Duration
+	username  string
+	token     string
+	client    *http.Client
+	cache     []model.Project
+	cacheMu   sync.RWMutex
+	cachedAt  time.Time
+	ttl       time.Duration
 }
 
 // NewFetcher 创建 GitHub Fetcher
-func NewFetcher(username string) *Fetcher {
+// token 为 "" 时使用匿名请求（限制 60次/小时）
+func NewFetcher(username, token string) *Fetcher {
 	return &Fetcher{
 		username: username,
+		token:    token,
 		client: &http.Client{
 			Timeout: 10 * time.Second,
 		},
-		ttl: 30 * time.Minute, // 缓存 30 分钟
+		ttl: 5 * time.Minute, // 缓存 5 分钟
 	}
 }
 
@@ -53,6 +56,9 @@ func (f *Fetcher) FetchRepos() ([]model.Project, error) {
 	}
 	req.Header.Set("Accept", "application/vnd.github.v3+json")
 	req.Header.Set("User-Agent", "404BlogFound")
+	if f.token != "" {
+		req.Header.Set("Authorization", "Bearer "+f.token)
+	}
 
 	resp, err := f.client.Do(req)
 	if err != nil {

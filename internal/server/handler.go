@@ -40,7 +40,7 @@ func NewServer(configPath, templateDir, contentDir string) (*Server, error) {
 	}
 
 	// 初始化 GitHub Fetcher
-	ghFetcher := github.NewFetcher(config.GitHubUser)
+	ghFetcher := github.NewFetcher(config.GitHubUser, os.Getenv("GITHUB_TOKEN"))
 
 	// 加载文章
 	postDir := filepath.Join(contentDir, "post")
