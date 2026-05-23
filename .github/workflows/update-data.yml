@@ -1,0 +1,88 @@
+name: 每周更新项目数据
+on:
+  schedule:
+    - cron: '0 0 * * 0'  # 每周日零点
+  workflow_dispatch:     # 也可以手动触发
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: 拉取 GitHub API 并生成数据文件
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          # 获取仓库列表
+          curl -s -H "Authorization: Bearer $GH_TOKEN" \
+            "https://api.github.com/users/TsangHaotian/repos?per_page=100&sort=updated" \
+            -o repos.json
+
+          # 用 node 处理数据，生成 projects.json
+          node -e "
+          const repos = require('./repos.json');
+          const langMap = {
+            '404BlogFound':'HTML','CardGameYS':'其他','Harmony_EyesNote':'Harmony',
+            'GaokaoHelper':'HTML','openclaw-css-tweaker':'Python','JRXY-AutoSign-Reborn':'Python',
+            'Software_Libraries':'其他','RocoKingdomTranslator':'HTML',
+            'Python_Visual_Focus_Training_System':'Python','DrawAnythingToYakiji':'HTML',
+            'YajijiOracle':'HTML','4C_competition':'竞赛','web_happybirthday':'HTML',
+            'Android_login':'Android','python_word_to_excel':'Python','python_Job_Check_tool':'Python',
+            'python_pdf_to_word':'Python','Android_login_and_jigsaw_puzzle':'Android',
+            'Android_Calculators':'Android','python_Excel_merge_tool':'Python',
+            'Android_Mental_health_program':'Android',
+            'Python_Probability_theory_gambling_game':'Python',
+            'Python_Interactive_somatosensory_operation':'Python',
+            'Su-Shi-dingfengbo-poems-fine-tuning-AI-model':'AI大模型微调',
+            'python_ppt_assistant':'Python','Python_data_merge_tool':'Python',
+            'Python_Probability_theory_gambling_game_V2.0':'Python',
+            'python_40_Parallel_College_Volunteering_for_C':'Python',
+            'Web_Truth_or_dare':'HTML','Web_Find_a_difference':'HTML',
+            'Web_Person':'HTML','Web_Xinjiang_Foods':'HTML','Python_mind_project':'Python',
+            'WChatXiaochengxuYun_jizhangben':'微信小程序','WChatXiaoChengxu_jizhangben':'微信小程序',
+            'Organizing_the_computer_desktop':'Python','python_web_Question_Bank_Assistant':'Python',
+            'Python_hand_language_web':'Python'
+          };
+          const projects = repos
+            .filter(r => !r.fork && r.description)
+            .map(r => ({
+              name: r.name,
+              description: r.description,
+              stars: r.stargazers_count,
+              language: langMap[r.name] || r.language || '其他',
+              topics: r.topics || [],
+              url: r.html_url
+            }))
+            .sort((a, b) => b.stars - a.stars);
+          require('fs').writeFileSync('data/projects.json', JSON.stringify(projects, null, 2));
+          console.log('生成完成，共 ' + projects.length + ' 个项目');
+          "
+
+      - name: 拉取 Issues（博客文章）
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          curl -s -H "Authorization: Bearer $GH_TOKEN" \
+            "https://api.github.com/repos/TsangHaotian/404BlogFound/issues?state=open&per_page=100&labels=blog" \
+            -o issues.json
+          node -e "
+          const issues = require('./issues.json');
+          const posts = issues.map(i => ({
+            id: i.number,
+            title: i.title,
+            date: i.created_at.slice(0,10),
+            tags: i.labels.filter(l => l.name !== 'blog').map(l => l.name),
+            description: i.body ? i.body.split('\n')[0].replace(/^#+\s*/,'').slice(0,120) : '',
+            body: i.body || '',
+            url: i.html_url
+          }));
+          require('fs').writeFileSync('data/posts.json', JSON.stringify(posts, null, 2));
+          console.log('文章 ' + posts.length + ' 篇');
+          "
+
+      - name: 提交数据文件
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+          git add data/
+          git diff --staged --quiet || (git commit -m "自动更新数据" && git push)
