@@ -82,7 +82,7 @@
     });
 
     fetchRepos().then(projects => {
-      const langOverride = { 'Harmony_EyesNote': 'Harmony' };
+      const langOverride = { 'Harmony_EyesNote': 'Harmony', 'Software_Libraries': '其他' };
       projects.forEach(p => { p.language = langOverride[p.name] || p.language; });
       const grid = document.getElementById('project-grid');
       if (!projects.length) {

@@ -64,7 +64,8 @@ async function fetchRepos() {
     .map(r => {
       // 手动语言映射（GitHub 自动检测不对的在这里修正）
       const langOverride = {
-        'Harmony_EyesNote': 'Harmony'
+        'Harmony_EyesNote': 'Harmony',
+        'Software_Libraries': '其他'
       };
       return {
         name: r.name,
