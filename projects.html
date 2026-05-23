@@ -56,8 +56,12 @@
         groups[lang].push(p);
       });
 
-      // 排序：项目多的语言在前
-      const sortedLangs = Object.keys(groups).sort((a, b) => groups[b].length - groups[a].length);
+      // 按指定顺序排序
+      const langOrder = ['AI大模型微调','Harmony','Android','HTML','Python','微信小程序','竞赛','其他'];
+      const sortedLangs = Object.keys(groups).sort((a, b) => {
+        const ai = langOrder.indexOf(a), bi = langOrder.indexOf(b);
+        return (ai === -1 ? 999 : ai) - (bi === -1 ? 999 : bi);
+      });
 
       container.innerHTML = sortedLangs.map(lang => `
         <div class="language-section">
