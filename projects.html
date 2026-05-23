@@ -111,7 +111,7 @@
             const desc = descMatch ? descMatch[1].trim() : proj.description;
 
             html += '<div class="featured-project">';
-            html += `<h4 class="featured-project-name"><a href="${proj.url}" target="_blank" rel="noopener">${name}</a></h4>`;
+            html += `<h4 class="featured-project-name"><a href="featured.html?cat=${encodeURIComponent(dir)}&project=${encodeURIComponent(name)}">${name}</a></h4>`;
             html += `<p class="featured-project-desc">${desc}</p>`;
             if (imgs.length) {
               html += '<div class="featured-screenshots">' + imgs.map(img => `<img src="${img}" alt="${name}" loading="lazy">`).join('') + '</div>';

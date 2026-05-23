@@ -1,7 +1,4 @@
 Harmony_EyesNote
 ---
-这是鸿蒙应用的精选项目介绍。
-
-可以写多行文字，支持 **Markdown** 语法。
-
-截图请放 1.jpg, 2.jpg … 到本目录。
+Harmony_EyesNote: 鸿蒙应用眨眼笔记——基于鸿蒙系统的笔记应用
+---
