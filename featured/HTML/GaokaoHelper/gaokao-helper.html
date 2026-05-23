@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GaokaoHelper - 404 Blog Not Found</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: "Noto Sans SC", "PingFang SC", "Microsoft YaHei", -apple-system, sans-serif;
+      background: #0f0f1a;
+      color: #f0f0f5;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    .container { max-width: 640px; margin: 0 auto; padding: 0 20px; min-height: 100vh; display: flex; flex-direction: column; }
+    .rk-card {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 20px;
+      margin: 24px 0 40px;
+      overflow: hidden;
+      backdrop-filter: blur(8px);
+    }
+    .rk-header { text-align: center; padding: 48px 24px 20px; }
+    .rk-header img {
+      width: 120px; height: 120px; border-radius: 50%;
+      border: 3px solid rgba(255,255,255,0.1);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+      margin-bottom: 16px;
+      object-fit: cover;
+    }
+    .rk-header h1 { font-size: 1.8rem; font-weight: 700; margin-bottom: 8px; }
+    .rk-header p { color: #8888a0; font-size: 1rem; }
+    .rk-body { padding: 0 28px 32px; }
+    .rk-body p, .rk-body li { line-height: 1.8; margin-bottom: 8px; }
+    .rk-body h2 { font-size: 1.2rem; font-weight: 600; margin-top: 28px; margin-bottom: 12px; }
+    .rk-body ul { line-height: 1.8; padding-left: 20px; margin-bottom: 14px; }
+    .rk-body li { margin-bottom: 4px; }
+    .rk-tags { margin-top: 12px; }
+    .rk-tags span {
+      display: inline-block;
+      padding: 2px 10px; font-size: 0.75rem;
+      background: rgba(108,92,231,0.15);
+      color: #a29bfe;
+      border: 1px solid rgba(108,92,231,0.2);
+      border-radius: 8px;
+      margin: 0 3px;
+    }
+    .rk-topbar { display: flex; align-items: center; padding: 16px 24px 0; }
+    .rk-back {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 7px 18px;
+      background: linear-gradient(135deg, #6c5ce7, #a29bfe);
+      border: none; border-radius: 20px;
+      color: #fff; text-decoration: none; font-size: 0.85rem; font-weight: 500;
+      transition: all 0.2s;
+      box-shadow: 0 2px 10px rgba(108,92,231,0.3);
+    }
+    .rk-back:hover { box-shadow: 0 4px 16px rgba(108,92,231,0.5); transform: translateY(-1px); color: #fff; }
+    .rk-btn {
+      display: inline-block; padding: 10px 24px;
+      background: linear-gradient(135deg, #6c5ce7, #a29bfe);
+      color: #fff; border-radius: 10px; text-decoration: none;
+      font-weight: 500; font-size: 0.9rem; transition: all 0.2s;
+    }
+    .rk-btn:hover { box-shadow: 0 4px 16px rgba(108,92,231,0.4); transform: translateY(-1px); color: #fff; }
+    .rk-btn-outline {
+      display: inline-block; padding: 10px 24px;
+      background: transparent; color: #a29bfe;
+      border: 1px solid rgba(162,155,254,0.3); border-radius: 10px;
+      text-decoration: none; font-weight: 500; font-size: 0.9rem; transition: all 0.2s;
+    }
+    .rk-btn-outline:hover { background: rgba(162,155,254,0.1); border-color: #a29bfe; color: #a29bfe; }
+    .rk-screenshots { display: flex; gap: 12px; justify-content: flex-start; margin-top: 16px; flex-wrap: wrap; }
+    .rk-screenshots .shot {
+      background: rgba(255,255,255,0.04); border-radius: 12px; padding: 8px;
+      cursor: pointer; transition: transform 0.2s;
+    }
+    .rk-screenshots .shot:hover { transform: scale(1.02); }
+    .rk-screenshots img { height: 140px; width: auto; border-radius: 8px; display: block; }
+    .rk-lightbox {
+      display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.85); z-index: 9999;
+      justify-content: center; align-items: center; cursor: pointer;
+    }
+    .rk-lightbox.active { display: flex; }
+    .rk-lightbox img { max-width: 90vw; max-height: 90vh; border-radius: 12px; }
+    .rk-table {
+      width: 100%; border-collapse: collapse; margin-bottom: 14px;
+    }
+    .rk-table th, .rk-table td {
+      padding: 8px 12px; border: 1px solid rgba(255,255,255,0.1);
+      text-align: left; font-size: 0.85rem;
+    }
+    .rk-table th { background: rgba(108,92,231,0.15); color: #a29bfe; font-weight: 600; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="rk-card">
+      <div class="rk-topbar">
+        <a href="../../projects.html?tab=HTML" class="rk-back" id="back-link">&larr; 返回作品集</a>
+      </div>
+      <div class="rk-header">
+        <img src="1.jpeg" alt="GaokaoHelper">
+        <h1>GaokaoHelper · AI 智聊</h1>
+        <p>基于 AI 大语言模型的多角色对话工具，专注高考志愿填报辅助。支持单聊和群聊模式，可同时召唤多个 AI 角色围绕同一话题展开讨论。</p>
+        <div class="rk-tags">
+          <span>HTML</span><span>AI</span><span>高考志愿</span><span>多角色对话</span><span>PWA</span>
+        </div>
+      </div>
+      <div class="rk-body">
+        <h2>项目介绍</h2>
+        <p>GaokaoHelper 是一款基于 AI 大语言模型的多角色对话工具，专注高考志愿填报辅助。内置多个 AI 角色，支持单聊和群聊模式，可同时召唤多个 AI 角色围绕同一话题展开多轮讨论，从不同角度为用户提供志愿填报建议。</p>
+
+        <h2>技术栈</h2>
+        <div class="rk-tags" style="margin-bottom:14px">
+          <span>HTML</span><span>CSS</span><span>JavaScript (ES5)</span><span>SSE 流式输出</span><span>PWA</span><span>localStorage</span><span>GitHub Pages</span>
+        </div>
+
+        <h2>我的贡献</h2>
+        <ul>
+          <li>独立完成项目需求分析、功能设计、UI/UX 设计到前后端开发全流程</li>
+          <li>引入张雪峰 SKILL 开源项目，将其接入 AI 对话系统，打造高考志愿咨询专用工具</li>
+          <li>设计"联网小助手"架构（GLM-4-Flash 联网搜索 + 主 AI 独立回答），解决 AI 幻觉导致数据乱给的问题</li>
+          <li>通过提示词工程对 AI 进行约束，严令查不到的数据不得乱说，进一步降低幻觉风险</li>
+          <li>对接 DeepSeek、Moonshot、MiniMax、GLM-4-Flash 多个大语言模型，为用户提供自由选择</li>
+          <li>为每个 AI 服务商编写详细的 API 接入傻瓜教程，降低用户上手门槛</li>
+          <li>设计并实现多角色 AI 群聊架构，支持多个 AI 角色同时辩论，帮助用户多角度判断</li>
+          <li>编写多个反驳型 AI 角色（反对张雪峰、家长、心理辅导员等），避免单一观点导向</li>
+          <li>实现用户自定义数据录入功能（高考成绩 + 目标院校分数），数据同步至所有 AI 角色</li>
+          <li>设计 AI 数据检测机制，对用户录入的异常数据进行智能反问校验</li>
+          <li>实现 SSE 流式输出、对话停止打断、PWA 离线缓存等交互功能</li>
+          <li>编写多处免责声明并设置开屏强制阅读，明确 AI 内容仅供参考，降低法律风险</li>
+          <li>纯前端技术栈开发，零后端依赖，浏览器直连 API</li>
+          <li>部署于 GitHub Pages，实现持续集成与自动化部署</li>
+        </ul>
+
+        <h2>项目功能</h2>
+        <ul>
+          <li><strong>多角色单聊</strong> — 内置多个角色 SKILL，切换即用</li>
+          <li><strong>AI 群聊</strong> — 同时召集多个角色参与对话，支持多轮讨论 + 提问者总结追问</li>
+          <li><strong>流式输出</strong> — 实时流式 SSE 输出，对话体验流畅</li>
+          <li><strong>停止打断</strong> — 群聊太长时可随时停止 AI 回复</li>
+          <li><strong>多模型支持</strong> — 兼容 DeepSeek、Moonshot、MiniMax、GLM-4-Flash</li>
+          <li><strong>PWA 离线缓存</strong> — 首次访问后离线也可查看历史记录</li>
+          <li><strong>纯前端</strong> — 无需后端服务器，浏览器直连 API</li>
+        </ul>
+
+        <h2>内置角色</h2>
+        <table class="rk-table">
+          <tr><th>角色</th><th>定位</th></tr>
+          <tr><td>张雪峰</td><td>实用主义、就业导向，帮普通家庭看清现实</td></tr>
+          <tr><td>张雪峰 V2.0</td><td>同款升级版</td></tr>
+          <tr><td>平衡者</td><td>提供与张雪峰互补的另一面视角</td></tr>
+          <tr><td>家长</td><td>普通父母的声音，关心稳定、学费和距离</td></tr>
+          <tr><td>心理辅导员</td><td>缓解焦虑，处理"怕选错"的心理</td></tr>
+          <tr><td>职业规划师</td><td>长远发展视角，关注 10 年后的职业路径</td></tr>
+          <tr><td>数据分析师</td><td>指导用户去哪找数据、帮用户解读数据</td></tr>
+        </table>
+        <p style="color:#8888a0;font-size:0.85rem;margin-top:-10px">注：角色 SKILL 定义文件引用了开源社区规范，其中张雪峰角色基于社区开源项目</p>
+
+        <h2>项目地址</h2>
+        <p style="display:flex;gap:12px;flex-wrap:wrap">
+          <a href="https://github.com/TsangHaotian/GaokaoHelper" target="_blank" rel="noopener" class="rk-btn">GitHub 仓库</a>
+          <a href="https://tsanghaotian.github.io/GaokaoHelper/" target="_blank" rel="noopener" class="rk-btn-outline">在线体验地址</a>
+        </p>
+
+        <h2>项目预览</h2>
+        <p style="color:#8888a0;font-size:0.85rem;margin-bottom:4px">点击图片可放大查看</p>
+        <div class="rk-screenshots">
+          <div class="shot"><img src="1.jpeg" alt="GaokaoHelper主界面"></div>
+        </div>
+
+        <h2>个人总结</h2>
+        <p>这个项目最开始是因为张雪峰老师逝世后，有人做了一个张雪峰 SKILL，我试着接入到 Claude Code 里试了试，发现效果还不错。回想起来，每次高考我都会做点相关的东西去 B 站赚流量——大一写了个高考报考志愿伪代码，大二用 Python 写了个高考志愿滑档退档模拟系统。这次这个张雪峰 SKILL 驱动的高考志愿咨询系统，我觉得肯定有潜力，所以就开干了。</p>
+        <p>最大的困难就是 AI 幻觉问题——AI 老乱说话，高考报名数据乱给。为了解决这个问题，我各种找方案，最终找到了 GLM-4-Flash，它可以联网（其实最主要的是免费，哈哈）。我的做法是：把 GLM 作为一个联网小助手，它的顺序级别和用户一样，每次用户输入什么，联网小助手就会先读取，然后由于 GLM 联网小助手和用户标签相同，下面的主 AI 也会读到联网小助手的回答，这样就避免了 AI 乱回答数据的问题。但新的问题又来了——GLM 查不到的东西，它依旧乱说。后面用提示词工程狠狠惩罚限制它，查不到不知道的东西不许乱说。</p>
+        <p>这里面的流程是：联网用的是 GLM，回答的 AI 可以是别的模型。本来只接入了 DeepSeek，但要钱，不方便我测试。我还是喜欢免费的，结果还真让我找到了 GLM 有不少免费模型，虽然差了点吧，但你就说能不能用吧。借此我还一起接入了 Kimi、MiniMax，方便用户自己去选。然后我又担心用户不会接入 API——API 要钱啊，哪怕是免费的也有并发限制，我肯定不会给他们提供我的 API，本来就开源了，我可不能倒贴钱。但怕他们不会用怎么办？我给每个 AI 都写了接入教程，很傻瓜的那种，不知道他们学不学得会，反正我尽力了。</p>
+        <p>后面我还加入了 AI 群聊。一开始只有张雪峰一个人的 SKILL，但那天晚上看了好多人在骂张雪峰，我就意识到其实张雪峰也不完全对。所以故意写了好几个 AI 角色专门反驳张雪峰的观点，集思广益嘛，毕竟我也是真的希望这个网站能帮到某些人。AI 群聊里一群 AI 可以在里面自己吵架，这样能让学生更好地判断。里面有家长角色、反对张雪峰角色，各种七七八八的。</p>
+        <p>这个项目是我维护时间最长的，每隔一段时间就会去加功能。最后一次加功能，是加入了用户自己录入高考数据以及目标院校录取分数的地方。因为就算 GLM 可以联网，它也查不到高考高校的具体数据（我后面听说是要花钱找学校买），所以只能让用户自己去填真实数据，然后这个数据会同步给所有 AI 角色。不过你乱写的话，是有 AI 检测机制的——太离谱的数据 AI 会用自己的知识库反问你是不是乱写，哈哈，有意思吧。</p>
+        <p>最重要的就是免责声明了。我反复写了好多地方——内容 AI 生成，用户自行甄别。我是真怕有人用我这个报考志愿然后滑档了，发疯找我麻烦。就算你把张雪峰复活去指导你，都有可能滑档，我这个 AI 哪里敢保证。而且我又不去审核，所以我写了好多免责声明，开屏使用就硬控 10 秒必须看免责声明。我还是很聪明的，哈哈。</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="rk-lightbox" id="lightbox" onclick="this.classList.remove('active')">
+    <img id="lightbox-img" src="" alt="">
+  </div>
+  <script>
+    if (location.protocol === 'file:') {
+      document.getElementById('back-link').href =
+        'file:///' + location.pathname.split('/featured/')[0].replace(/\\/g,'/') + '/projects.html?tab=HTML';
+    }
+    document.querySelectorAll('.rk-screenshots .shot').forEach(el => {
+      el.addEventListener('click', function() {
+        document.getElementById('lightbox-img').src = this.querySelector('img').src;
+        document.getElementById('lightbox').classList.add('active');
+      });
+    });
+  </script>
+</body>
+</html>

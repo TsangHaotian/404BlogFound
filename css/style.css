@@ -6,24 +6,29 @@
 }
 
 :root {
-  --bg: #f5f5f7;
-  --bg-card: #ffffff;
-  --text: #1d1d1f;
-  --text-secondary: #86868b;
-  --accent: #0071e3;
-  --accent-hover: #0077ed;
-  --border: #d2d2d7;
+  --bg: #0f0f1a;
+  --bg-card: rgba(255,255,255,0.06);
+  --bg-card-hover: rgba(255,255,255,0.10);
+  --text: #f0f0f5;
+  --text-secondary: #8888a0;
+  --accent: #6c5ce7;
+  --accent2: #a29bfe;
+  --border: rgba(255,255,255,0.08);
   --max-width: 720px;
   --header-height: 56px;
-  --radius: 12px;
-  --shadow: 0 2px 12px rgba(0,0,0,0.06);
+  --radius: 14px;
+  --shadow: 0 4px 24px rgba(0,0,0,0.3);
+  --glass: rgba(255,255,255,0.04);
 }
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans SC", sans-serif;
+  font-family: "Noto Sans SC", "PingFang SC", "Microsoft YaHei", -apple-system, sans-serif;
   line-height: 1.6;
   color: var(--text);
   background: var(--bg);
+  background-image: radial-gradient(ellipse at 20% 20%, rgba(108,92,231,0.15) 0%, transparent 50%),
+                    radial-gradient(ellipse at 80% 80%, rgba(162,155,254,0.10) 0%, transparent 50%);
+  background-attachment: fixed;
   -webkit-font-smoothing: antialiased;
 }
 
@@ -38,9 +43,9 @@ body {
   position: sticky;
   top: 0;
   z-index: 100;
-  background: rgba(255,255,255,0.85);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  background: rgba(15,15,26,0.75);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   border-bottom: 1px solid var(--border);
   height: var(--header-height);
 }
@@ -109,6 +114,9 @@ body {
   padding: 32px 36px;
   margin-bottom: 28px;
   box-shadow: var(--shadow);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid var(--border);
 }
 
 .profile-avatar {
@@ -160,6 +168,9 @@ body {
   padding: 28px 32px;
   margin-bottom: 20px;
   box-shadow: var(--shadow);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid var(--border);
 }
 
 .section-card h2 {
@@ -215,11 +226,12 @@ body {
 
 .tag {
   display: inline-block;
-  padding: 1px 8px;
+  padding: 2px 10px;
   font-size: 0.75rem;
-  background: #f0f0f0;
-  border-radius: 6px;
-  color: var(--text-secondary);
+  background: rgba(108,92,231,0.15);
+  border-radius: 8px;
+  color: var(--accent2);
+  border: 1px solid rgba(108,92,231,0.2);
 }
 
 .post-excerpt {
@@ -238,15 +250,17 @@ body {
 .project-card {
   display: block;
   padding: 18px;
-  background: var(--bg);
-  border-radius: 10px;
+  background: var(--glass);
+  border-radius: 12px;
   text-decoration: none;
-  transition: transform 0.2s, box-shadow 0.2s;
+  border: 1px solid var(--border);
+  transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
 }
 
 .project-card:hover {
   transform: translateY(-3px);
-  box-shadow: 0 6px 16px rgba(0,0,0,0.08);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+  background: var(--bg-card-hover);
 }
 
 .project-card h3 {
@@ -294,6 +308,9 @@ body {
   border-radius: var(--radius);
   padding: 36px 40px;
   box-shadow: var(--shadow);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid var(--border);
 }
 
 .post-header {
@@ -345,9 +362,10 @@ body {
 .post-content pre {
   margin: 18px 0;
   padding: 16px 20px;
-  background: #1d1d1f;
+  background: rgba(0,0,0,0.4);
   border-radius: 10px;
   overflow-x: auto;
+  border: 1px solid var(--border);
 }
 
 .post-content pre code {
@@ -456,7 +474,7 @@ body {
   padding: 6px 16px;
   font-size: 0.85rem;
   font-weight: 500;
-  background: var(--bg);
+  background: rgba(255,255,255,0.04);
   border: 1px solid var(--border);
   border-radius: 20px;
   cursor: pointer;
@@ -465,14 +483,14 @@ body {
 }
 
 .tab-btn:hover {
-  border-color: var(--accent);
-  color: var(--accent);
+  border-color: var(--accent2);
+  color: var(--accent2);
 }
 
 .tab-btn.active {
-  background: var(--accent);
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
   color: #fff;
-  border-color: var(--accent);
+  border-color: transparent;
 }
 
 .tab-panel {
@@ -513,17 +531,18 @@ body {
   display: flex;
   gap: 14px;
   padding: 12px;
-  background: var(--bg);
-  border-radius: 10px;
+  background: var(--glass);
+  border-radius: 12px;
   text-decoration: none;
   border: 1px solid var(--border);
-  transition: box-shadow 0.2s, transform 0.2s;
+  transition: all 0.2s;
   align-items: center;
 }
 
 .featured-card:hover {
-  box-shadow: 0 4px 14px rgba(0,0,0,0.08);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.3);
   transform: translateY(-2px);
+  background: var(--bg-card-hover);
 }
 
 .featured-thumb {
@@ -595,6 +614,9 @@ body {
   border-radius: var(--radius);
   padding: 28px 32px;
   box-shadow: var(--shadow);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid var(--border);
 }
 
 /* ===== 作品集页 ===== */
@@ -603,6 +625,9 @@ body {
   border-radius: var(--radius);
   padding: 28px 32px;
   box-shadow: var(--shadow);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid var(--border);
 }
 
 /* ===== 关于页面 ===== */
@@ -611,6 +636,9 @@ body {
   border-radius: var(--radius);
   padding: 32px 36px;
   box-shadow: var(--shadow);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid var(--border);
 }
 
 .about-content {
@@ -638,6 +666,7 @@ body {
   color: var(--text-secondary);
   font-size: 0.82rem;
   border-top: 1px solid var(--border);
+  background: rgba(15,15,26,0.5);
 }
 
 /* ===== 响应式 ===== */
@@ -647,7 +676,7 @@ body {
     top: var(--header-height);
     left: 0;
     right: 0;
-    background: rgba(255,255,255,0.98);
+    background: rgba(15,15,26,0.95);
     flex-direction: column;
     padding: 12px 20px;
     border-bottom: 1px solid var(--border);
