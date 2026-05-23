@@ -97,24 +97,16 @@
           const parts = text.split('---');
           if (parts.length < 2) { loadingEl.innerHTML = '<p class="empty" style="text-align:left;padding:8px 0">暂无精选</p>'; return; }
           const names = parts[0].trim().split(',').map(s => s.trim());
-          const content = parts.slice(1).join('---').trim();
+          const content = parts[1] ? parts[1].trim() : '';
+          const allParts = parts;
 
           let html = '';
           for (const name of names) {
             const proj = groups[lang].find(p => p.name === name);
             if (!proj) continue;
-            // 扫描该项目的截图：featured/分类/项目名/图片
+            // 从 README 第三段读图片文件名列表
             const imgDir = 'featured/' + encodeURIComponent(dir) + '/' + encodeURIComponent(name) + '/';
-            const imgs = [];
-            const exts = ['jpeg','jpg','png','gif','webp'];
-            for (const ext of exts) {
-              for (let i = 0; i <= 20; i++) {
-                const fname = i === 0 ? '主界面截图.' + ext : (i + '.' + ext);
-                const imgPath = imgDir + fname;
-                const r = await fetch(imgPath, { method: 'HEAD' }).catch(() => {});
-                if (r && r.ok) { imgs.push(imgPath); break; }
-              }
-            }
+            const imgs = (allParts[2] || '').split('\n').map(s => s.trim()).filter(Boolean).map(f => imgDir + encodeURIComponent(f));
             const descMatch = content.match(new RegExp(name + '[:：]?\\s*(.+?)[\\n\\r]', 'i'));
             const desc = descMatch ? descMatch[1].trim() : proj.description;
 
