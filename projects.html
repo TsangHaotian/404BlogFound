@@ -46,11 +46,19 @@
         return;
       }
 
-      // 按语言分组（手动修正 GitHub 自动检测的语言）
+      // 按语言分组（根据项目名关键词自动归类）
+      function detectLang(name) {
+        const n = name.toLowerCase();
+        if (n.includes('harmony')) return 'Harmony';
+        if (n.includes('android')) return 'Android';
+        if (n.includes('python')) return 'Python';
+        if (n.includes('web') || n.includes('html')) return 'Web';
+        if (n.includes('java')) return 'Java';
+        return null;
+      }
       const groups = {};
-      const langOverride = { 'Harmony_EyesNote': 'Harmony', 'Software_Libraries': '其他', 'python_pdf_to_word': 'Python' };
       projects.forEach(p => {
-        p.language = langOverride[p.name] || p.language;
+        p.language = detectLang(p.name) || p.language || '其他';
         const lang = p.language || '其他';
         if (!groups[lang]) groups[lang] = [];
         groups[lang].push(p);

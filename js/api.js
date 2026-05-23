@@ -62,17 +62,24 @@ async function fetchRepos() {
   let projects = repos
     .filter(r => !r.fork && r.description)
     .map(r => {
-      // 手动语言映射（GitHub 自动检测不对的在这里修正）
-      const langOverride = {
-        'Harmony_EyesNote': 'Harmony',
-        'Software_Libraries': '其他',
-        'python_pdf_to_word': 'Python'
-      };
+      // 根据项目名关键词自动归类
+      function detectLang(name) {
+        const n = name.toLowerCase();
+        if (n.includes('harmony') || n.includes('鸿蒙')) return 'Harmony';
+        if (n.includes('android')) return 'Android';
+        if (n.includes('python')) return 'Python';
+        if (n.includes('web') || n.includes('html') || n.includes('css') || n.includes('javascript') || n.includes('js')) return 'Web';
+        if (n.includes('java')) return 'Java';
+        if (n.includes('go') || n.includes('golang')) return 'Go';
+        if (n.includes('rust')) return 'Rust';
+        if (n.includes('cpp') || n.includes('c++') || n.includes('c_')) return 'C++';
+        return null;
+      }
       return {
         name: r.name,
         description: r.description,
         stars: r.stargazers_count,
-        language: langOverride[r.name] || r.language,
+        language: detectLang(r.name) || r.language || '其他',
         topics: r.topics || [],
         url: r.html_url,
         updated_at: r.updated_at
