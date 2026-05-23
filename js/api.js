@@ -62,24 +62,52 @@ async function fetchRepos() {
   let projects = repos
     .filter(r => !r.fork && r.description)
     .map(r => {
-      // 根据项目名关键词自动归类
-      function detectLang(name) {
-        const n = name.toLowerCase();
-        if (n.includes('harmony') || n.includes('鸿蒙')) return 'Harmony';
-        if (n.includes('android')) return 'Android';
-        if (n.includes('python')) return 'Python';
-        if (n.includes('web') || n.includes('html') || n.includes('css') || n.includes('javascript') || n.includes('js')) return 'Web';
-        if (n.includes('java')) return 'Java';
-        if (n.includes('go') || n.includes('golang')) return 'Go';
-        if (n.includes('rust')) return 'Rust';
-        if (n.includes('cpp') || n.includes('c++') || n.includes('c_')) return 'C++';
-        return null;
-      }
+      // 项目名→分类 精确映射表
+      const langMap = {
+        '404BlogFound': 'HTML',
+        'CardGameYS': '其他',
+        'Harmony_EyesNote': 'Harmony',
+        'GaokaoHelper': 'HTML',
+        'openclaw-css-tweaker': 'Python',
+        'JRXY-AutoSign-Reborn': 'Python',
+        'Software_Libraries': '其他',
+        'RocoKingdomTranslator': 'HTML',
+        'Python_Visual_Focus_Training_System': 'Python',
+        'DrawAnythingToYakiji': 'HTML',
+        'YajijiOracle': 'HTML',
+        '4C_competition': '竞赛',
+        'web_happybirthday': 'HTML',
+        'Android_login': 'Android',
+        'python_word_to_excel': 'Python',
+        'python_Job_Check_tool': 'Python',
+        'python_pdf_to_word': 'Python',
+        'Android_login_and_jigsaw_puzzle': 'Android',
+        'Android_Calculators': 'Android',
+        'python_Excel_merge_tool': 'Python',
+        'Android_Mental_health_program': 'Android',
+        'Python_Probability_theory_gambling_game': 'Python',
+        'Python_Interactive_somatosensory_operation': 'Python',
+        'Su-Shi-dingfengbo-poems-fine-tuning-AI-model': 'AI大模型微调',
+        'python_ppt_assistant': 'Python',
+        'Python_data_merge_tool': 'Python',
+        'Python_Probability_theory_gambling_game_V2.0': 'Python',
+        'python_40_Parallel_College_Volunteering_for_C': 'Python',
+        'Web_Truth_or_dare': 'HTML',
+        'Web_Find_a_difference': 'HTML',
+        'Web_Person': 'HTML',
+        'Web_Xinjiang_Foods': 'HTML',
+        'Python_mind_project': 'Python',
+        'WChatXiaochengxuYun_jizhangben': '微信小程序',
+        'WChatXiaoChengxu_jizhangben': '微信小程序',
+        'Organizing_the_computer_desktop': 'Python',
+        'python_web_Question_Bank_Assistant': 'Python',
+        'Python_hand_language_web': 'Python'
+      };
       return {
         name: r.name,
         description: r.description,
         stars: r.stargazers_count,
-        language: detectLang(r.name) || r.language || '其他',
+        language: langMap[r.name] || r.language || '其他',
         topics: r.topics || [],
         url: r.html_url,
         updated_at: r.updated_at
