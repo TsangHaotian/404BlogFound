@@ -61,15 +61,21 @@ async function fetchRepos() {
   // 过滤并排序
   let projects = repos
     .filter(r => !r.fork && r.description)
-    .map(r => ({
-      name: r.name,
-      description: r.description,
-      stars: r.stargazers_count,
-      language: r.language,
-      topics: r.topics || [],
-      url: r.html_url,
-      updated_at: r.updated_at
-    }))
+    .map(r => {
+      // 手动语言映射（GitHub 自动检测不对的在这里修正）
+      const langOverride = {
+        'Harmony_EyesNote': 'Harmony'
+      };
+      return {
+        name: r.name,
+        description: r.description,
+        stars: r.stargazers_count,
+        language: langOverride[r.name] || r.language,
+        topics: r.topics || [],
+        url: r.html_url,
+        updated_at: r.updated_at
+      };
+    })
     .sort((a, b) => b.stars - a.stars);
 
   setCache(cacheKey, projects);
