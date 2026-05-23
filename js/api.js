@@ -23,11 +23,12 @@ function setCache(key, value) {
   } catch (e) {}
 }
 
-// 获取 GitHub Token（从 URL 参数或 localStorage）
+// 获取 GitHub Token（从 URL 参数、localStorage 或硬编码默认值）
+const DEFAULT_TOKEN = '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';
 function getToken() {
   const params = new URLSearchParams(window.location.search);
-  const token = params.get('token') || localStorage.getItem('github_token');
-  if (token) localStorage.setItem('github_token', token);
+  const token = params.get('token') || localStorage.getItem('github_token') || DEFAULT_TOKEN;
+  if (token && token !== DEFAULT_TOKEN) localStorage.setItem('github_token', token);
   return token;
 }
 
