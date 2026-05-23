@@ -5,6 +5,83 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>关于 - 404 Blog Not Found</title>
   <link rel="stylesheet" href="css/style.css">
+  <style>
+    .about-header {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      margin-bottom: 32px;
+      padding-bottom: 28px;
+      border-bottom: 1px solid var(--border);
+    }
+    .about-avatar img {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid rgba(255,255,255,0.1);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+    }
+    .about-name h1 {
+      font-size: 1.6rem;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+    .about-name p {
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+    }
+    .about-content {
+      max-width: 100%;
+      font-size: 1rem;
+      line-height: 1.8;
+    }
+    .about-content p {
+      margin-bottom: 12px;
+    }
+    .about-section {
+      margin-top: 28px;
+    }
+    .about-section h2 {
+      font-size: 1.15rem;
+      font-weight: 600;
+      margin-bottom: 12px;
+      color: var(--accent2);
+    }
+    .about-section ul {
+      padding-left: 20px;
+      line-height: 2;
+    }
+    .about-section li {
+      color: var(--text-secondary);
+    }
+    .about-links {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 24px;
+    }
+    .about-links a {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 18px;
+      background: rgba(108,92,231,0.12);
+      color: var(--accent2);
+      border: 1px solid rgba(108,92,231,0.2);
+      border-radius: 10px;
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: all 0.2s;
+    }
+    .about-links a:hover {
+      background: rgba(108,92,231,0.2);
+      transform: translateY(-1px);
+    }
+    @media (max-width: 640px) {
+      .about-header { flex-direction: column; text-align: center; }
+    }
+  </style>
 </head>
 <body>
   <header class="site-header">
@@ -24,14 +101,45 @@
 
   <main class="container main-content">
     <section class="about-page">
-      <h1>关于我</h1>
+      <div class="about-header">
+        <div class="about-avatar">
+          <img src="img/avatar/avatar.jpg" alt="TsangHaotian">
+        </div>
+        <div class="about-name">
+          <h1>TsangHaotian</h1>
+          <p>记录学习与思考 / 热爱技术 / 持续成长</p>
+          <span class="tag" style="margin-top:8px">Go</span>
+          <span class="tag">Python</span>
+          <span class="tag">Android</span>
+          <span class="tag">HTML/CSS/JS</span>
+        </div>
+      </div>
+
       <div class="about-content">
-        <p>Hi，我是 <strong>TsangHaotian</strong>。</p>
-        <p>这里是我的个人技术博客，记录学习过程中的思考与总结。</p>
-        <p>博客文章通过 GitHub Issues 管理，作品集自动同步 GitHub 仓库。</p>
-        <p>
-          <a href="https://github.com/TsangHaotian" target="_blank" rel="noopener">GitHub</a>
-        </p>
+        <p>Hi，我是 <strong>TsangHaotian</strong>，一名来自新疆师范大学的在校生。</p>
+        <p>这个博客记录了我折腾各种项目的过程——从高考志愿模拟系统到洛克王国翻译器，从 AI 对话工具到鸿蒙应用。大部分项目都是"学以致用"，把学过的东西拿出来解决实际问题。</p>
+
+        <div class="about-section">
+          <h2>技术栈</h2>
+          <ul>
+            <li>前端：HTML / CSS / JavaScript</li>
+            <li>移动端：Android（Java）、鸿蒙（HarmonyOS）</li>
+            <li>后端：Python、Go</li>
+            <li>AI：大语言模型 API 接入、角色 SKILL 设计</li>
+            <li>部署：GitHub Pages、云开发</li>
+          </ul>
+        </div>
+
+        <div class="about-section">
+          <h2>目前在做</h2>
+          <p>维护这个个人博客网站，持续收录作品集，偶尔写写技术文章。最近在研究 AI 应用落地和前端交互优化。</p>
+        </div>
+
+        <div class="about-links">
+          <a href="https://github.com/TsangHaotian" target="_blank">GitHub</a>
+          <a href="https://tsanghaotian.github.io/404BlogFound/projects.html">作品集</a>
+          <a href="https://tsanghaotian.github.io/404BlogFound/posts.html">博客归档</a>
+        </div>
       </div>
     </section>
   </main>
