@@ -46,7 +46,6 @@
         return;
       }
 
-      // 按语言分组（基于精确映射表）
       const langMap = {'404BlogFound':'HTML','CardGameYS':'其他','Harmony_EyesNote':'Harmony','GaokaoHelper':'HTML','openclaw-css-tweaker':'Python','JRXY-AutoSign-Reborn':'Python','Software_Libraries':'其他','RocoKingdomTranslator':'HTML','Python_Visual_Focus_Training_System':'Python','DrawAnythingToYakiji':'HTML','YajijiOracle':'HTML','4C_competition':'竞赛','web_happybirthday':'HTML','Android_login':'Android','python_word_to_excel':'Python','python_Job_Check_tool':'Python','python_pdf_to_word':'Python','Android_login_and_jigsaw_puzzle':'Android','Android_Calculators':'Android','python_Excel_merge_tool':'Python','Android_Mental_health_program':'Android','Python_Probability_theory_gambling_game':'Python','Python_Interactive_somatosensory_operation':'Python','Su-Shi-dingfengbo-poems-fine-tuning-AI-model':'AI大模型微调','python_ppt_assistant':'Python','Python_data_merge_tool':'Python','Python_Probability_theory_gambling_game_V2.0':'Python','python_40_Parallel_College_Volunteering_for_C':'Python','Web_Truth_or_dare':'HTML','Web_Find_a_difference':'HTML','Web_Person':'HTML','Web_Xinjiang_Foods':'HTML','Python_mind_project':'Python','WChatXiaochengxuYun_jizhangben':'微信小程序','WChatXiaoChengxu_jizhangben':'微信小程序','Organizing_the_computer_desktop':'Python','python_web_Question_Bank_Assistant':'Python','Python_hand_language_web':'Python'};
       const groups = {};
       projects.forEach(p => {
@@ -56,19 +55,19 @@
         groups[lang].push(p);
       });
 
-      // 按指定顺序排序
       const langOrder = ['AI大模型微调','Harmony','Android','HTML','Python','微信小程序','竞赛','其他'];
       const sortedLangs = Object.keys(groups).sort((a, b) => {
         const ai = langOrder.indexOf(a), bi = langOrder.indexOf(b);
         return (ai === -1 ? 999 : ai) - (bi === -1 ? 999 : bi);
       });
 
-      container.innerHTML = sortedLangs.map(lang => `
-        <div class="language-section">
-          <h2 class="language-heading">${lang} <span class="count">(${groups[lang].length})</span></h2>
-          <div class="project-scroll">
-            ${groups[lang].map(p => `
-              <a href="${p.url}" class="project-card scroll-card" target="_blank" rel="noopener">
+      let activeTab = sortedLangs[0];
+      container.innerHTML = `
+        <div class="project-tabs">${sortedLangs.map(l => `<button class="tab-btn${l === activeTab ? ' active' : ''}" data-tab="${l}">${l} (${groups[l].length})</button>`).join('')}</div>
+        <div class="tab-content">${sortedLangs.map(l => `
+          <div class="tab-panel${l === activeTab ? ' active' : ''}" data-panel="${l}">
+            <div class="project-grid">${groups[l].map(p => `
+              <a href="${p.url}" class="project-card" target="_blank" rel="noopener">
                 <h3>${p.name}</h3>
                 <p>${p.description}</p>
                 <div class="project-meta">
@@ -76,10 +75,18 @@
                   <span class="stars">★ ${p.stars}</span>
                 </div>
               </a>
-            `).join('')}
+            `).join('')}</div>
           </div>
-        </div>
-      `).join('');
+        `).join('')}</div>`;
+
+      container.addEventListener('click', e => {
+        const btn = e.target.closest('.tab-btn');
+        if (!btn) return;
+        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+        document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+        btn.classList.add('active');
+        document.querySelector(`.tab-panel[data-panel="${btn.dataset.tab}"]`).classList.add('active');
+      });
     }).catch(() => {
       document.getElementById('project-groups').innerHTML = '<p class="empty">加载失败，请刷新重试</p>';
     });
