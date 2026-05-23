@@ -28,10 +28,6 @@
     <article class="post-full" id="post-content">
       <p class="empty">加载中...</p>
     </article>
-
-    <div class="giscus-wrapper">
-      <div class="giscus"></div>
-    </div>
   </main>
 
   <footer class="site-footer">
@@ -65,40 +61,6 @@
     } else {
       fetchPost(postId).then(post => {
         document.getElementById('page-title').textContent = post.title + ' - 404 Blog Not Found';
-
-        // Giscus 评论配置（用文章 ID 做映射）
-        const giscus = document.querySelector('.giscus');
-        giscus.setAttribute('data-repo', 'TsangHaotian/404BlogFound');
-        giscus.setAttribute('data-repo-id', '');
-        giscus.setAttribute('data-category', 'Announcements');
-        giscus.setAttribute('data-category-id', '');
-        giscus.setAttribute('data-mapping', 'specific');
-        giscus.setAttribute('data-term', `post-${post.id}`);
-        giscus.setAttribute('data-reactions-enabled', '1');
-        giscus.setAttribute('data-emit-metadata', '0');
-        giscus.setAttribute('data-theme', 'light');
-        giscus.setAttribute('data-lang', 'zh-CN');
-        giscus.setAttribute('loading', 'lazy');
-        giscus.setAttribute('crossorigin', 'anonymous');
-        giscus.setAttribute('async', '');
-
-        // 加载 Giscus 脚本
-        const giscusScript = document.createElement('script');
-        giscusScript.src = 'https://giscus.app/client.js';
-        giscusScript.setAttribute('data-repo', 'TsangHaotian/404BlogFound');
-        giscusScript.setAttribute('data-repo-id', '');
-        giscusScript.setAttribute('data-category', 'Announcements');
-        giscusScript.setAttribute('data-category-id', '');
-        giscusScript.setAttribute('data-mapping', 'specific');
-        giscusScript.setAttribute('data-term', `post-${post.id}`);
-        giscusScript.setAttribute('data-reactions-enabled', '1');
-        giscusScript.setAttribute('data-emit-metadata', '0');
-        giscusScript.setAttribute('data-theme', 'light');
-        giscusScript.setAttribute('data-lang', 'zh-CN');
-        giscusScript.setAttribute('loading', 'lazy');
-        giscusScript.setAttribute('crossorigin', 'anonymous');
-        giscusScript.setAttribute('async', '');
-        giscus.after(giscusScript);
 
         // 渲染文章
         document.getElementById('post-content').innerHTML = `

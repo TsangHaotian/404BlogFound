@@ -665,14 +665,6 @@ body {
   margin-bottom: 14px;
 }
 
-/* ===== Giscus 评论区 ===== */
-.giscus-wrapper {
-  max-width: var(--max-width);
-  margin: 28px auto 0;
-  padding-top: 24px;
-  border-top: 1px solid var(--border);
-}
-
 /* ===== 页脚 ===== */
 .site-footer {
   text-align: center;
