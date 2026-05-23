@@ -23,9 +23,9 @@
   </header>
 
   <main class="container main-content">
-    <section class="projects-page">
-      <h1>作品集</h1>
-      <p class="subtitle">我的 GitHub 开源项目</p>
+    <section class="section-card">
+      <h1 style="font-size:1.6rem;font-weight:700;margin-bottom:6px">作品集</h1>
+      <p style="color:var(--text-secondary);margin-bottom:24px;font-size:0.95rem">我的 GitHub 开源项目</p>
       <div id="project-groups"><p class="empty">加载中...</p></div>
     </section>
   </main>
@@ -39,8 +39,6 @@
   <script src="js/api.js"></script>
   <script src="js/main.js"></script>
   <script>
-    // 精选配置：每个分类的精选项目，以及跳转链接
-    // 有独立详情页的填 page 路径，没有的默认跳 GitHub
     const FEATURED = {
       'AI大模型微调': [
         { name: 'Su-Shi-dingfengbo-poems-fine-tuning-AI-model' }
@@ -65,11 +63,11 @@
         { name: 'WChatXiaoChengxu_jizhangben' }
       ],
       '竞赛': [
-        { name: '计算机设计大赛省三等奖', page: 'featured/竞赛/certificates/files/cs-design-competition/', thumb: 'featured/竞赛/certificates/files/cs-design-competition/计算机设计大赛省三等奖.jpeg' },
-        { name: '全国大学生计算机系统能力大赛三等奖', page: 'featured/竞赛/certificates/files/cs-system-competition/', thumb: 'featured/竞赛/certificates/files/cs-system-competition/全国大学生计算机系统能力大赛三等奖.jpeg' },
-        { name: '未来设计师大赛', page: 'featured/竞赛/certificates/files/future-designer/', thumb: 'featured/竞赛/certificates/files/future-designer/未来设计师大赛.jpeg' },
-        { name: '机器人及人工智能大赛国家级二等奖', page: 'featured/竞赛/certificates/files/robot-ai-competition/', thumb: 'featured/竞赛/certificates/files/robot-ai-competition/国家级二等奖.jpeg' },
-        { name: '软件著作权', page: 'featured/竞赛/certificates/files/software-copyright/', thumb: 'featured/竞赛/certificates/files/software-copyright/基于机器学习的情感分析系统 .jpeg' }
+        { name: '计算机设计大赛省三等奖', thumb: 'featured/竞赛/certificates/files/cs-design-competition/计算机设计大赛省三等奖.jpeg', desc: 'AIGC微课辅助赛道 省三等奖' },
+        { name: '全国大学生计算机系统能力大赛三等奖', thumb: 'featured/竞赛/certificates/files/cs-system-competition/全国大学生计算机系统能力大赛三等奖.jpeg', desc: '西北赛区三等奖' },
+        { name: '未来设计师大赛', thumb: 'featured/竞赛/certificates/files/future-designer/未来设计师大赛.jpeg', desc: '新疆赛区二等奖' },
+        { name: '机器人及人工智能大赛国家级二等奖', thumb: 'featured/竞赛/certificates/files/robot-ai-competition/国家级二等奖.jpeg', desc: '国家级二等奖 · 省一等奖', imgs: ['featured/竞赛/certificates/files/robot-ai-competition/国家级二等奖.jpeg','featured/竞赛/certificates/files/robot-ai-competition/省一等奖.jpeg'] },
+        { name: '软件著作权', thumb: 'featured/竞赛/certificates/files/software-copyright/基于机器学习的情感分析系统 .jpeg', desc: '基于机器学习的情感分析系统' }
       ],
       '其他': []
     };
@@ -81,7 +79,7 @@
         return;
       }
 
-      const langMap = {'404BlogFound':'HTML','CardGameYS':'其他','Harmony_EyesNote':'Harmony','GaokaoHelper':'HTML','openclaw-css-tweaker':'Python','JRXY-AutoSign-Reborn':'Python','Software_Libraries':'其他','RocoKingdomTranslator':'HTML','Python_Visual_Focus_Training_System':'Python','DrawAnythingToYakiji':'HTML','YajijiOracle':'HTML','4C_competition':'竞赛','web_happybirthday':'HTML','Android_login':'Android','python_word_to_excel':'Python','python_Job_Check_tool':'Python','python_pdf_to_word':'Python','Android_login_and_jigsaw_puzzle':'Android','Android_Calculators':'Android','python_Excel_merge_tool':'Python','Android_Mental_health_program':'Android','Python_Probability_theory_gambling_game':'Python','Python_Interactive_somatosensory_operation':'Python','Su-Shi-dingfengbo-poems-fine-tuning-AI-model':'AI大模型微调','python_ppt_assistant':'Python','Python_data_merge_tool':'Python','Python_Probability_theory_gambling_game_V2.0':'Python','python_40_Parallel_College_Volunteering_for_C':'Python','Web_Truth_or_dare':'HTML','Web_Find_a_difference':'HTML','Web_Person':'HTML','Web_Xinjiang_Foods':'HTML','Python_mind_project':'Python','WChatXiaochengxuYun_jizhangben':'微信小程序','WChatXiaoChengxu_jizhangben':'微信小程序','Organizing_the_computer_desktop':'Python','python_web_Question_Bank_Assistant':'Python','Python_hand_language_web':'Python'};
+      const langMap = {'404BlogFound':'HTML','CardGameYS':'其他','Harmony_EyesNote':'Harmony','GaokaoHelper':'HTML','openclaw-css-tweaker':'Python','JRXY-AutoSign-Reborn':'Python','Software_Libraries':'其他','RocoKingdomTranslator':'HTML','Python_Visual_Focus_Training_System':'Python','DrawAnythingToYakiji':'HTML','YajijiOracle':'HTML','4C_competition':'AI大模型微调','web_happybirthday':'HTML','Android_login':'Android','python_word_to_excel':'Python','python_Job_Check_tool':'Python','python_pdf_to_word':'Python','Android_login_and_jigsaw_puzzle':'Android','Android_Calculators':'Android','python_Excel_merge_tool':'Python','Android_Mental_health_program':'Android','Python_Probability_theory_gambling_game':'Python','Python_Interactive_somatosensory_operation':'Python','Su-Shi-dingfengbo-poems-fine-tuning-AI-model':'AI大模型微调','python_ppt_assistant':'Python','Python_data_merge_tool':'Python','Python_Probability_theory_gambling_game_V2.0':'Python','python_40_Parallel_College_Volunteering_for_C':'Python','Web_Truth_or_dare':'HTML','Web_Find_a_difference':'HTML','Web_Person':'HTML','Web_Xinjiang_Foods':'HTML','Python_mind_project':'Python','WChatXiaochengxuYun_jizhangben':'微信小程序','WChatXiaoChengxu_jizhangben':'微信小程序','Organizing_the_computer_desktop':'Python','python_web_Question_Bank_Assistant':'Python','Python_hand_language_web':'Python'};
       const groups = {};
       projects.forEach(p => {
         p.language = langMap[p.name] || p.language || '其他';
@@ -91,66 +89,119 @@
       });
 
       const langOrder = ['AI大模型微调','Harmony','Android','HTML','Python','微信小程序','竞赛','其他'];
-      const sortedLangs = Object.keys(groups).sort((a, b) => {
-        const ai = langOrder.indexOf(a), bi = langOrder.indexOf(b);
-        return (ai === -1 ? 999 : ai) - (bi === -1 ? 999 : bi);
-      });
+      const sortedLangs = langOrder.filter(l => groups[l] || (FEATURED[l] && FEATURED[l].length));
 
       let activeTab = (new URLSearchParams(window.location.search)).get('tab');
       if (!activeTab || !sortedLangs.includes(activeTab)) activeTab = sortedLangs[0];
+
       container.innerHTML = `
-        <div class="project-tabs">${sortedLangs.map(l => `<button class="tab-btn${l === activeTab ? ' active' : ''}" data-tab="${l}">${l} (${groups[l].length})</button>`).join('')}</div>
+        <div class="project-tabs">${sortedLangs.map(l => `<button class="tab-btn${l === activeTab ? ' active' : ''}" data-tab="${l}">${l}</button>`).join('')}</div>
         <div class="tab-content">${sortedLangs.map(l => `
           <div class="tab-panel${l === activeTab ? ' active' : ''}" data-panel="${l}">
             ${FEATURED[l] && FEATURED[l].length ? `
             <div class="featured-section">
               <h3 class="featured-title">精选</h3>
               <div class="featured-grid">${FEATURED[l].map(f => {
-                const proj = groups[l].find(p => p.name === f.name);
-                if (!proj) return '';
+                const proj = groups[l] ? groups[l].find(p => p.name === f.name) : null;
+                if (!proj) {
+                  if (f.thumb) {
+                    var imgs = f.imgs ? f.imgs.join('||') : f.thumb;
+                    return '<a href="#" class="featured-card cert-card" data-img="' + f.thumb + '" data-title="' + f.name + '" data-desc="' + (f.desc||'') + '" data-imgs="' + imgs + '">' +
+                      (f.thumb ? '<div class="featured-thumb"><img src="' + f.thumb + '" alt="" onerror="this.parentElement.style.display=\'none\'"></div>' : '') +
+                      '<div class="featured-info"><h4>' + f.name + '</h4><p>' + (f.desc||'') + '</p></div></a>';
+                  }
+                  return '';
+                }
                 const link = f.page || proj.url;
-                const isInternal = f.page ? true : false;
-                return `
-                  <a href="${link}" class="featured-card" ${isInternal ? '' : 'target="_blank" rel="noopener"'}>
-                    ${f.thumb ? `<div class="featured-thumb"><img src="${f.thumb}" alt="${f.name}" onerror="this.parentElement.style.display='none'"></div>` : ''}
-                    <div class="featured-info">
-                      <h4>${f.name}</h4>
-                      <p>${proj.description || ''}</p>
-                      <div class="project-meta">
-                        <span class="lang">${proj.language}</span>
-                        <span class="stars">★ ${proj.stars}</span>
-                      </div>
-                    </div>
-                  </a>
-                `;
+                return '<a href="' + link + '" class="featured-card">' +
+                  (f.thumb ? '<div class="featured-thumb"><img src="' + f.thumb + '" alt="" onerror="this.parentElement.style.display=\'none\'"></div>' : '') +
+                  '<div class="featured-info"><h4>' + f.name + '</h4><p>' + (proj.description||'') + '</p>' +
+                  '<div class="project-meta">' + (proj.language?'<span class="lang">'+proj.language+'</span>':'') + '<span class="stars">★ '+proj.stars+'</span></div></div></a>';
               }).join('')}</div>
             </div>` : ''}
             <div class="all-projects-section">
-              <h3 class="featured-title">全部项目 <span class="count">(${groups[l].length})</span></h3>
-              <div class="project-grid">${groups[l].map(p => `
-                <a href="${p.url}" class="project-card" target="_blank" rel="noopener">
-                  <h3>${p.name}</h3>
-                  <p>${p.description}</p>
-                  <div class="project-meta">
-                    ${p.language ? `<span class="lang">${p.language}</span>` : ''}
-                    <span class="stars">★ ${p.stars}</span>
-                  </div>
-                </a>
-              `).join('')}</div>
+              <h3 class="featured-title">全部项目 ${groups[l] ? '<span class="count">('+groups[l].length+')</span>' : ''}</h3>
+              <div class="project-grid">${groups[l] ? groups[l].map(p =>
+                '<a href="' + p.url + '" class="project-card" target="_blank" rel="noopener">' +
+                '<h3>' + p.name + '</h3>' +
+                '<p>' + (p.description||'') + '</p>' +
+                '<div class="project-meta">' + (p.language?'<span class="lang">'+p.language+'</span>':'') + '<span class="stars">★ '+p.stars+'</span></div></a>'
+              ).join('') : ''}</div>
             </div>
           </div>
         `).join('')}</div>`;
 
-      container.addEventListener('click', e => {
-        const btn = e.target.closest('.tab-btn');
+      // 竞赛分类追加其他证书
+      var certGroups = [
+        { title: 'AI+能力认证证书', items: [
+          { name: 'AI+编程能力认证证书', img: 'featured/竞赛/certificates/files/other-certs/AI+能力认证证书/AI+编程能力认证证书.png' },
+          { name: 'AI Coding Engineer', img: 'featured/竞赛/certificates/files/other-certs/AI+能力认证证书/Al Coding Engineer.png' },
+          { name: 'Fine-tuning Engineer', img: 'featured/竞赛/certificates/files/other-certs/AI+能力认证证书/Fine-tuning Engineer.png' },
+          { name: 'Prompt Engineer', img: 'featured/竞赛/certificates/files/other-certs/AI+能力认证证书/Prompt Engineer.png' }
+        ]},
+        { title: 'RPA技能证书', items: [
+          { name: '实在智能RPA实施工程师', img: 'featured/竞赛/certificates/files/other-certs/RPA技能证书/实在智能RPA实施工程师RPA.png' },
+          { name: '来也RPA实施工程师', img: 'featured/竞赛/certificates/files/other-certs/RPA技能证书/来也RPA实施工程师.jpg' }
+        ]},
+        { title: '人工智能训练师证书', items: [
+          { name: '人工智能训练师', img: 'featured/竞赛/certificates/files/other-certs/人工智能训练师证书/人工智能训练师证书.jpg' }
+        ]},
+        { title: '国际劳工大师班证书', items: [
+          { name: '国际劳工大师班', img: 'featured/竞赛/certificates/files/other-certs/国际劳工大师班证书/国际劳工大师班证书.jpeg' }
+        ]},
+        { title: '微软网课证书', items: [
+          { name: 'Generative AI by Microsoft', img: 'featured/竞赛/certificates/files/other-certs/微软网课证书/Career Essentials in Generative AI by.jpeg' }
+        ]}
+      ];
+      var certPanel = document.querySelector('.tab-panel[data-panel="竞赛"] .all-projects-section');
+      if (certPanel) {
+        certGroups.forEach(function(g) {
+          var sec = document.createElement('div');
+          sec.style.cssText = 'margin-top:24px';
+          sec.innerHTML = '<h4 style="font-size:0.95rem;font-weight:600;margin-bottom:12px;color:var(--text-secondary)">' + g.title + '</h4><div class="project-grid">' +
+            g.items.map(function(c) {
+              return '<a href="#" class="project-card cert-card" data-img="' + c.img + '" data-title="' + c.name + '" style="display:flex;gap:10px;align-items:center;padding:12px">' +
+                '<div style="width:50px;height:50px;flex-shrink:0"><img src="' + c.img + '" alt="" onerror="this.parentElement.style.display=\'none\'" style="width:100%;height:100%;object-fit:cover;border-radius:6px"></div>' +
+                '<div style="min-width:0"><h3 style="font-size:0.85rem;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--accent)">' + c.name + '</h3></div></a>';
+            }).join('') + '</div>';
+          certPanel.appendChild(sec);
+        });
+      }
+
+      // tab 切换
+      container.addEventListener('click', function(e) {
+        var btn = e.target.closest('.tab-btn');
         if (!btn) return;
-        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-        document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+        document.querySelectorAll('.tab-btn').forEach(function(b) { b.classList.remove('active'); });
+        document.querySelectorAll('.tab-panel').forEach(function(p) { p.classList.remove('active'); });
         btn.classList.add('active');
-        const panel = document.querySelector(`.tab-panel[data-panel="${btn.dataset.tab}"]`);
+        var panel = document.querySelector('.tab-panel[data-panel="' + btn.dataset.tab + '"]');
         if (panel) panel.classList.add('active');
       });
-    }).catch(() => {
+
+      // 竞赛证书点击放大
+      document.addEventListener('click', function(e) {
+        var card = e.target.closest('.cert-card');
+        if (!card) return;
+        e.preventDefault();
+        var imgs = (card.getAttribute('data-imgs') || card.getAttribute('data-img') || '').split('||');
+        var title = card.getAttribute('data-title');
+        var bp = (location.protocol === 'file:') ? 'file:///' + location.pathname.split('/404BlogFound/')[0].replace(/\\/g,'/') + '/404BlogFound/' : '';
+        var box = document.getElementById('cert-lightbox');
+        if (!box) {
+          box = document.createElement('div');
+          box.id = 'cert-lightbox';
+          box.style.cssText = 'display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.9);z-index:9999;justify-content:center;align-items:center;cursor:pointer;flex-direction:column;padding:20px';
+          box.onclick = function(){ this.style.display = 'none'; };
+          document.body.appendChild(box);
+        }
+        box.style.display = 'flex';
+        box.innerHTML = '<div style="display:flex;gap:16px;flex-wrap:wrap;justify-content:center">' + imgs.map(function(src) {
+          var fullSrc = bp ? bp + '/' + src : src;
+          return '<img src="'+fullSrc+'" style="max-height:70vh;max-width:45vw;border-radius:12px;object-fit:contain">';
+        }).join('') + '</div><p style="color:#fff;margin-top:16px;font-size:1rem">'+title+'</p><p style="color:#8888a0;margin-top:12px;font-size:0.8rem">点击任意位置关闭</p>';
+      });
+    }).catch(function() {
       document.getElementById('project-groups').innerHTML = '<p class="empty">加载失败，请刷新重试</p>';
     });
   </script>

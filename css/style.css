@@ -263,6 +263,9 @@ body {
   background: var(--bg-card-hover);
 }
 
+.project-card {
+  min-width: 0;
+}
 .project-card h3 {
   color: var(--accent);
   font-size: 0.95rem;
@@ -496,7 +499,6 @@ body {
 .tab-panel {
   display: none;
 }
-
 .tab-panel.active {
   display: block;
 }
@@ -561,11 +563,17 @@ body {
   display: block;
 }
 
+.featured-info {
+  min-width: 0;
+}
 .featured-info h4 {
   font-size: 1rem;
   font-weight: 600;
   color: var(--accent);
   margin-bottom: 6px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .featured-info p {
@@ -620,15 +628,6 @@ body {
 }
 
 /* ===== 作品集页 ===== */
-.projects-page {
-  background: var(--bg-card);
-  border-radius: var(--radius);
-  padding: 28px 32px;
-  box-shadow: var(--shadow);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  border: 1px solid var(--border);
-}
 
 /* ===== 关于页面 ===== */
 .about-page {
