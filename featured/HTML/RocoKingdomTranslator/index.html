@@ -5,63 +5,152 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>洛克王国语翻译器 - 404 Blog Not Found</title>
   <link rel="stylesheet" href="../../css/style.css">
+  <style>
+    .rk-page {
+      max-width: 640px;
+      margin: 0 auto;
+      background: #fff;
+      border-radius: 20px;
+      box-shadow: 0 2px 16px rgba(0,0,0,0.06);
+      overflow: hidden;
+      margin-top: 24px;
+    }
+    .rk-header {
+      text-align: center;
+      padding: 48px 24px 20px;
+    }
+    .rk-header img {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      border: 3px solid #fff;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.1);
+      margin-bottom: 16px;
+      object-fit: cover;
+    }
+    .rk-header h1 {
+      font-size: 1.8rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+    .rk-header p {
+      color: var(--text-secondary);
+      font-size: 1rem;
+      max-width: 500px;
+      margin: 0 auto;
+    }
+    .rk-body {
+      padding: 0 28px 32px;
+    }
+    .rk-screenshots {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      margin-top: 24px;
+    }
+    .rk-screenshots {
+      display: flex;
+      justify-content: center;
+      margin-top: 16px;
+    }
+    .rk-screenshots .shot {
+      width: 260px;
+    }
+    .rk-screenshots .shot {
+      background: #f8f9fa;
+      border-radius: 14px;
+      padding: 10px;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+    .rk-screenshots .shot:hover {
+      transform: scale(1.02);
+    }
+    .rk-screenshots img {
+      width: 100%;
+      border-radius: 8px;
+      display: block;
+    }
+    .rk-screenshots .caption {
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+      text-align: center;
+      margin-top: 6px;
+    }
+    .rk-lightbox {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.85);
+      z-index: 9999;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+    }
+    .rk-lightbox.active {
+      display: flex;
+    }
+    .rk-lightbox img {
+      max-width: 90vw;
+      max-height: 90vh;
+      border-radius: 12px;
+    }
+  </style>
 </head>
 <body>
-  <header class="site-header">
-    <div class="container">
-      <a href="../../index.html" class="logo">404 Blog Not Found</a>
-      <nav class="main-nav">
-        <a href="../../index.html">首页</a>
-        <a href="../../posts.html">归档</a>
-        <a href="../../projects.html">作品集</a>
-        <a href="../../about.html">关于</a>
-      </nav>
-      <button class="menu-toggle" aria-label="菜单">
-        <span></span><span></span><span></span>
-      </button>
-    </div>
-  </header>
-
-  <main class="container main-content">
-    <article class="post-full">
-      <header class="post-header">
+  <main class="container" style="padding-top:0">
+    <div class="rk-page">
+      <div class="rk-header">
+        <img src="suoluetu.jpeg" alt="洛克王国语翻译器">
         <h1>洛克王国语翻译器</h1>
-        <div class="post-meta">
+        <p>一个用于翻译英文与洛克王国语之间转换的在线工具</p>
+        <div style="margin-top:12px">
           <span class="tag">HTML</span>
           <span class="tag">工具</span>
+          <span class="tag">趣味</span>
         </div>
-      </header>
+      </div>
 
-      <div class="post-content">
-        <p style="text-align:center;margin-bottom:24px">
-          <img src="suoluetu.jpeg" alt="洛克王国语翻译器" style="max-width:200px;border-radius:12px;border:2px solid #e5e7eb">
-        </p>
-        <p><a href="../../projects.html?tab=HTML" style="color:var(--text-secondary);text-decoration:none;font-size:0.9rem">&larr; 返回作品集</a></p>
-        <p>一个用于翻译英文与洛克王国语之间转换的在线工具。</p>
-        <p>洛克王国语是游戏《洛克王国》中的一种趣味语言，通过特定的转换规则将普通文字加密。这个工具可以让玩家轻松地在英文与洛克王国语之间互相转换。</p>
+      <div class="rk-body">
+        <p><a href="/projects.html?tab=HTML" style="color:var(--text-secondary);text-decoration:none;font-size:0.9rem">&larr; 返回作品集</a></p>
 
-        <h2>功能</h2>
-        <ul>
+        <p style="line-height:1.8">洛克王国语（Roco Kingdom Language）是游戏《洛克王国》中的一种趣味语言，通过特定的转换规则将普通文字加密。这个工具可以让玩家轻松地在英文与洛克王国语之间互相转换。</p>
+
+        <h2 style="font-size:1.2rem;font-weight:600;margin-top:28px">功能</h2>
+        <ul style="line-height:1.8">
           <li>英文 → 洛克王国语 翻译</li>
           <li>洛克王国语 → 英文 翻译</li>
           <li>简洁的网页界面，即开即用</li>
+          <li>支持批量文本转换</li>
         </ul>
 
-        <p style="text-align:center">
-          <a href="https://github.com/TsangHaotian/RocoKingdomTranslator" target="_blank" rel="noopener" style="display:inline-block;padding:10px 24px;background:#0071e3;color:#fff;border-radius:8px;text-decoration:none;font-weight:500">查看 GitHub 项目</a>
+        <p style="text-align:center;margin:28px 0">
+          <a href="https://github.com/TsangHaotian/RocoKingdomTranslator" target="_blank" rel="noopener" style="display:inline-block;padding:10px 28px;background:#0071e3;color:#fff;border-radius:8px;text-decoration:none;font-weight:500">查看 GitHub 项目 →</a>
         </p>
 
-        <h2>截图展示</h2>
-        <p><img src="主界面截图.jpeg" alt="主界面截图" style="max-width:100%;border-radius:10px;border:1px solid #e5e7eb"></p>
-        <p><img src="发布到b站后的点赞收藏反响.jpg" alt="发布到b站后的点赞收藏反响" style="max-width:100%;border-radius:10px;border:1px solid #e5e7eb"></p>
+        <h2 style="font-size:1.2rem;font-weight:600;margin-top:28px">主界面预览</h2>
+        <div class="rk-screenshots">
+          <div class="shot" style="grid-column:1/-1">
+            <img src="主界面截图.jpeg" alt="翻译器主界面">
+          </div>
+        </div>
       </div>
-    </article>
+    </div>
   </main>
 
-  <footer class="site-footer">
-    <div class="container">
-      <p>&copy; TsangHaotian | Powered by GitHub Pages</p>
-    </div>
-  </footer>
+  <!-- 点击放大遮罩 -->
+  <div class="rk-lightbox" id="lightbox" onclick="this.classList.remove('active')">
+    <img id="lightbox-img" src="" alt="">
+  </div>
+
+  <script>
+    document.querySelectorAll('.rk-screenshots .shot').forEach(el => {
+      el.addEventListener('click', function() {
+        const img = this.querySelector('img');
+        document.getElementById('lightbox-img').src = img.src;
+        document.getElementById('lightbox').classList.add('active');
+      });
+    });
+  </script>
 </body>
 </html>
