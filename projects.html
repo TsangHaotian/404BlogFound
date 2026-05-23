@@ -50,7 +50,7 @@
       ],
       'Android': [],
       'HTML': [
-        { name: 'RocoKingdomTranslator', page: 'featured/HTML/RocoKingdomTranslator/' },
+        { name: 'RocoKingdomTranslator', page: 'featured/HTML/RocoKingdomTranslator/', thumb: 'featured/HTML/RocoKingdomTranslator/主界面截图.jpeg' },
         { name: 'GaokaoHelper' },
         { name: 'Web_Xinjiang_Foods' },
         { name: 'DrawAnythingToYakiji' }
@@ -106,6 +106,7 @@
                 const isInternal = f.page ? true : false;
                 return `
                   <a href="${link}" class="featured-card" ${isInternal ? '' : 'target="_blank" rel="noopener"'}>
+                    ${f.thumb ? `<div class="featured-thumb"><img src="${f.thumb}" alt="${f.name}" onerror="this.parentElement.style.display='none'"></div>` : ''}
                     <div class="featured-info">
                       <h4>${f.name}</h4>
                       <p>${proj.description || ''}</p>
