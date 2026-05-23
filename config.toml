@@ -1,0 +1,16 @@
+baseURL = "https://tsanghaotian.github.io/404BlogFound/"
+languageCode = "zh-CN"
+title = "404 Blog Not Found"
+author = "TsangHaotian"
+githubUser = "TsangHaotian"
+
+[params]
+  subtitle = "一个技术博客"
+  description = "TsangHaotian 的个人技术博客，记录学习与思考"
+  author = "TsangHaotian"
+
+  [params.giscus]
+    repo = "TsangHaotian/404BlogFound"
+    repoId = ""
+    category = "Announcements"
+    categoryId = ""

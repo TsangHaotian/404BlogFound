@@ -1,0 +1,23 @@
+{{define "content"}}
+<section class="archive">
+    <h1>归档</h1>
+    {{if .Posts}}
+        {{range .Posts}}
+        <article class="post-card">
+            <h3><a href="/post/{{.Slug}}">{{.Title}}</a></h3>
+            <div class="post-meta">
+                <time>{{.Date}}</time>
+                {{if .Tags}}
+                <span class="tags">
+                    {{range .Tags}}<span class="tag">{{.}}</span>{{end}}
+                </span>
+                {{end}}
+            </div>
+            <p class="post-excerpt">{{.Description}}</p>
+        </article>
+        {{end}}
+    {{else}}
+        <p class="empty">还没有文章，敬请期待。</p>
+    {{end}}
+</section>
+{{end}}
