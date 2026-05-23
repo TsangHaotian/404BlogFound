@@ -121,7 +121,7 @@
   },
   {
     "name": "Python_Interactive_somatosensory_operation",
-    "description": "���互性体感操控",
+    "description": "画互性体感操控",
     "stars": 2,
     "language": "Python",
     "topics": [],
@@ -225,7 +225,7 @@
   },
   {
     "name": "DrawAnythingToYakiji",
-    "description": "���什么都变成鸭吉吉",
+    "description": "画什么都变成鸭吉吉",
     "stars": 1,
     "language": "HTML",
     "topics": [],
