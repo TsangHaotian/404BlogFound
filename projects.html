@@ -39,6 +39,35 @@
   <script src="js/api.js"></script>
   <script src="js/main.js"></script>
   <script>
+    // 精选配置：每个分类的精选项目，以及跳转链接
+    // 有独立详情页的填 page 路径，没有的默认跳 GitHub
+    const FEATURED = {
+      'AI大模型微调': [
+        { name: 'Su-Shi-dingfengbo-poems-fine-tuning-AI-model' }
+      ],
+      'Harmony': [
+        { name: 'Harmony_EyesNote' }
+      ],
+      'Android': [],
+      'HTML': [
+        { name: 'RocoKingdomTranslator', page: 'featured/HTML/RocoKingdomTranslator/' },
+        { name: 'GaokaoHelper' },
+        { name: 'Web_Xinjiang_Foods' },
+        { name: 'DrawAnythingToYakiji' }
+      ],
+      'Python': [
+        { name: 'openclaw-css-tweaker' },
+        { name: 'python_40_Parallel_College_Volunteering_for_C' },
+        { name: 'Python_Probability_theory_gambling_game' },
+        { name: 'Python_mind_project' }
+      ],
+      '微信小程序': [
+        { name: 'WChatXiaoChengxu_jizhangben' }
+      ],
+      '竞赛': [],
+      '其他': []
+    };
+
     fetchRepos().then(projects => {
       const container = document.getElementById('project-groups');
       if (!projects.length) {
@@ -66,10 +95,28 @@
         <div class="project-tabs">${sortedLangs.map(l => `<button class="tab-btn${l === activeTab ? ' active' : ''}" data-tab="${l}">${l} (${groups[l].length})</button>`).join('')}</div>
         <div class="tab-content">${sortedLangs.map(l => `
           <div class="tab-panel${l === activeTab ? ' active' : ''}" data-panel="${l}">
-            <div class="featured-section" id="featured-${l.replace(/\s/g,'')}">
+            ${FEATURED[l] && FEATURED[l].length ? `
+            <div class="featured-section">
               <h3 class="featured-title">精选</h3>
-              <div id="featured-loading-${l.replace(/\s/g,'')}"><p class="empty" style="text-align:left;padding:8px 0">加载精选...</p></div>
-            </div>
+              <div class="featured-grid">${FEATURED[l].map(f => {
+                const proj = groups[l].find(p => p.name === f.name);
+                if (!proj) return '';
+                const link = f.page || proj.url;
+                const isInternal = f.page ? true : false;
+                return `
+                  <a href="${link}" class="featured-card" ${isInternal ? '' : 'target="_blank" rel="noopener"'}>
+                    <div class="featured-info">
+                      <h4>${f.name}</h4>
+                      <p>${proj.description || ''}</p>
+                      <div class="project-meta">
+                        <span class="lang">${proj.language}</span>
+                        <span class="stars">★ ${proj.stars}</span>
+                      </div>
+                    </div>
+                  </a>
+                `;
+              }).join('')}</div>
+            </div>` : ''}
             <div class="all-projects-section">
               <h3 class="featured-title">全部项目 <span class="count">(${groups[l].length})</span></h3>
               <div class="project-grid">${groups[l].map(p => `
@@ -86,56 +133,6 @@
           </div>
         `).join('')}</div>`;
 
-      // 读取 featured/分类/项目名/ 下的图片
-      async function loadFeatured(dir, lang) {
-        const loadingEl = document.getElementById('featured-loading-' + lang.replace(/\s/g,''));
-        try {
-          // 先读 README 拿到项目名列表
-          const readmeResp = await fetch('featured/' + encodeURIComponent(dir) + '/README.md');
-          if (!readmeResp.ok) { loadingEl.innerHTML = '<p class="empty" style="text-align:left;padding:8px 0">暂无精选</p>'; return; }
-          const text = await readmeResp.text();
-          const parts = text.split('---');
-          if (parts.length < 2) { loadingEl.innerHTML = '<p class="empty" style="text-align:left;padding:8px 0">暂无精选</p>'; return; }
-          const names = parts[0].trim().split(',').map(s => s.trim());
-          const content = parts[1] ? parts[1].trim() : '';
-          const allParts = parts;
-
-          let html = '';
-          for (const name of names) {
-            const proj = groups[lang].find(p => p.name === name);
-            if (!proj) continue;
-            // 从 README 第三段读图片文件名列表
-            const imgDir = 'featured/' + encodeURIComponent(dir) + '/' + encodeURIComponent(name) + '/';
-            const imgs = (allParts[2] || '').split('\n').map(s => s.trim()).filter(Boolean).map(f => imgDir + encodeURIComponent(f));
-            const descMatch = content.match(new RegExp(name + '[:：]?\\s*(.+?)[\\n\\r]', 'i'));
-            const desc = descMatch ? descMatch[1].trim() : proj.description;
-
-            html += '<div class="featured-project">';
-            html += `<h4 class="featured-project-name"><a href="featured/${encodeURIComponent(dir)}/${encodeURIComponent(name)}/">${name}</a></h4>`;
-            html += `<p class="featured-project-desc">${desc}</p>`;
-            if (imgs.length) {
-              html += '<div class="featured-screenshots">' + imgs.map(img => `<img src="${img}" alt="${name}" loading="lazy">`).join('') + '</div>';
-            }
-            html += '</div>';
-          }
-
-          loadingEl.innerHTML = html || '<p class="empty" style="text-align:left;padding:8px 0">暂无精选</p>';
-        } catch(e) {
-          loadingEl.innerHTML = '<p class="empty" style="text-align:left;padding:8px 0">暂无精选</p>';
-        }
-      }
-
-      function onTabShow(lang) {
-        const panel = document.querySelector(`.tab-panel[data-panel="${lang}"]`);
-        if (panel && !panel.dataset.featuredLoaded) {
-          panel.dataset.featuredLoaded = '1';
-          const dir = {'AI大模型微调':'AI大模型微调','Harmony':'Harmony','Android':'Android','HTML':'HTML','Python':'Python','微信小程序':'微信小程序','竞赛':'竞赛','其他':'其他'}[lang];
-          if (dir) loadFeatured(dir, lang);
-        }
-      }
-
-      onTabShow(activeTab);
-
       container.addEventListener('click', e => {
         const btn = e.target.closest('.tab-btn');
         if (!btn) return;
@@ -144,7 +141,6 @@
         btn.classList.add('active');
         const panel = document.querySelector(`.tab-panel[data-panel="${btn.dataset.tab}"]`);
         if (panel) panel.classList.add('active');
-        onTabShow(btn.dataset.tab);
       });
     }).catch(() => {
       document.getElementById('project-groups').innerHTML = '<p class="empty">加载失败，请刷新重试</p>';
