@@ -82,6 +82,8 @@
     });
 
     fetchRepos().then(projects => {
+      const langOverride = { 'Harmony_EyesNote': 'Harmony' };
+      projects.forEach(p => { p.language = langOverride[p.name] || p.language; });
       const grid = document.getElementById('project-grid');
       if (!projects.length) {
         grid.innerHTML = '<p class="empty">暂无 GitHub 项目展示。</p>';

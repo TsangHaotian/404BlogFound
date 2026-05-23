@@ -46,9 +46,11 @@
         return;
       }
 
-      // 按语言分组
+      // 按语言分组（手动修正 GitHub 自动检测的语言）
       const groups = {};
+      const langOverride = { 'Harmony_EyesNote': 'Harmony' };
       projects.forEach(p => {
+        p.language = langOverride[p.name] || p.language;
         const lang = p.language || '其他';
         if (!groups[lang]) groups[lang] = [];
         groups[lang].push(p);
