@@ -118,7 +118,7 @@
   <div class="container">
     <div class="rk-card">
       <div class="rk-topbar">
-        <a href="javascript:;" class="rk-back" id="back-link">&larr; 返回作品集</a>
+        <a href="https://tsanghaotian.github.io/404BlogFound/projects.html?tab=HTML" class="rk-back" id="back-link">&larr; 返回作品集</a>
       </div>
       <div class="rk-header">
         <img src="suoluetu.jpeg" alt="洛克王国语翻译器">
@@ -177,11 +177,8 @@
     <img id="lightbox-img" src="" alt="">
   </div>
   <script>
-    var backBtn = document.getElementById('back-link');
     if (location.protocol === 'file:') {
-      backBtn.href = 'file:///' + location.pathname.split('/featured/')[0].replace(/\\/g,'/') + '/projects.html?tab=HTML';
-    } else {
-      backBtn.href = '/projects.html?tab=HTML';
+      document.getElementById('back-link').href = 'file:///' + location.pathname.split('/featured/')[0].replace(/\\/g,'/') + '/projects.html?tab=HTML';
     }
     document.querySelectorAll('.rk-screenshots .shot').forEach(el => {
       el.addEventListener('click', function() {
