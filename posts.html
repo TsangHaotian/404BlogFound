@@ -3,8 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>404 Blog Not Found</title>
-  <meta name="description" content="TsangHaotian 的个人技术博客">
+  <title>归档 - 404 Blog Not Found</title>
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -24,19 +23,9 @@
   </header>
 
   <main class="container main-content">
-    <section class="hero">
-      <h1>404 Blog Not Found</h1>
-      <p class="subtitle">一个技术博客</p>
-    </section>
-
-    <section class="recent-posts">
-      <h2>最新文章</h2>
+    <section class="archive">
+      <h1>归档</h1>
       <div id="post-list"><p class="empty">加载中...</p></div>
-    </section>
-
-    <section class="github-projects">
-      <h2>GitHub 项目</h2>
-      <div id="project-grid" class="project-grid"><p class="empty">加载中...</p></div>
     </section>
   </main>
 
@@ -49,14 +38,13 @@
   <script src="js/api.js"></script>
   <script src="js/main.js"></script>
   <script>
-    // 加载最新文章（前5篇）
     fetchPosts().then(posts => {
       const list = document.getElementById('post-list');
       if (!posts.length) {
         list.innerHTML = '<p class="empty">还没有文章，敬请期待。</p>';
         return;
       }
-      list.innerHTML = posts.slice(0, 5).map(p => `
+      list.innerHTML = posts.map(p => `
         <article class="post-card">
           <h3><a href="post.html?id=${p.id}">${p.title}</a></h3>
           <div class="post-meta">
@@ -68,27 +56,6 @@
       `).join('');
     }).catch(() => {
       document.getElementById('post-list').innerHTML = '<p class="empty">加载失败，请刷新重试</p>';
-    });
-
-    // 加载 GitHub 项目（前3个）
-    fetchRepos().then(projects => {
-      const grid = document.getElementById('project-grid');
-      if (!projects.length) {
-        grid.innerHTML = '<p class="empty">暂无 GitHub 项目展示。</p>';
-        return;
-      }
-      grid.innerHTML = projects.slice(0, 3).map(p => `
-        <a href="${p.url}" class="project-card" target="_blank" rel="noopener">
-          <h3>${p.name}</h3>
-          <p>${p.description}</p>
-          <div class="project-meta">
-            ${p.language ? `<span class="lang">${p.language}</span>` : ''}
-            <span class="stars">★ ${p.stars}</span>
-          </div>
-        </a>
-      `).join('');
-    }).catch(() => {
-      document.getElementById('project-grid').innerHTML = '<p class="empty">加载失败</p>';
     });
   </script>
 </body>

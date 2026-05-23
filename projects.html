@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>作品集 - 404 Blog Not Found</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <a href="index.html" class="logo">404 Blog Not Found</a>
+      <nav class="main-nav">
+        <a href="index.html">首页</a>
+        <a href="posts.html">归档</a>
+        <a href="projects.html">作品集</a>
+        <a href="about.html">关于</a>
+      </nav>
+      <button class="menu-toggle" aria-label="菜单">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main class="container main-content">
+    <section class="projects-page">
+      <h1>作品集</h1>
+      <p class="subtitle">我的 GitHub 开源项目</p>
+      <div id="project-groups"><p class="empty">加载中...</p></div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>&copy; TsangHaotian | Powered by GitHub Pages</p>
+    </div>
+  </footer>
+
+  <script src="js/api.js"></script>
+  <script src="js/main.js"></script>
+  <script>
+    fetchRepos().then(projects => {
+      const container = document.getElementById('project-groups');
+      if (!projects.length) {
+        container.innerHTML = '<p class="empty">暂无 GitHub 项目展示。</p>';
+        return;
+      }
+
+      // 按语言分组
+      const groups = {};
+      projects.forEach(p => {
+        const lang = p.language || '其他';
+        if (!groups[lang]) groups[lang] = [];
+        groups[lang].push(p);
+      });
+
+      // 排序：项目多的语言在前
+      const sortedLangs = Object.keys(groups).sort((a, b) => groups[b].length - groups[a].length);
+
+      container.innerHTML = sortedLangs.map(lang => `
+        <div class="language-section">
+          <h2 class="language-heading">${lang} <span class="count">(${groups[lang].length})</span></h2>
+          <div class="project-grid">
+            ${groups[lang].map(p => `
+              <a href="${p.url}" class="project-card" target="_blank" rel="noopener">
+                <h3>${p.name}</h3>
+                <p>${p.description}</p>
+                <div class="project-meta">
+                  ${p.language ? `<span class="lang">${p.language}</span>` : ''}
+                  <span class="stars">★ ${p.stars}</span>
+                </div>
+              </a>
+            `).join('')}
+          </div>
+        </div>
+      `).join('');
+    }).catch(() => {
+      document.getElementById('project-groups').innerHTML = '<p class="empty">加载失败，请刷新重试</p>';
+    });
+  </script>
+</body>
+</html>
