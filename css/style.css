@@ -523,6 +523,40 @@ body {
   margin-bottom: 14px;
 }
 
+.featured-project {
+  margin-bottom: 24px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.featured-project:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+.featured-project-name {
+  font-size: 1.05rem;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.featured-project-name a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.featured-project-name a:hover {
+  text-decoration: underline;
+}
+
+.featured-project-desc {
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+  margin-bottom: 10px;
+  line-height: 1.5;
+}
+
 .featured-desc p {
   margin-bottom: 10px;
 }

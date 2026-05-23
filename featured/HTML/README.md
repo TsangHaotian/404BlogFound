@@ -1,8 +1,5 @@
 RocoKingdomTranslator,DrawAnythingToYakiji,GaokaoHelper
 ---
-这是 HTML 分类的精选项目。
-
-第一行写项目名，用逗号分隔。
-`---` 后面写介绍内容。
-
-截图放 1.jpg, 2.jpg … 到本目录。
+RocoKingdomTranslator: 洛克王国语翻译器——一个用于翻译英文与洛克王国语之间转换的在线工具
+DrawAnythingToYakiji: 画什么都变成鸭吉吉的有趣网页工具
+GaokaoHelper: 基于 AI 大语言模型的多角色对话工具，专注高考志愿填报辅助

@@ -86,47 +86,53 @@
           </div>
         `).join('')}</div>`;
 
-      // 异步加载每个分类的精选数据
+      // 读取 featured/分类/项目名/ 下的图片
       async function loadFeatured(dir, lang) {
         const loadingEl = document.getElementById('featured-loading-' + lang.replace(/\s/g,''));
-        const section = document.getElementById('featured-' + lang.replace(/\s/g,''));
         try {
-          // 读取 README.md
+          // 先读 README 拿到项目名列表
           const readmeResp = await fetch('featured/' + encodeURIComponent(dir) + '/README.md');
           if (!readmeResp.ok) { loadingEl.innerHTML = '<p class="empty" style="text-align:left;padding:8px 0">暂无精选</p>'; return; }
           const text = await readmeResp.text();
-          // 按 --- 分割：[0]项目名列表 [1]介绍内容
           const parts = text.split('---');
           if (parts.length < 2) { loadingEl.innerHTML = '<p class="empty" style="text-align:left;padding:8px 0">暂无精选</p>'; return; }
           const names = parts[0].trim().split(',').map(s => s.trim());
-          const content = marked ? marked.parse(parts.slice(1).join('---').trim()) : parts.slice(1).join('---').trim();
-          // 扫描图片 1.jpg 2.jpg …
-          const imgs = [];
-          for (let i = 1; i <= 10; i++) {
-            const imgPath = 'featured/' + encodeURIComponent(dir) + '/' + i + '.jpg';
-            const r = await fetch(imgPath, { method: 'HEAD' }).catch(() => {});
-            if (r && r.ok) imgs.push(imgPath);
-          }
-          // 渲染
+          const content = parts.slice(1).join('---').trim();
+
           let html = '';
-          if (imgs.length) {
-            html += '<div class="featured-screenshots">' + imgs.map(img => `<img src="${img}" alt="${dir}截图" loading="lazy">`).join('') + '</div>';
-          }
-          if (content) {
-            html += '<div class="featured-desc">' + content + '</div>';
-          }
-          // 关联的项目链接
-          names.forEach(name => {
+          for (const name of names) {
             const proj = groups[lang].find(p => p.name === name);
-            if (proj) html += `<a href="${proj.url}" class="project-card" target="_blank" rel="noopener" style="margin-top:10px"><h3>${proj.name}</h3><p>${proj.description}</p></a>`;
-          });
+            if (!proj) continue;
+            // 扫描该项目的截图：featured/分类/项目名/图片
+            const imgDir = 'featured/' + encodeURIComponent(dir) + '/' + encodeURIComponent(name) + '/';
+            const imgs = [];
+            const exts = ['jpeg','jpg','png','gif','webp'];
+            for (const ext of exts) {
+              for (let i = 0; i <= 20; i++) {
+                const fname = i === 0 ? '主界面截图.' + ext : (i + '.' + ext);
+                const imgPath = imgDir + fname;
+                const r = await fetch(imgPath, { method: 'HEAD' }).catch(() => {});
+                if (r && r.ok) { imgs.push(imgPath); break; }
+              }
+            }
+            const descMatch = content.match(new RegExp(name + '[:：]?\\s*(.+?)[\\n\\r]', 'i'));
+            const desc = descMatch ? descMatch[1].trim() : proj.description;
+
+            html += '<div class="featured-project">';
+            html += `<h4 class="featured-project-name"><a href="${proj.url}" target="_blank" rel="noopener">${name}</a></h4>`;
+            html += `<p class="featured-project-desc">${desc}</p>`;
+            if (imgs.length) {
+              html += '<div class="featured-screenshots">' + imgs.map(img => `<img src="${img}" alt="${name}" loading="lazy">`).join('') + '</div>';
+            }
+            html += '</div>';
+          }
+
           loadingEl.innerHTML = html || '<p class="empty" style="text-align:left;padding:8px 0">暂无精选</p>';
         } catch(e) {
           loadingEl.innerHTML = '<p class="empty" style="text-align:left;padding:8px 0">暂无精选</p>';
         }
       }
 
-      // 每个 tab 首次显示时加载对应的精选
       function onTabShow(lang) {
         const panel = document.querySelector(`.tab-panel[data-panel="${lang}"]`);
         if (panel && !panel.dataset.featuredLoaded) {
@@ -136,10 +142,8 @@
         }
       }
 
-      // 初始加载第一个 tab
       onTabShow(activeTab);
 
-      // tab 切换事件
       container.addEventListener('click', e => {
         const btn = e.target.closest('.tab-btn');
         if (!btn) return;
