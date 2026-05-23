@@ -191,12 +191,12 @@
         if (!box) {
           box = document.createElement('div');
           box.id = 'cert-lightbox';
-          box.style.cssText = 'display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.9);z-index:9999;justify-content:center;align-items:center;cursor:pointer;flex-direction:column;padding:20px';
+          box.style.cssText = 'display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.85);z-index:9999;justify-content:center;align-items:center;cursor:pointer;flex-direction:column;padding:20px';
           box.onclick = function(){ this.style.display = 'none'; };
           document.body.appendChild(box);
         }
         box.style.display = 'flex';
-        box.innerHTML = '<div style="display:flex;gap:16px;flex-wrap:wrap;justify-content:center">' + imgs.map(function(src) {
+        box.innerHTML = '<div style="display:flex;gap:16px;flex-wrap:wrap;justify-content:center;animation:popIn 0.25s ease-out">' + imgs.map(function(src) {
           var fullSrc = bp ? bp + '/' + src : src;
           return '<img src="'+fullSrc+'" style="max-height:70vh;max-width:45vw;border-radius:12px;object-fit:contain">';
         }).join('') + '</div><p style="color:#fff;margin-top:16px;font-size:1rem">'+title+'</p><p style="color:#8888a0;margin-top:12px;font-size:0.8rem">点击任意位置关闭</p>';
