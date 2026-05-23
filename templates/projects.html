@@ -3,19 +3,24 @@
     <h1>作品集</h1>
     <p class="subtitle">我的 GitHub 开源项目</p>
 
-    {{if .Projects}}
-    <div class="project-grid">
-        {{range .Projects}}
-        <a href="{{.URL}}" class="project-card" target="_blank" rel="noopener">
-            <h3>{{.Name}}</h3>
-            <p>{{.Description}}</p>
-            <div class="project-meta">
-                {{if .Language}}<span class="lang">{{.Language}}</span>{{end}}
-                <span class="stars">★ {{.Stars}}</span>
+    {{if .ProjectGroups}}
+        {{range .ProjectGroups}}
+        <div class="language-section">
+            <h2 class="language-heading">{{.Language}} <span class="count">({{len .Projects}})</span></h2>
+            <div class="project-grid">
+                {{range .Projects}}
+                <a href="{{.URL}}" class="project-card" target="_blank" rel="noopener">
+                    <h3>{{.Name}}</h3>
+                    <p>{{.Description}}</p>
+                    <div class="project-meta">
+                        {{if .Language}}<span class="lang">{{.Language}}</span>{{end}}
+                        <span class="stars">★ {{.Stars}}</span>
+                    </div>
+                </a>
+                {{end}}
             </div>
-        </a>
+        </div>
         {{end}}
-    </div>
     {{else}}
         <p class="empty">暂无 GitHub 项目展示。</p>
     {{end}}

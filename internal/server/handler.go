@@ -6,6 +6,7 @@ import (
 	"net/http"
 	"os"
 	"path/filepath"
+	"sort"
 	"strings"
 
 	"404BlogFound/internal/github"
@@ -182,12 +183,38 @@ func (s *Server) handleProjects(w http.ResponseWriter, r *http.Request) {
 
 	data := s.buildSiteData()
 	data.Projects = projects
+	data.ProjectGroups = groupProjects(projects)
 
 	w.Header().Set("Content-Type", "text/html; charset=utf-8")
 	if err := s.engine.Render(w, "projects.html", data); err != nil {
 		log.Printf("渲染模板失败: %v", err)
 		http.Error(w, "Internal Server Error", http.StatusInternalServerError)
 	}
+}
+
+// groupProjects 将项目按语言分组
+func groupProjects(projects []model.Project) []model.LanguageGroup {
+	groups := make(map[string][]model.Project)
+	for _, p := range projects {
+		lang := p.Language
+		if lang == "" {
+			lang = "其他"
+		}
+		groups[lang] = append(groups[lang], p)
+	}
+
+	var result []model.LanguageGroup
+	for lang, projs := range groups {
+		result = append(result, model.LanguageGroup{Language: lang, Projects: projs})
+	}
+	sort.Slice(result, func(i, j int) bool {
+		if len(result[i].Projects) != len(result[j].Projects) {
+			return len(result[i].Projects) > len(result[j].Projects)
+		}
+		return result[i].Language < result[j].Language
+	})
+
+	return result
 }
 
 func (s *Server) handleAbout(w http.ResponseWriter, r *http.Request) {
@@ -255,6 +282,7 @@ func (s *Server) BuildStatic(outputDir string) error {
 				projects = []model.Project{}
 			}
 			d.Projects = projects
+			d.ProjectGroups = groupProjects(projects)
 		}},
 		{"about/index.html", "about.html", func(d *model.SiteData) {
 			aboutPath := filepath.Join("content", "about.md")

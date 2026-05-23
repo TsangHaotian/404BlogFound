@@ -369,6 +369,26 @@ body {
     margin-bottom: 32px;
 }
 
+/* ===== 作品集语言分组 ===== */
+.language-section {
+    margin-bottom: 32px;
+}
+
+.language-heading {
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: 12px;
+    padding-bottom: 6px;
+    border-bottom: 2px solid var(--accent);
+    display: inline-block;
+}
+
+.language-heading .count {
+    color: var(--text-secondary);
+    font-weight: 400;
+    font-size: 0.9rem;
+}
+
 /* ===== 关于页面 ===== */
 .about-content {
     max-width: var(--max-width);

@@ -23,6 +23,12 @@ type Project struct {
 	UpdatedAt   string   `json:"updated_at"`
 }
 
+// LanguageGroup 按语言分组的项目列表
+type LanguageGroup struct {
+	Language string
+	Projects []Project
+}
+
 // Config 博客配置文件结构
 type Config struct {
 	BaseURL      string `toml:"baseURL"`
@@ -46,12 +52,13 @@ type Config struct {
 
 // SiteData 传递给模板的全局数据
 type SiteData struct {
-	Title       string
-	Subtitle    string
-	Description string
-	Author      string
-	BaseURL     string
-	Posts       []Post
-	Projects    []Project
-	Post        Post
+	Title          string
+	Subtitle       string
+	Description    string
+	Author         string
+	BaseURL        string
+	Posts          []Post
+	Projects       []Project
+	ProjectGroups  []LanguageGroup
+	Post           Post
 }
