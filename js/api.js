@@ -37,40 +37,33 @@ async function fetchPosts() {
   }));
 }
 
-// 获取单篇文章（从 GitHub API 直接拉取原文，避免 JSON 转义问题）
+// 获取单篇文章（优先读本地缓存 data/posts.json，API 作为后备）
 async function fetchPost(id) {
-  // 先用 fetchPosts 获取元数据
-  const posts = await fetchPosts();
-  const meta = posts.find(p => p.id == id);
-  if (!meta) return null;
+  // 先从本地缓存的 posts.json 读
+  try {
+    const localResp = await fetch('data/posts.json');
+    const allPosts = await localResp.json();
+    const full = allPosts.find(p => p.id == id);
+    if (full && full.body) return full;
+  } catch(e) {}
 
-  // 从 GitHub API 拉取 Issue 原文（用 raw 格式，不走 JSON 解析）
+  // 本地没有正文时，尝试从 GitHub API 拉取
   try {
     const resp = await fetch(`https://api.github.com/repos/${GITHUB_USER}/${GITHUB_REPO}/issues/${id}`, {
       headers: { 'Accept': 'application/vnd.github.v3+json' }
     });
-    if (!resp.ok) {
-      // API 失败时用本地的兜底
-      const localResp = await fetch('data/posts.json');
-      const allPosts = await localResp.json();
-      const full = allPosts.find(p => p.id == id);
-      return full || null;
-    }
+    if (!resp.ok) return null;
     const issue = await resp.json();
     return {
       id: issue.number,
       title: issue.title,
       date: issue.created_at.slice(0, 10),
       tags: issue.labels.filter(l => l.name !== 'blog').map(l => l.name),
-      description: meta.description,
+      description: (issue.body||'').split('\n')[0].replace(/^#+\s*/,'').slice(0,120),
       body: issue.body || '',
       url: issue.html_url
     };
   } catch(e) {
-    // API 失败时用本地的兜底
-    const localResp = await fetch('data/posts.json');
-    const allPosts = await localResp.json();
-    const full = allPosts.find(p => p.id == id);
-    return full || null;
+    return null;
   }
 }
