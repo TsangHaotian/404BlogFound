@@ -79,6 +79,8 @@ func loadConfig(path string) (*model.Config, error) {
 	if config.Params.Author == "" {
 		config.Params.Author = "TsangHaotian"
 	}
+	// 去掉 BaseURL 末尾的 /
+	config.BaseURL = strings.TrimRight(config.BaseURL, "/")
 	return &config, nil
 }
 

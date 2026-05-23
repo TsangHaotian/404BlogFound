@@ -4,7 +4,7 @@
     {{if .Posts}}
         {{range .Posts}}
         <article class="post-card">
-            <h3><a href="/post/{{.Slug}}">{{.Title}}</a></h3>
+            <h3><a href="{{$.BaseURL}}/post/{{.Slug}}">{{.Title}}</a></h3>
             <div class="post-meta">
                 <time>{{.Date}}</time>
                 {{if .Tags}}
