@@ -442,6 +442,31 @@ body {
   font-size: 0.85rem;
 }
 
+/* ===== 作品集横向滚动抽屉 ===== */
+.project-scroll {
+  display: flex;
+  gap: 14px;
+  overflow-x: auto;
+  padding-bottom: 8px;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+}
+
+.project-scroll::-webkit-scrollbar {
+  height: 4px;
+}
+
+.project-scroll::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 4px;
+}
+
+.scroll-card {
+  flex-shrink: 0;
+  width: 220px;
+  scroll-snap-align: start;
+}
+
 /* ===== 归档页 ===== */
 .archive {
   background: var(--bg-card);

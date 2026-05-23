@@ -66,9 +66,9 @@
       container.innerHTML = sortedLangs.map(lang => `
         <div class="language-section">
           <h2 class="language-heading">${lang} <span class="count">(${groups[lang].length})</span></h2>
-          <div class="project-grid">
+          <div class="project-scroll">
             ${groups[lang].map(p => `
-              <a href="${p.url}" class="project-card" target="_blank" rel="noopener">
+              <a href="${p.url}" class="project-card scroll-card" target="_blank" rel="noopener">
                 <h3>${p.name}</h3>
                 <p>${p.description}</p>
                 <div class="project-meta">
