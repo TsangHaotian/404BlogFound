@@ -181,7 +181,7 @@
     if (location.protocol === 'file:') {
       backBtn.href = 'file:///' + location.pathname.split('/featured/')[0].replace(/\\/g,'/') + '/projects.html?tab=HTML';
     } else {
-      backBtn.href = '/404BlogFound/projects.html?tab=HTML';
+      backBtn.href = '/projects.html?tab=HTML';
     }
     document.querySelectorAll('.rk-screenshots .shot').forEach(el => {
       el.addEventListener('click', function() {
