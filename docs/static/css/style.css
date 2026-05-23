@@ -200,6 +200,9 @@ body {
     color: var(--accent);
     font-size: 1rem;
     margin-bottom: 8px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .project-card p {
