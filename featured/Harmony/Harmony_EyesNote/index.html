@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Harmony EyesNote 眨眼笔记 - 404 Blog Not Found</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: "Noto Sans SC", "PingFang SC", "Microsoft YaHei", -apple-system, sans-serif;
+      background: #0f0f1a;
+      color: #f0f0f5;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    .container { max-width: 640px; margin: 0 auto; padding: 0 20px; min-height: 100vh; display: flex; flex-direction: column; }
+    .rk-card { animation: fadeUp 0.5s ease-out; }
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+    .rk-card {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 20px;
+      margin: 24px 0 40px;
+      overflow: hidden;
+      backdrop-filter: blur(8px);
+    }
+    .rk-header { text-align: center; padding: 48px 24px 20px; }
+    .rk-header img {
+      width: 120px; height: 120px; border-radius: 50%;
+      border: 3px solid rgba(255,255,255,0.1);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+      margin-bottom: 16px;
+      object-fit: cover;
+    }
+    .rk-header h1 { font-size: 1.8rem; font-weight: 700; margin-bottom: 8px; }
+    .rk-header p { color: #8888a0; font-size: 1rem; }
+    .rk-body { padding: 0 28px 32px; }
+    .rk-body p { line-height: 1.8; margin-bottom: 14px; }
+    .rk-body h2 { font-size: 1.2rem; font-weight: 600; margin-top: 28px; margin-bottom: 12px; }
+    .rk-body ul { line-height: 1.8; padding-left: 20px; margin-bottom: 14px; }
+    .rk-body li { margin-bottom: 4px; }
+    .rk-tags { margin-top: 12px; }
+    .rk-tags span {
+      display: inline-block;
+      padding: 2px 10px; font-size: 0.75rem;
+      background: rgba(108,92,231,0.15);
+      color: #a29bfe;
+      border: 1px solid rgba(108,92,231,0.2);
+      border-radius: 8px;
+      margin: 0 3px;
+    }
+    .rk-topbar {
+      display: flex; align-items: center; padding: 16px 24px 0;
+    }
+    .rk-back {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 7px 18px;
+      background: linear-gradient(135deg, #6c5ce7, #a29bfe);
+      border: none;
+      border-radius: 20px;
+      color: #fff; text-decoration: none; font-size: 0.85rem; font-weight: 500;
+      transition: all 0.2s;
+      box-shadow: 0 2px 10px rgba(108,92,231,0.3);
+    }
+    .rk-back:hover {
+      box-shadow: 0 4px 16px rgba(108,92,231,0.5);
+      transform: translateY(-1px);
+      color: #fff;
+    }
+    .rk-btn {
+      display: inline-block;
+      padding: 10px 24px;
+      background: linear-gradient(135deg, #6c5ce7, #a29bfe);
+      color: #fff;
+      border-radius: 10px;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.9rem;
+      transition: all 0.2s;
+    }
+    .rk-btn:hover {
+      box-shadow: 0 4px 16px rgba(108,92,231,0.4);
+      transform: translateY(-1px);
+      color: #fff;
+    }
+    .rk-btn-outline {
+      display: inline-block;
+      padding: 10px 24px;
+      background: transparent;
+      color: #a29bfe;
+      border: 1px solid rgba(162,155,254,0.3);
+      border-radius: 10px;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.9rem;
+      transition: all 0.2s;
+    }
+    .rk-btn-outline:hover {
+      background: rgba(162,155,254,0.1);
+      border-color: #a29bfe;
+      color: #a29bfe;
+    }
+    .rk-screenshots { display: flex; gap: 12px; justify-content: flex-start; margin-top: 16px; flex-wrap: wrap; }
+    .rk-screenshots .shot {
+      background: rgba(255,255,255,0.04); border-radius: 12px; padding: 8px;
+      cursor: pointer; transition: transform 0.2s;
+    }
+    .rk-screenshots .shot:hover { transform: scale(1.02); }
+    .rk-screenshots img { width: 180px; height: 120px; object-fit: cover; border-radius: 8px; display: block; }
+    .rk-lightbox {
+      display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.85); z-index: 9999;
+      justify-content: center; align-items: center; cursor: pointer;
+    }
+    .rk-lightbox.active { display: flex; }
+    .rk-lightbox.active img { animation: popIn 0.25s ease-out; }
+    .rk-lightbox img { max-width: 90vw; max-height: 90vh; border-radius: 12px; }
+    @keyframes popIn { from { opacity: 0; transform: scale(0.85); } to { opacity: 1; transform: scale(1); } }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="rk-card">
+      <div class="rk-topbar">
+        <a href="https://tsanghaotian.github.io/404BlogFound/projects.html" class="rk-back" id="back-link">&larr; 返回作品集</a>
+      </div>
+      <div class="rk-header">
+        <img src="作品截图/主页.png" alt="Harmony EyesNote">
+        <h1>Harmony EyesNote 眨眼笔记</h1>
+        <p>鸿蒙 NEXT 上的笔记 + 健康 + AI 三合一效率工具</p>
+        <div class="rk-tags">
+          <span>HarmonyOS</span><span>ArkTS</span><span>AI</span>
+        </div>
+      </div>
+      <div class="rk-body">
+        <h2>项目介绍</h2>
+        <p>Harmony EyesNote 是一款基于 HarmonyOS NEXT 的原生应用，从快速笔记工具逐步进化成一个集 AI 智能整理、健康数据中心、统计看板、系统级备份扩展于一体的综合效率工具。在单个 App 内即可完成记录 → 分析 → 洞察 → 备份的完整闭环。开发环境为 DevEco Studio 5.0+，支持真机和 NEXT 模拟器运行。</p>
+
+        <h2>技术栈</h2>
+        <div class="rk-tags" style="margin-bottom:14px">
+          <span>ArkTS</span><span>HarmonyOS NEXT</span><span>DeepSeek API</span><span>DevEco Studio</span>
+        </div>
+
+        <h2>我的贡献</h2>
+        <ul>
+          <li>独立完成项目从需求分析、UI/UX 设计到前后端开发全流程</li>
+          <li>实现双栏笔记工作区、智能模板系统、快速工具条等核心笔记功能</li>
+          <li>集成 DeepSeek API，实现笔记自动分类与营养师模式等 AI 功能</li>
+          <li>开发健康数据中心，追踪饮水、睡眠、步数、心情等指标并生成评分与趋势分析</li>
+          <li>实现统计看板，支持多维度数据对比、导出 JSON 备份</li>
+          <li>实现动态主题系统，支持多套预设主题与自定义调色板</li>
+          <li>实现系统级备份扩展 EntryBackupAbility，支持 HarmonyOS Backup Kit</li>
+        </ul>
+
+        <h2>核心功能</h2>
+        <ul>
+          <li>双栏笔记视图 + 智能模板 + AI 自动分类整理</li>
+          <li>DeepSeek AI 营养师模式 — 识别饮食关键词生成膳食建议</li>
+          <li>健康追踪：饮水、睡眠、步数、心情，自动生成评分与趋势</li>
+          <li>统计看板：笔记概览、健康均值、周对比、心情频率分析</li>
+          <li>动态主题切换 + 自定义调色板，实时同步全局</li>
+          <li>系统级备份扩展 + JSON 数据导出</li>
+          <li>尝试对接 HarmonyOS Health Kit，但华为尚未开放该功能，仅做了接口预留</li>
+        </ul>
+
+        <h2>项目地址</h2>
+        <p style="display:flex;gap:12px;flex-wrap:wrap">
+          <a href="https://github.com/TsangHaotian/Harmony_EyesNote" target="_blank" rel="noopener" class="rk-btn">GitHub 仓库</a>
+        </p>
+
+        <h2>项目预览</h2>
+        <p style="color:#8888a0;font-size:0.85rem;margin-bottom:4px">点击图片可放大查看</p>
+        <div class="rk-screenshots">
+          <div class="shot"><img src="作品截图/主页.png" alt="主页"></div>
+          <div class="shot"><img src="作品截图/ai整理每日待办.png" alt="AI整理每日待办"></div>
+          <div class="shot"><img src="作品截图/deepseek兼顾健康和可以连接每日笔记查询待办.png" alt="DeepSeek AI 功能"></div>
+          <div class="shot"><img src="作品截图/学习模板.png" alt="学习模板"></div>
+          <div class="shot"><img src="作品截图/每日等级健康追踪.png" alt="每日健康追踪"></div>
+          <div class="shot"><img src="作品截图/统计页面.png" alt="统计页面"></div>
+        </div>
+
+        <h2>个人总结</h2>
+        <p>这个项目是我爸鼓励我做的，说做出来了给我买个华为手表 GT5。其实上大学以后我就很少和父母住在一起了，一直在奶奶家住，那次回家见我爸妈之前，已经一整年没见过面了。</p>
+        <p>项目功能挺多的，从笔记到 AI 到健康到主题到备份，算是把鸿蒙开发的各种能力都摸了一遍，一个人全栈做完还是蛮有成就感的。不过我做这个的时候鸿蒙还没完全开源，还是 1.0 版本，IDE 的开发工具和 API 文档不太完善，中文搜鸿蒙开发的内容，搜出来的都是那种特别基础的教学，看来看去就那三样组件，深一点的东西很少。说白了，国内鸿蒙社区氛围就是这样，框架大版本迭代太频繁，开发者也很迷茫。</p>
+        <p>做这个软件的时候发现了华为有个校园挑战赛，我第三期就关注了，但那时候开发完了发现还要写一大堆报告，觉得好麻烦就放弃了。拖到第四期才正式参加，进了比赛群，里面好多大佬，有些都已经上架应用了，觉得他们好厉害。在学校整理好报名材料提交了，第一次参赛拿了个优秀奖，看群里有人被淘汰了，优秀奖也不是人人都有嘛，那我还是可以的，嘿嘿。</p>
+        <p style="color:#8888a0;font-size:0.85rem;margin-bottom:4px">华为校园挑战赛优秀奖的奖品，不是很贵重，但我很开心，也算是这个项目圆满结束啦 🎉</p>
+        <div class="rk-screenshots" style="margin-top:4px">
+          <div class="shot"><img src="jiangping.jpg" alt="华为校园挑战赛优秀奖奖品"></div>
+          <div class="shot"><img src="jiangping (2).jpg" alt="华为校园挑战赛优秀奖奖品"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="rk-lightbox" id="lightbox" onclick="this.classList.remove('active')">
+    <img id="lightbox-img" src="" alt="">
+  </div>
+  <script>
+    if (location.protocol === 'file:') {
+      document.getElementById('back-link').href = 'file:///' + location.pathname.split('/featured/')[0].replace(/\\/g,'/') + '/projects.html?tab=Harmony';
+    }
+    document.querySelectorAll('.rk-screenshots .shot').forEach(el => {
+      el.addEventListener('click', function() {
+        document.getElementById('lightbox-img').src = this.querySelector('img').src;
+        document.getElementById('lightbox').classList.add('active');
+      });
+    });
+  </script>
+</body>
+</html>
