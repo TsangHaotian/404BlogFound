@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MindBloom 心理健康平台 - 404 Blog Not Found</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: "Noto Sans SC", "PingFang SC", "Microsoft YaHei", -apple-system, sans-serif;
+      background: #0f0f1a;
+      color: #f0f0f5;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    .container { max-width: 640px; margin: 0 auto; padding: 0 20px; min-height: 100vh; display: flex; flex-direction: column; }
+    .rk-card { animation: fadeUp 0.5s ease-out; }
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+    .rk-card {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 20px;
+      margin: 24px 0 40px;
+      overflow: hidden;
+      backdrop-filter: blur(8px);
+    }
+    .rk-header { text-align: center; padding: 48px 24px 20px; }
+    .rk-header img {
+      width: 120px; height: 120px; border-radius: 50%;
+      border: 3px solid rgba(255,255,255,0.1);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+      margin-bottom: 16px;
+      object-fit: cover;
+    }
+    .rk-header h1 { font-size: 1.8rem; font-weight: 700; margin-bottom: 8px; }
+    .rk-header p { color: #8888a0; font-size: 1rem; }
+    .rk-body { padding: 0 28px 32px; }
+    .rk-body p { line-height: 1.8; margin-bottom: 14px; }
+    .rk-body h2 { font-size: 1.2rem; font-weight: 600; margin-top: 28px; margin-bottom: 12px; }
+    .rk-body ul { line-height: 1.8; padding-left: 20px; margin-bottom: 14px; }
+    .rk-body li { margin-bottom: 4px; }
+    .rk-tags { margin-top: 12px; }
+    .rk-tags span {
+      display: inline-block;
+      padding: 2px 10px; font-size: 0.75rem;
+      background: rgba(108,92,231,0.15);
+      color: #a29bfe;
+      border: 1px solid rgba(108,92,231,0.2);
+      border-radius: 8px;
+      margin: 0 3px;
+    }
+    .rk-topbar {
+      display: flex; align-items: center; padding: 16px 24px 0;
+    }
+    .rk-back {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 7px 18px;
+      background: linear-gradient(135deg, #6c5ce7, #a29bfe);
+      border: none;
+      border-radius: 20px;
+      color: #fff; text-decoration: none; font-size: 0.85rem; font-weight: 500;
+      transition: all 0.2s;
+      box-shadow: 0 2px 10px rgba(108,92,231,0.3);
+    }
+    .rk-back:hover {
+      box-shadow: 0 4px 16px rgba(108,92,231,0.5);
+      transform: translateY(-1px);
+      color: #fff;
+    }
+    .rk-btn {
+      display: inline-block;
+      padding: 10px 24px;
+      background: linear-gradient(135deg, #6c5ce7, #a29bfe);
+      color: #fff;
+      border-radius: 10px;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.9rem;
+      transition: all 0.2s;
+    }
+    .rk-btn:hover {
+      box-shadow: 0 4px 16px rgba(108,92,231,0.4);
+      transform: translateY(-1px);
+      color: #fff;
+    }
+    .rk-btn-outline {
+      display: inline-block;
+      padding: 10px 24px;
+      background: transparent;
+      color: #a29bfe;
+      border: 1px solid rgba(162,155,254,0.3);
+      border-radius: 10px;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.9rem;
+      transition: all 0.2s;
+    }
+    .rk-btn-outline:hover {
+      background: rgba(162,155,254,0.1);
+      border-color: #a29bfe;
+      color: #a29bfe;
+    }
+    .rk-screenshots { display: flex; gap: 12px; justify-content: flex-start; margin-top: 16px; flex-wrap: wrap; }
+    .rk-screenshots .shot {
+      background: rgba(255,255,255,0.04); border-radius: 12px; padding: 8px;
+      cursor: pointer; transition: transform 0.2s;
+    }
+    .rk-screenshots .shot:hover { transform: scale(1.02); }
+    .rk-screenshots img { width: 180px; height: 120px; object-fit: cover; border-radius: 8px; display: block; }
+    .rk-lightbox {
+      display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.85); z-index: 9999;
+      justify-content: center; align-items: center; cursor: pointer;
+    }
+    .rk-lightbox.active { display: flex; }
+    .rk-lightbox.active img { animation: popIn 0.25s ease-out; }
+    .rk-lightbox img { max-width: 90vw; max-height: 90vh; border-radius: 12px; }
+    @keyframes popIn { from { opacity: 0; transform: scale(0.85); } to { opacity: 1; transform: scale(1); } }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="rk-card">
+      <div class="rk-topbar">
+        <a href="https://tsanghaotian.github.io/404BlogFound/projects.html" class="rk-back" id="back-link">&larr; 返回作品集</a>
+      </div>
+      <div class="rk-header">
+        <img src="登录界面.jpg" alt="MindBloom 心理健康平台">
+        <h1>MindBloom 心理健康平台</h1>
+        <p>基于 AI 情感计算与积极心理学的开源心理健康 App</p>
+        <div class="rk-tags">
+          <span>Android</span><span>AI</span><span>心理健康</span>
+        </div>
+      </div>
+      <div class="rk-body">
+        <h2>项目介绍</h2>
+        <p>MindBloom 是一个基于 AI 情感计算与积极心理学的心理健康平台，专注于预防性干预和低门槛服务。App 集成了百度文心一言大语言模型，实现智能情绪监测、新闻资讯聚合和日记功能，为用户提供全方位的心理健康支持。这是一个本科小组合作项目。</p>
+
+        <h2>技术栈</h2>
+        <div class="rk-tags" style="margin-bottom:14px">
+          <span>Android</span><span>Java</span><span>文心一言 API</span><span>News API</span><span>Gradle</span>
+        </div>
+
+        <h2>我的贡献</h2>
+        <ul>
+          <li>作为项目组长，负责整体架构设计、任务协调与代码审核，个人提交了 52 次 commit，项目最多</li>
+          <li>主导 Android 前端页面开发，实现登录注册、个人主页、侧边栏导航、编辑笔记等核心界面</li>
+          <li>集成文心一言大语言模型 API，实现 AI 智能对话功能</li>
+          <li>完成日记模块、养成系统、设置页面等功能开发</li>
+          <li>负责项目文档编写与 README 维护</li>
+        </ul>
+
+        <h2>项目地址</h2>
+        <p style="display:flex;gap:12px;flex-wrap:wrap">
+          <a href="https://github.com/TsangHaotian/Android_Mental_health_program" target="_blank" rel="noopener" class="rk-btn">GitHub 仓库</a>
+        </p>
+
+        <h2>项目预览</h2>
+        <p style="color:#8888a0;font-size:0.85rem;margin-bottom:4px">点击图片可放大查看</p>
+        <div class="rk-screenshots">
+          <div class="shot"><img src="登录界面.jpg" alt="登录界面"></div>
+          <div class="shot"><img src="个人主页.jpg" alt="个人主页"></div>
+          <div class="shot"><img src="侧边栏.jpg" alt="侧边栏"></div>
+          <div class="shot"><img src="新闻界面.jpg" alt="新闻界面"></div>
+          <div class="shot"><img src="Ai对话聊天（甚至花钱找人做的，那时候没有deepseek）.jpg" alt="AI 对话"></div>
+          <div class="shot"><img src="编辑笔记界面.jpg" alt="编辑笔记"></div>
+          <div class="shot"><img src="狗屎一样养成系统.jpg" alt="养成系统"></div>
+          <div class="shot"><img src="设置界面.jpg" alt="设置界面"></div>
+        </div>
+
+        <h2>个人总结</h2>
+        <p>这个项目是我第一次做比较大型的项目，也是从这个项目开始学会了用 GitHub 合作开发。但说实话，从软件本身来看，它对我也就这点帮助了，哈哈。如你所见，这个软件居然是我们 6 个人一起合作开发的，没想到吧？当时第一次做这个项目，觉得自己可牛了，还想着要上架 App、要赚钱，还真给我梦上了。</p>
+        <p>现在回头看，真是惨不忍睹，写的都是些什么玩意啊。就这还 6 个人一起开发，真是太搞了。不过还是硬着头皮把这个项目重新跑了起来，真的太惨了。这个项目简直就是——什么都有，什么都没有。各种各样的模块堆积在一起，页面写了一大堆，实际上乱得不是半点。登录界面交互逻辑也是拼凑的，整个软件看起来就像一堆毫不相关的拼图被强行凑在了一起。那时候我当组长，还经常为了这个软件开会，现在想起来太好笑了，就这破软件还开会呢。开会那么多次，就做出个这东西？一周还得去老师那边讨论项目进度，全部花在无用功上了。那时候还搞什么跨专业，为了这个软件找了个心理学的同学一起合作，不知道的还真以为自己多专业。最后效果也呈现出来了，就是用了非常大的力气，拉了一坨大的。</p>
+        <p>现在自己比曾经进步了不少，敢这么羞辱自己，哈哈哈哈哈。说起来那时候还真可爱，人怎么可以一年就变这么多。接着说这个项目的故事吧，这个项目可没少让那个心理学的同学操心，她是一个尽心尽责的好人，但我们那时候实力太弱了，现在都感觉有点对不起她的付出。或者是我那时候能力太弱，拉着我们 6 个人搞了无用功，浪费了大家的时间。再介绍一下吧：新闻模块是我对象不知道哪里找的教程，一步一步写进去的；AI 居然是我们花了 70 多块钱买的项目！但是那时候 DeepSeek 这家公司都还没成立！科技发展得好快好快，就一年的时间，现在更新了那么多高科技。之前这个项目的诞生和现在比起来，简直就像一个乐高做的机器人模型遇到了宇树机器人一样。</p>
+        <p>而且这个项目最后还吵了不少架。特别是在那年过年的时候，我发现我的组员没有一个人参与项目制作，大家全在混，只有我一个人在用心做。我很生气，直接解散了队伍，然后用 Python 重新做了这个项目，也就是后面的 python_mind_project。后面我重构的那个项目，还通过了软著申请呢。哦对了，那个养成系统也是一坨狗屎，就是几个图片浇水浇肥切换动图，哎哟我去，真是烂到爆炸。新闻界面也是 bug 满天飞，最主要的笔记功能现在也用不了。但是刚刚重新运行项目，发现新闻 API 和 AI 功能居然都是正常的，属实给我有点震惊了，我真没想到啊，一下子就把我拉回到曾经了。</p>
+        <p>其实骂归骂，那时候的心情还是好怀念啊。哎，不说了，给自己都说感动了。</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="rk-lightbox" id="lightbox" onclick="this.classList.remove('active')">
+    <img id="lightbox-img" src="" alt="">
+  </div>
+  <script>
+    if (location.protocol === 'file:') {
+      document.getElementById('back-link').href = 'file:///' + location.pathname.split('/featured/')[0].replace(/\\/g,'/') + '/projects.html?tab=Android';
+    }
+    document.querySelectorAll('.rk-screenshots .shot').forEach(el => {
+      el.addEventListener('click', function() {
+        document.getElementById('lightbox-img').src = this.querySelector('img').src;
+        document.getElementById('lightbox').classList.add('active');
+      });
+    });
+  </script>
+</body>
+</html>

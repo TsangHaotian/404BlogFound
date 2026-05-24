@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Android 计算器 - 404 Blog Not Found</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: "Noto Sans SC", "PingFang SC", "Microsoft YaHei", -apple-system, sans-serif;
+      background: #0f0f1a;
+      color: #f0f0f5;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    .container { max-width: 640px; margin: 0 auto; padding: 0 20px; min-height: 100vh; display: flex; flex-direction: column; }
+    .rk-card { animation: fadeUp 0.5s ease-out; }
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+    .rk-card {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 20px;
+      margin: 24px 0 40px;
+      overflow: hidden;
+      backdrop-filter: blur(8px);
+    }
+    .rk-header { text-align: center; padding: 48px 24px 20px; }
+    .rk-header img {
+      width: 120px; height: 120px; border-radius: 50%;
+      border: 3px solid rgba(255,255,255,0.1);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+      margin-bottom: 16px;
+      object-fit: cover;
+    }
+    .rk-header h1 { font-size: 1.8rem; font-weight: 700; margin-bottom: 8px; }
+    .rk-header p { color: #8888a0; font-size: 1rem; }
+    .rk-body { padding: 0 28px 32px; }
+    .rk-body p { line-height: 1.8; margin-bottom: 14px; }
+    .rk-body h2 { font-size: 1.2rem; font-weight: 600; margin-top: 28px; margin-bottom: 12px; }
+    .rk-body ul { line-height: 1.8; padding-left: 20px; margin-bottom: 14px; }
+    .rk-body li { margin-bottom: 4px; }
+    .rk-tags { margin-top: 12px; }
+    .rk-tags span {
+      display: inline-block;
+      padding: 2px 10px; font-size: 0.75rem;
+      background: rgba(108,92,231,0.15);
+      color: #a29bfe;
+      border: 1px solid rgba(108,92,231,0.2);
+      border-radius: 8px;
+      margin: 0 3px;
+    }
+    .rk-topbar {
+      display: flex; align-items: center; padding: 16px 24px 0;
+    }
+    .rk-back {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 7px 18px;
+      background: linear-gradient(135deg, #6c5ce7, #a29bfe);
+      border: none;
+      border-radius: 20px;
+      color: #fff; text-decoration: none; font-size: 0.85rem; font-weight: 500;
+      transition: all 0.2s;
+      box-shadow: 0 2px 10px rgba(108,92,231,0.3);
+    }
+    .rk-back:hover {
+      box-shadow: 0 4px 16px rgba(108,92,231,0.5);
+      transform: translateY(-1px);
+      color: #fff;
+    }
+    .rk-btn {
+      display: inline-block;
+      padding: 10px 24px;
+      background: linear-gradient(135deg, #6c5ce7, #a29bfe);
+      color: #fff;
+      border-radius: 10px;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.9rem;
+      transition: all 0.2s;
+    }
+    .rk-btn:hover {
+      box-shadow: 0 4px 16px rgba(108,92,231,0.4);
+      transform: translateY(-1px);
+      color: #fff;
+    }
+    .rk-btn-outline {
+      display: inline-block;
+      padding: 10px 24px;
+      background: transparent;
+      color: #a29bfe;
+      border: 1px solid rgba(162,155,254,0.3);
+      border-radius: 10px;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.9rem;
+      transition: all 0.2s;
+    }
+    .rk-btn-outline:hover {
+      background: rgba(162,155,254,0.1);
+      border-color: #a29bfe;
+      color: #a29bfe;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="rk-card">
+      <div class="rk-topbar">
+        <a href="https://tsanghaotian.github.io/404BlogFound/projects.html" class="rk-back" id="back-link">&larr; 返回作品集</a>
+      </div>
+      <div class="rk-header">
+        <svg width="120" height="120" viewBox="0 0 120 120" style="border-radius:50%;border:3px solid rgba(255,255,255,0.1);box-shadow:0 4px 20px rgba(0,0,0,0.4);margin-bottom:16px;background:linear-gradient(135deg,#3ddc84,#01875f)">
+          <text x="60" y="76" font-size="52" text-anchor="middle" fill="#fff" font-family="monospace">+</text>
+        </svg>
+        <h1>Android 计算器</h1>
+        <p>一个轻量级的 Android 计算器 App</p>
+        <div class="rk-tags">
+          <span>Android</span><span>Java</span><span>Material Design</span>
+        </div>
+      </div>
+      <div class="rk-body">
+        <h2>项目介绍</h2>
+        <p>一个轻量级的 Android 计算器应用，支持加、减、乘、除四则运算。界面采用 Material Design 风格，支持实时显示计算结果、退格修正、一键清空和连续运算功能，适合日常基础计算需求。这是 Android 开发的个人作业项目。</p>
+
+        <h2>技术栈</h2>
+        <div class="rk-tags" style="margin-bottom:14px">
+          <span>Android</span><span>Java</span><span>Material Design</span><span>Gradle</span>
+        </div>
+
+        <h2>我的贡献</h2>
+        <ul>
+          <li>独立完成项目从 UI 设计到功能开发全流程</li>
+          <li>实现加减乘除四则运算核心逻辑</li>
+          <li>采用 Material Design 风格，提供流畅的用户交互体验</li>
+        </ul>
+
+        <h2>项目地址</h2>
+        <p style="display:flex;gap:12px;flex-wrap:wrap">
+          <a href="https://github.com/TsangHaotian/Android_Calculators" target="_blank" rel="noopener" class="rk-btn">GitHub 仓库</a>
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    if (location.protocol === 'file:') {
+      document.getElementById('back-link').href = 'file:///' + location.pathname.split('/featured/')[0].replace(/\\/g,'/') + '/projects.html?tab=Android';
+    }
+  </script>
+</body>
+</html>
