@@ -100,6 +100,22 @@
       border-color: #a29bfe;
       color: #a29bfe;
     }
+    .rk-screenshots { display: flex; gap: 12px; justify-content: flex-start; margin-top: 16px; flex-wrap: wrap; }
+    .rk-screenshots .shot {
+      background: rgba(255,255,255,0.04); border-radius: 12px; padding: 8px;
+      cursor: pointer; transition: transform 0.2s;
+    }
+    .rk-screenshots .shot:hover { transform: scale(1.02); }
+    .rk-screenshots img { width: 180px; height: 120px; object-fit: cover; border-radius: 8px; display: block; }
+    .rk-lightbox {
+      display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.85); z-index: 9999;
+      justify-content: center; align-items: center; cursor: pointer;
+    }
+    .rk-lightbox.active { display: flex; }
+    .rk-lightbox.active img { animation: popIn 0.25s ease-out; }
+    .rk-lightbox img { max-width: 90vw; max-height: 90vh; border-radius: 12px; }
+    @keyframes popIn { from { opacity: 0; transform: scale(0.85); } to { opacity: 1; transform: scale(1); } }
   </style>
 </head>
 <body>
@@ -109,9 +125,7 @@
         <a href="https://tsanghaotian.github.io/404BlogFound/projects.html" class="rk-back" id="back-link">&larr; 返回作品集</a>
       </div>
       <div class="rk-header">
-        <svg width="120" height="120" viewBox="0 0 120 120" style="border-radius:50%;border:3px solid rgba(255,255,255,0.1);box-shadow:0 4px 20px rgba(0,0,0,0.4);margin-bottom:16px;background:linear-gradient(135deg,#3ddc84,#01875f)">
-          <text x="60" y="76" font-size="52" text-anchor="middle" fill="#fff" font-family="monospace">+</text>
-        </svg>
+        <img src="正常运算.jpg" alt="Android 计算器">
         <h1>Android 计算器</h1>
         <p>一个轻量级的 Android 计算器 App</p>
         <div class="rk-tags">
@@ -138,14 +152,35 @@
         <p style="display:flex;gap:12px;flex-wrap:wrap">
           <a href="https://github.com/TsangHaotian/Android_Calculators" target="_blank" rel="noopener" class="rk-btn">GitHub 仓库</a>
         </p>
+
+        <h2>项目预览</h2>
+        <p style="color:#8888a0;font-size:0.85rem;margin-bottom:4px">点击图片可放大查看</p>
+        <div class="rk-screenshots">
+          <div class="shot"><img src="正常运算.jpg" alt="正常运算"></div>
+          <div class="shot"><img src="主页（运算错误嘲讽）.jpg" alt="主页（运算错误嘲讽）"></div>
+          <div class="shot"><img src="侧边导航栏.jpg" alt="侧边导航栏"></div>
+          <div class="shot"><img src="关于我们.jpg" alt="关于我们"></div>
+        </div>
+
+        <h2>个人总结</h2>
+        <p>Android 课程的作业项目，写了个计算器 App。界面用了 Material Design，支持基础四则运算，做完就交作业了，没啥好说的哈哈。</p>
       </div>
     </div>
   </div>
 
+  <div class="rk-lightbox" id="lightbox" onclick="this.classList.remove('active')">
+    <img id="lightbox-img" src="" alt="">
+  </div>
   <script>
     if (location.protocol === 'file:') {
       document.getElementById('back-link').href = 'file:///' + location.pathname.split('/featured/')[0].replace(/\\/g,'/') + '/projects.html?tab=Android';
     }
+    document.querySelectorAll('.rk-screenshots .shot').forEach(el => {
+      el.addEventListener('click', function() {
+        document.getElementById('lightbox-img').src = this.querySelector('img').src;
+        document.getElementById('lightbox').classList.add('active');
+      });
+    });
   </script>
 </body>
 </html>
