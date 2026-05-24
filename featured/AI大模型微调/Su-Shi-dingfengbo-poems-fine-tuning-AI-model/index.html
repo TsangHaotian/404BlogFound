@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>苏轼《定风波》微调AI大模型 - 404 Blog Not Found</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: "Noto Sans SC", "PingFang SC", "Microsoft YaHei", -apple-system, sans-serif;
+      background: #0f0f1a;
+      color: #f0f0f5;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    .container { max-width: 640px; margin: 0 auto; padding: 0 20px; min-height: 100vh; display: flex; flex-direction: column; }
+    .rk-card { animation: fadeUp 0.5s ease-out; }
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+    .rk-card {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 20px;
+      margin: 24px 0 40px;
+      overflow: hidden;
+      backdrop-filter: blur(8px);
+    }
+    .rk-header { text-align: center; padding: 48px 24px 20px; }
+    .rk-header img {
+      width: 120px; height: 120px; border-radius: 50%;
+      border: 3px solid rgba(255,255,255,0.1);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+      margin-bottom: 16px;
+      object-fit: cover;
+    }
+    .rk-header h1 { font-size: 1.8rem; font-weight: 700; margin-bottom: 8px; }
+    .rk-header p { color: #8888a0; font-size: 1rem; }
+    .rk-body { padding: 0 28px 32px; }
+    .rk-body p { line-height: 1.8; margin-bottom: 14px; }
+    .rk-body h2 { font-size: 1.2rem; font-weight: 600; margin-top: 28px; margin-bottom: 12px; }
+    .rk-body ul { line-height: 1.8; padding-left: 20px; margin-bottom: 14px; }
+    .rk-body li { margin-bottom: 4px; }
+    .rk-tags { margin-top: 12px; }
+    .rk-tags span {
+      display: inline-block;
+      padding: 2px 10px; font-size: 0.75rem;
+      background: rgba(108,92,231,0.15);
+      color: #a29bfe;
+      border: 1px solid rgba(108,92,231,0.2);
+      border-radius: 8px;
+      margin: 0 3px;
+    }
+    .rk-topbar {
+      display: flex; align-items: center; padding: 16px 24px 0;
+    }
+    .rk-back {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 7px 18px;
+      background: linear-gradient(135deg, #6c5ce7, #a29bfe);
+      border: none;
+      border-radius: 20px;
+      color: #fff; text-decoration: none; font-size: 0.85rem; font-weight: 500;
+      transition: all 0.2s;
+      box-shadow: 0 2px 10px rgba(108,92,231,0.3);
+    }
+    .rk-back:hover {
+      box-shadow: 0 4px 16px rgba(108,92,231,0.5);
+      transform: translateY(-1px);
+      color: #fff;
+    }
+    .rk-btn {
+      display: inline-block;
+      padding: 10px 24px;
+      background: linear-gradient(135deg, #6c5ce7, #a29bfe);
+      color: #fff;
+      border-radius: 10px;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.9rem;
+      transition: all 0.2s;
+    }
+    .rk-btn:hover {
+      box-shadow: 0 4px 16px rgba(108,92,231,0.4);
+      transform: translateY(-1px);
+      color: #fff;
+    }
+    .rk-btn-outline {
+      display: inline-block;
+      padding: 10px 24px;
+      background: transparent;
+      color: #a29bfe;
+      border: 1px solid rgba(162,155,254,0.3);
+      border-radius: 10px;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.9rem;
+      transition: all 0.2s;
+    }
+    .rk-btn-outline:hover {
+      background: rgba(162,155,254,0.1);
+      border-color: #a29bfe;
+      color: #a29bfe;
+    }
+    .rk-screenshots { display: flex; gap: 12px; justify-content: flex-start; margin-top: 16px; flex-wrap: wrap; }
+    .rk-screenshots .shot {
+      background: rgba(255,255,255,0.04); border-radius: 12px; padding: 8px;
+      cursor: pointer; transition: transform 0.2s;
+    }
+    .rk-screenshots .shot:hover { transform: scale(1.02); }
+    .rk-screenshots img { width: 180px; height: 120px; object-fit: cover; border-radius: 8px; display: block; }
+    .rk-lightbox {
+      display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.85); z-index: 9999;
+      justify-content: center; align-items: center; cursor: pointer;
+    }
+    .rk-lightbox.active { display: flex; }
+    .rk-lightbox.active img { animation: popIn 0.25s ease-out; }
+    .rk-lightbox img { max-width: 90vw; max-height: 90vh; border-radius: 12px; }
+    @keyframes popIn { from { opacity: 0; transform: scale(0.85); } to { opacity: 1; transform: scale(1); } }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="rk-card">
+      <div class="rk-topbar">
+        <a href="https://tsanghaotian.github.io/404BlogFound/projects.html" class="rk-back" id="back-link">&larr; 返回作品集</a>
+      </div>
+      <div class="rk-header">
+        <img src="loss图.png" alt="苏轼定风波微调大模型">
+        <h1>苏轼《定风波》微调AI大模型</h1>
+        <p>基于 DeepSeek-7B-Chat 微调，让 AI 读懂苏轼</p>
+        <div class="rk-tags">
+          <span>AI</span><span>大模型微调</span><span>DeepSeek</span>
+        </div>
+      </div>
+      <div class="rk-body">
+        <h2>项目介绍</h2>
+        <p>基于 DeepSeek-LLM-7B-Chat 基座模型，使用 168 条苏轼《定风波》相关知识点的训练数据，通过 LlamaFactory 框架进行微调，让模型能够深入理解和生成与《定风波》相关的诗歌赏析、背景知识、主题思想等内容。模型训练于 2025 年 4 月 21 日完成，loss 从初始 2.0 稳定下降至 0.3 左右，表现出良好的收敛性。</p>
+
+        <h2>技术栈</h2>
+        <div class="rk-tags" style="margin-bottom:14px">
+          <span>DeepSeek-7B-Chat</span><span>LlamaFactory</span><span>LoRA</span><span>Python</span>
+        </div>
+
+        <h2>我的贡献</h2>
+        <ul>
+          <li>独立完成项目全流程：数据准备、模型微调训练、效果验证到项目发布</li>
+          <li>整理苏轼《定风波》168 条知识点，覆盖诗歌赏析、背景知识、作者介绍等多个维度</li>
+          <li>使用 LlamaFactory 框架，基于 DeepSeek-7B-Chat 基座模型进行 LoRA 微调</li>
+          <li>监控训练过程，loss 从 2.0 下降至 0.3，确保模型收敛效果</li>
+        </ul>
+
+        <h2>模型效果</h2>
+        <p>微调后的模型能够准确理解《定风波》相关提问并给出有深度的回答，例如对词句的赏析、创作背景的解读等。训练 loss 稳定下降，模型在理解和生成《定风波》相关内容方面表现出显著进步。</p>
+
+        <h2>项目地址</h2>
+        <p style="display:flex;gap:12px;flex-wrap:wrap">
+          <a href="https://github.com/TsangHaotian/Su-Shi-dingfengbo-poems-fine-tuning-AI-model" target="_blank" rel="noopener" class="rk-btn">GitHub 仓库</a>
+        </p>
+
+        <h2>项目预览</h2>
+        <p style="color:#8888a0;font-size:0.85rem;margin-bottom:4px">点击图片可放大查看</p>
+        <div class="rk-screenshots">
+          <div class="shot"><img src="效果图.png" alt="模型效果图"></div>
+          <div class="shot"><img src="loss图.png" alt="训练 Loss 图"></div>
+          <div class="shot"><img src="训练过程图.png" alt="训练过程图"></div>
+        </div>
+
+        <h2>个人总结</h2>
+        <p>这是我大学第一次参加比赛——计算机设计大赛。说不紧张那是假的，指导老师伊里夏提老师也刚参加工作，经验不算丰富，他叫了 5 个班的学委和我组队，我当队长。结果刚开始就有人觉得太难退队了，换了个女生进来能力不行，没多久也退了，啥也没干。跌跌撞撞混到个校三。</p>
+        <p>我们做的是微课+AI，剪视频的活交给一个女生，结果马上校赛申报省赛的时候她一拖再拖，大家都等她一个人，后面气不过群里批评了她——她用手机剪视频，连个像样的生产工具都没有。省赛前 3 天，报名费都交了，她退了。临时又拉了个人。最后一天交材料，我早上 10 点就去实验室，饭都没怎么吃，请了一天假没上课，一直忙到晚上 23 点。现在回想，那时候真有奔头啊。</p>
+        <p>这个 AI 微调其实是校赛以后才做的。校赛用的是 API，评委老师说没啥技术含量，于是我就刻苦钻研自己微调。全部看视频教程自学，用笔记本的显卡跑的，模型参数不大所以也没太吃性能。现在来看，觉得挺牛逼的，哈哈，可能技术大牛看来也就这样吧，但那时候认真的样子，我都佩服我自己。最后跌跌撞撞拿了个省三。据说校三就是炮灰，我们没变成炮灰就是最大的胜利了。</p>
+        <p style="text-align:right;color:#8888a0;font-size:0.9rem">为我干杯，哈哈 🥂</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="rk-lightbox" id="lightbox" onclick="this.classList.remove('active')">
+    <img id="lightbox-img" src="" alt="">
+  </div>
+  <script>
+    if (location.protocol === 'file:') {
+      document.getElementById('back-link').href = 'file:///' + location.pathname.split('/featured/')[0].replace(/\\/g,'/') + '/projects.html?tab=AI大模型微调';
+    }
+    document.querySelectorAll('.rk-screenshots .shot').forEach(el => {
+      el.addEventListener('click', function() {
+        document.getElementById('lightbox-img').src = this.querySelector('img').src;
+        document.getElementById('lightbox').classList.add('active');
+      });
+    });
+  </script>
+</body>
+</html>
