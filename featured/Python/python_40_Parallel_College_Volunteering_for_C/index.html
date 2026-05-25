@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>高考志愿模拟系统 - 404 Blog Not Found</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: "Noto Sans SC", "PingFang SC", "Microsoft YaHei", -apple-system, sans-serif;
+      background: #0f0f1a;
+      color: #f0f0f5;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    .container { max-width: 640px; margin: 0 auto; padding: 0 20px; min-height: 100vh; display: flex; flex-direction: column; }
+    .rk-card { animation: fadeUp 0.5s ease-out; }
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+    .rk-card {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 20px;
+      margin: 24px 0 40px;
+      overflow: hidden;
+      backdrop-filter: blur(8px);
+    }
+    .rk-header { text-align: center; padding: 48px 24px 20px; }
+    .rk-header img {
+      width: 120px; height: 120px; border-radius: 50%;
+      border: 3px solid rgba(255,255,255,0.1);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+      margin-bottom: 16px;
+      object-fit: cover;
+    }
+    .rk-header h1 { font-size: 1.8rem; font-weight: 700; margin-bottom: 8px; }
+    .rk-header p { color: #8888a0; font-size: 1rem; }
+    .rk-body { padding: 0 28px 32px; }
+    .rk-body p { line-height: 1.8; margin-bottom: 14px; }
+    .rk-body h2 { font-size: 1.2rem; font-weight: 600; margin-top: 28px; margin-bottom: 12px; }
+    .rk-body ul, .rk-body ol { line-height: 1.8; padding-left: 20px; margin-bottom: 14px; }
+    .rk-body li { margin-bottom: 4px; }
+    .rk-body table { width: 100%; border-collapse: collapse; margin-bottom: 14px; font-size: 0.85rem; }
+    .rk-body th, .rk-body td { border: 1px solid rgba(255,255,255,0.1); padding: 8px 12px; text-align: left; }
+    .rk-body th { background: rgba(108,92,231,0.15); color: #a29bfe; font-weight: 600; }
+    .rk-tags { margin-top: 12px; }
+    .rk-tags span {
+      display: inline-block;
+      padding: 2px 10px; font-size: 0.75rem;
+      background: rgba(108,92,231,0.15);
+      color: #a29bfe;
+      border: 1px solid rgba(108,92,231,0.2);
+      border-radius: 8px;
+      margin: 0 3px;
+    }
+    .rk-topbar {
+      display: flex; align-items: center; padding: 16px 24px 0;
+    }
+    .rk-back {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 7px 18px;
+      background: linear-gradient(135deg, #6c5ce7, #a29bfe);
+      border: none;
+      border-radius: 20px;
+      color: #fff; text-decoration: none; font-size: 0.85rem; font-weight: 500;
+      transition: all 0.2s;
+      box-shadow: 0 2px 10px rgba(108,92,231,0.3);
+    }
+    .rk-back:hover {
+      box-shadow: 0 4px 16px rgba(108,92,231,0.5);
+      transform: translateY(-1px);
+      color: #fff;
+    }
+    .rk-btn {
+      display: inline-block;
+      padding: 10px 24px;
+      background: linear-gradient(135deg, #6c5ce7, #a29bfe);
+      color: #fff;
+      border-radius: 10px;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.9rem;
+      transition: all 0.2s;
+    }
+    .rk-btn:hover {
+      box-shadow: 0 4px 16px rgba(108,92,231,0.4);
+      transform: translateY(-1px);
+      color: #fff;
+    }
+    .rk-screenshots { display: flex; gap: 12px; justify-content: flex-start; margin-top: 16px; flex-wrap: wrap; }
+    .rk-screenshots .shot {
+      background: rgba(255,255,255,0.04); border-radius: 12px; padding: 8px;
+      cursor: pointer; transition: transform 0.2s;
+    }
+    .rk-screenshots .shot:hover { transform: scale(1.02); }
+    .rk-screenshots img { width: 180px; height: 120px; object-fit: cover; border-radius: 8px; display: block; }
+    .rk-lightbox {
+      display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.85); z-index: 9999;
+      justify-content: center; align-items: center; cursor: pointer;
+    }
+    .rk-lightbox.active { display: flex; }
+    .rk-lightbox.active img { animation: popIn 0.25s ease-out; }
+    .rk-lightbox img { max-width: 90vw; max-height: 90vh; border-radius: 12px; }
+    @keyframes popIn { from { opacity: 0; transform: scale(0.85); } to { opacity: 1; transform: scale(1); } }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="rk-card">
+      <div class="rk-topbar">
+        <a href="https://tsanghaotian.github.io/404BlogFound/projects.html" class="rk-back" id="back-link">&larr; 返回作品集</a>
+      </div>
+      <div class="rk-header">
+        <img src="school.png" alt="高考志愿模拟系统">
+        <h1>高考志愿模拟系统</h1>
+        <p>3+2+1 地区 40 个平行志愿高考报考模拟系统（基于福建高考）</p>
+        <div class="rk-tags">
+          <span>Python</span><span>tkinter</span><span>高考志愿</span>
+        </div>
+      </div>
+      <div class="rk-body">
+        <h2>项目介绍</h2>
+        <p>一款为 3+2+1 新高考地区（尤其是福建省）设计的 40 个平行志愿填报模拟系统。包含三大模块：院校招生信息管理、志愿填报、志愿模拟录取。支持最新 2025 福建高考政策，能模拟投档录取全过程，帮助考生理解平行志愿规则、规避滑档退档风险。</p>
+
+        <h2>系统功能</h2>
+        <ul>
+          <li>院校专业招生信息管理</li>
+          <li>最多 40 个平行志愿的创建与编辑</li>
+          <li>志愿模拟录取结果预测</li>
+          <li>Excel 数据导入导出</li>
+          <li>已打包为 EXE 可执行文件，无需 Python 环境</li>
+        </ul>
+
+        <h2>三大模块</h2>
+        <table>
+          <tr><th>模块</th><th>文件</th><th>功能</th></tr>
+          <tr><td>院校信息管理</td><td>UniversityInfoTable.py</td><td>录入管理各院校专业招生信息（代码、名称、分数线、招生人数）</td></tr>
+          <tr><td>志愿填报</td><td>SimulationApplicationAlgorithm.py</td><td>创建编辑 40 个平行志愿，每志愿最多 6 个专业</td></tr>
+          <tr><td>志愿模拟</td><td>SimulationVolunteerApplication.py</td><td>导入数据，输入分数，模拟投档录取过程</td></tr>
+        </table>
+
+        <h2>技术栈</h2>
+        <div class="rk-tags" style="margin-bottom:14px">
+          <span>Python</span><span>tkinter</span><span>pandas</span><span>openpyxl</span>
+        </div>
+
+        <h2>项目地址</h2>
+        <p style="display:flex;gap:12px;flex-wrap:wrap">
+          <a href="https://github.com/TsangHaotian/python_40_Parallel_College_Volunteering_for_College_Entrance_Examination" target="_blank" rel="noopener" class="rk-btn">GitHub 仓库</a>
+        </p>
+
+        <h2>项目预览</h2>
+        <p style="color:#8888a0;font-size:0.85rem;margin-bottom:4px">点击图片可放大查看</p>
+        <div class="rk-screenshots">
+          <div class="shot"><img src="system.png" alt="志愿填报系统"></div>
+          <div class="shot"><img src="usage.png" alt="使用界面"></div>
+          <div class="shot"><img src="school.png" alt="学校信息表"></div>
+          <div class="shot"><img src="form.png" alt="志愿填报表"></div>
+        </div>
+
+        <h2>个人总结</h2>
+        <p>每年的高考季都在做点东西，大二的时候写了这个志愿模拟系统。当时自己对高考志愿填报也是一知半解，做这个项目的过程反而帮我自己把平行志愿的规则彻底搞懂了——什么是分数优先、遵循志愿、一轮投档，滑档和退档的区别到底是什么。</p>
+        <p>tkinter 写 GUI 虽然丑了点，但胜在简单直接，打包成 EXE 后家里人也能用。项目后来更新到了 2025 年政策，star 数也是我 Python 项目里最高的。说到底，这个项目的价值不在于代码多优雅，而在于它真的能帮到人——至少让我自己对高考志愿这件事心里有底了。</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="rk-lightbox" id="lightbox" onclick="this.classList.remove('active')">
+    <img id="lightbox-img" src="" alt="">
+  </div>
+  <script>
+    if (location.protocol === 'file:') {
+      document.getElementById('back-link').href = 'file:///' + location.pathname.split('/featured/')[0].replace(/\\/g,'/') + '/projects.html?tab=Python';
+    }
+    document.querySelectorAll('.rk-screenshots .shot').forEach(el => {
+      el.addEventListener('click', function() {
+        document.getElementById('lightbox-img').src = this.querySelector('img').src;
+        document.getElementById('lightbox').classList.add('active');
+      });
+    });
+  </script>
+</body>
+</html>
