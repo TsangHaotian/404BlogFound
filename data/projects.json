@@ -1,5 +1,21 @@
 [
   {
+    "name": "CardGame_Android",
+    "description": "卡片游戏安卓 - Game Boy 风格复古游戏合集",
+    "stars": 1,
+    "language": "Android",
+    "topics": [],
+    "url": "https://github.com/TsangHaotian/CardGame_Android"
+  },
+  {
+    "name": "Harmony_CardGame",
+    "description": "鸿蒙卡片小游戏 - 怀旧掌机风格多功能娱乐应用",
+    "stars": 1,
+    "language": "Harmony",
+    "topics": [],
+    "url": "https://github.com/TsangHaotian/Harmony_CardGame"
+  },
+  {
     "name": "Android_Calculators",
     "description": "安卓个人作业项目，计算器简单运算app",
     "stars": 6,

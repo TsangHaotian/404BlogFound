@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CardGame 卡片游戏 - 404 Blog Not Found</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: "Noto Sans SC", "PingFang SC", "Microsoft YaHei", -apple-system, sans-serif;
+      background: #0f0f1a;
+      color: #f0f0f5;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    .container { max-width: 640px; margin: 0 auto; padding: 0 20px; min-height: 100vh; display: flex; flex-direction: column; }
+    .rk-card { animation: fadeUp 0.5s ease-out; }
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+    .rk-card {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 20px;
+      margin: 24px 0 40px;
+      overflow: hidden;
+      backdrop-filter: blur(8px);
+    }
+    .rk-header { text-align: center; padding: 48px 24px 20px; }
+    .rk-header img {
+      width: 120px; height: 120px; border-radius: 50%;
+      border: 3px solid rgba(255,255,255,0.1);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+      margin-bottom: 16px;
+      object-fit: cover;
+    }
+    .rk-header h1 { font-size: 1.8rem; font-weight: 700; margin-bottom: 8px; }
+    .rk-header p { color: #8888a0; font-size: 1rem; }
+    .rk-body { padding: 0 28px 32px; }
+    .rk-body p { line-height: 1.8; margin-bottom: 14px; }
+    .rk-body h2 { font-size: 1.2rem; font-weight: 600; margin-top: 28px; margin-bottom: 12px; }
+    .rk-body ul { line-height: 1.8; padding-left: 20px; margin-bottom: 14px; }
+    .rk-body li { margin-bottom: 4px; }
+    .rk-body table { width: 100%; border-collapse: collapse; margin-bottom: 14px; font-size: 0.85rem; }
+    .rk-body th, .rk-body td { border: 1px solid rgba(255,255,255,0.1); padding: 8px 12px; text-align: left; }
+    .rk-body th { background: rgba(108,92,231,0.15); color: #a29bfe; font-weight: 600; }
+    .rk-tags { margin-top: 12px; }
+    .rk-tags span {
+      display: inline-block;
+      padding: 2px 10px; font-size: 0.75rem;
+      background: rgba(108,92,231,0.15);
+      color: #a29bfe;
+      border: 1px solid rgba(108,92,231,0.2);
+      border-radius: 8px;
+      margin: 0 3px;
+    }
+    .rk-topbar {
+      display: flex; align-items: center; padding: 16px 24px 0;
+    }
+    .rk-back {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 7px 18px;
+      background: linear-gradient(135deg, #6c5ce7, #a29bfe);
+      border: none;
+      border-radius: 20px;
+      color: #fff; text-decoration: none; font-size: 0.85rem; font-weight: 500;
+      transition: all 0.2s;
+      box-shadow: 0 2px 10px rgba(108,92,231,0.3);
+    }
+    .rk-back:hover {
+      box-shadow: 0 4px 16px rgba(108,92,231,0.5);
+      transform: translateY(-1px);
+      color: #fff;
+    }
+    .rk-btn {
+      display: inline-block;
+      padding: 10px 24px;
+      background: linear-gradient(135deg, #6c5ce7, #a29bfe);
+      color: #fff;
+      border-radius: 10px;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.9rem;
+      transition: all 0.2s;
+    }
+    .rk-btn:hover {
+      box-shadow: 0 4px 16px rgba(108,92,231,0.4);
+      transform: translateY(-1px);
+      color: #fff;
+    }
+    .rk-screenshots { display: flex; gap: 12px; justify-content: flex-start; margin-top: 16px; flex-wrap: wrap; }
+    .rk-screenshots .shot {
+      background: rgba(255,255,255,0.04); border-radius: 12px; padding: 8px;
+      cursor: pointer; transition: transform 0.2s;
+    }
+    .rk-screenshots .shot:hover { transform: scale(1.02); }
+    .rk-screenshots img { width: 180px; height: 120px; object-fit: cover; border-radius: 8px; display: block; }
+    .rk-lightbox {
+      display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.85); z-index: 9999;
+      justify-content: center; align-items: center; cursor: pointer;
+    }
+    .rk-lightbox.active { display: flex; }
+    .rk-lightbox.active img { animation: popIn 0.25s ease-out; }
+    .rk-lightbox img { max-width: 90vw; max-height: 90vh; border-radius: 12px; }
+    @keyframes popIn { from { opacity: 0; transform: scale(0.85); } to { opacity: 1; transform: scale(1); } }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="rk-card">
+      <div class="rk-topbar">
+        <a href="https://tsanghaotian.github.io/404BlogFound/projects.html" class="rk-back" id="back-link">&larr; 返回作品集</a>
+      </div>
+      <div class="rk-header">
+        <img src="f9e585bda47843b25b0474518a39a53d.jpg" alt="CardGame 卡片游戏">
+        <h1>CardGame 卡片游戏</h1>
+        <p>Game Boy 风格复古游戏合集 - Android 应用</p>
+        <div class="rk-tags">
+          <span>Android</span><span>Java</span><span>复古游戏</span>
+        </div>
+      </div>
+      <div class="rk-body">
+        <h2>项目介绍</h2>
+        <p>一款 Game Boy 风格的复古游戏合集 Android 应用，内置 12 款经典小游戏，包括 2048、俄罗斯方块、五子棋、围棋、贪吃蛇、扫雷等。界面采用复古掌机风格设计，配有十字键和 A/B 按键操控，支持最高分记录、震动反馈和桌面小组件。</p>
+
+        <h2>游戏列表</h2>
+        <table>
+          <tr><th>游戏</th><th>说明</th></tr>
+          <tr><td>2048</td><td>滑动合并数字方块</td></tr>
+          <tr><td>井字棋</td><td>3×3 经典井字棋，支持 1P/2P</td></tr>
+          <tr><td>俄罗斯方块</td><td>经典下落方块游戏</td></tr>
+          <tr><td>五子棋</td><td>15×15 五子连珠，支持 AI 对战</td></tr>
+          <tr><td>围棋</td><td>15×15 围棋，支持提子规则与 AI</td></tr>
+          <tr><td>飞机大战</td><td>竖屏射击躲避游戏</td></tr>
+          <tr><td>赛车大赛</td><td>三车道躲避对向来车</td></tr>
+          <tr><td>吃豆人</td><td>迷宫吃豆，方向键操控</td></tr>
+          <tr><td>打砖块</td><td>挡板反弹消砖块，多关卡</td></tr>
+          <tr><td>贪吃蛇</td><td>经典贪吃蛇，穿墙模式</td></tr>
+          <tr><td>扫雷</td><td>9×9 经典扫雷，方向键 + A/B 操作</td></tr>
+          <tr><td>数字华容道</td><td>4×4 滑动拼图，步数计分</td></tr>
+        </table>
+
+        <h2>技术栈</h2>
+        <div class="rk-tags" style="margin-bottom:14px">
+          <span>Android</span><span>Java</span><span>Canvas</span><span>ViewFlipper</span><span>App Widget</span>
+        </div>
+
+        <h2>我的贡献</h2>
+        <ul>
+          <li>独立完成 12 款经典游戏的开发与整合</li>
+          <li>实现 Game Boy 风格 UI 界面与十字键 + A/B 按键操控系统</li>
+          <li>实现桌面小组件（2×2）与长按图标快捷启动</li>
+          <li>实现最高分记录与震动反馈</li>
+        </ul>
+
+        <h2>项目地址</h2>
+        <p style="display:flex;gap:12px;flex-wrap:wrap">
+          <a href="https://github.com/TsangHaotian/CardGame_Android" target="_blank" rel="noopener" class="rk-btn">GitHub 仓库</a>
+        </p>
+
+        <h2>项目预览</h2>
+        <p style="color:#8888a0;font-size:0.85rem;margin-bottom:4px">点击图片可放大查看</p>
+        <div class="rk-screenshots">
+          <div class="shot"><img src="f9e585bda47843b25b0474518a39a53d.jpg" alt="主界面"></div>
+          <div class="shot"><img src="eda56f6d27307dd294c32c7b81aa238b.jpg" alt="游戏画面1"></div>
+          <div class="shot"><img src="06a7052fe52aa9b7e9f7eed043bb8e5c.jpg" alt="游戏画面2"></div>
+          <div class="shot"><img src="b5dfc29c8e177c1a0b037efc0759444c.jpg" alt="游戏画面3"></div>
+        </div>
+
+        <h2>个人总结</h2>
+        <p>这个项目其实是我做的鸿蒙版 CardGame 的 Android 移植版，两个版本同步开发的。本来想上架华为应用市场，结果个人开发者不能上架游戏类应用（需要版号），卡在最后一步放弃了，干脆开源出来。</p>
+        <p>Game Boy 风格界面做起来还挺有意思的，12 款游戏虽然大部分都是经典玩法复刻，但要把它们统一到同一个操控体系下、保证体验一致，还是花了不少功夫。Canvas 自定义绘制、ViewFlipper 游戏切换这些技术也顺便练了手。</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="rk-lightbox" id="lightbox" onclick="this.classList.remove('active')">
+    <img id="lightbox-img" src="" alt="">
+  </div>
+  <script>
+    if (location.protocol === 'file:') {
+      document.getElementById('back-link').href = 'file:///' + location.pathname.split('/featured/')[0].replace(/\\/g,'/') + '/projects.html?tab=Android';
+    }
+    document.querySelectorAll('.rk-screenshots .shot').forEach(el => {
+      el.addEventListener('click', function() {
+        document.getElementById('lightbox-img').src = this.querySelector('img').src;
+        document.getElementById('lightbox').classList.add('active');
+      });
+    });
+  </script>
+</body>
+</html>

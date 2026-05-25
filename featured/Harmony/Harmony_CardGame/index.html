@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Harmony CardGame 鸿蒙卡片游戏 - 404 Blog Not Found</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: "Noto Sans SC", "PingFang SC", "Microsoft YaHei", -apple-system, sans-serif;
+      background: #0f0f1a;
+      color: #f0f0f5;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    .container { max-width: 640px; margin: 0 auto; padding: 0 20px; min-height: 100vh; display: flex; flex-direction: column; }
+    .rk-card { animation: fadeUp 0.5s ease-out; }
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+    .rk-card {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 20px;
+      margin: 24px 0 40px;
+      overflow: hidden;
+      backdrop-filter: blur(8px);
+    }
+    .rk-header { text-align: center; padding: 48px 24px 20px; }
+    .rk-header img {
+      width: 120px; height: 120px; border-radius: 50%;
+      border: 3px solid rgba(255,255,255,0.1);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+      margin-bottom: 16px;
+      object-fit: cover;
+    }
+    .rk-header h1 { font-size: 1.8rem; font-weight: 700; margin-bottom: 8px; }
+    .rk-header p { color: #8888a0; font-size: 1rem; }
+    .rk-body { padding: 0 28px 32px; }
+    .rk-body p { line-height: 1.8; margin-bottom: 14px; }
+    .rk-body h2 { font-size: 1.2rem; font-weight: 600; margin-top: 28px; margin-bottom: 12px; }
+    .rk-body ul { line-height: 1.8; padding-left: 20px; margin-bottom: 14px; }
+    .rk-body li { margin-bottom: 4px; }
+    .rk-body table { width: 100%; border-collapse: collapse; margin-bottom: 14px; font-size: 0.85rem; }
+    .rk-body th, .rk-body td { border: 1px solid rgba(255,255,255,0.1); padding: 8px 12px; text-align: left; }
+    .rk-body th { background: rgba(108,92,231,0.15); color: #a29bfe; font-weight: 600; }
+    .rk-tags { margin-top: 12px; }
+    .rk-tags span {
+      display: inline-block;
+      padding: 2px 10px; font-size: 0.75rem;
+      background: rgba(108,92,231,0.15);
+      color: #a29bfe;
+      border: 1px solid rgba(108,92,231,0.2);
+      border-radius: 8px;
+      margin: 0 3px;
+    }
+    .rk-topbar {
+      display: flex; align-items: center; padding: 16px 24px 0;
+    }
+    .rk-back {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 7px 18px;
+      background: linear-gradient(135deg, #6c5ce7, #a29bfe);
+      border: none;
+      border-radius: 20px;
+      color: #fff; text-decoration: none; font-size: 0.85rem; font-weight: 500;
+      transition: all 0.2s;
+      box-shadow: 0 2px 10px rgba(108,92,231,0.3);
+    }
+    .rk-back:hover {
+      box-shadow: 0 4px 16px rgba(108,92,231,0.5);
+      transform: translateY(-1px);
+      color: #fff;
+    }
+    .rk-btn {
+      display: inline-block;
+      padding: 10px 24px;
+      background: linear-gradient(135deg, #6c5ce7, #a29bfe);
+      color: #fff;
+      border-radius: 10px;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.9rem;
+      transition: all 0.2s;
+    }
+    .rk-btn:hover {
+      box-shadow: 0 4px 16px rgba(108,92,231,0.4);
+      transform: translateY(-1px);
+      color: #fff;
+    }
+    .rk-screenshots { display: flex; gap: 12px; justify-content: flex-start; margin-top: 16px; flex-wrap: wrap; }
+    .rk-screenshots .shot {
+      background: rgba(255,255,255,0.04); border-radius: 12px; padding: 8px;
+      cursor: pointer; transition: transform 0.2s;
+    }
+    .rk-screenshots .shot:hover { transform: scale(1.02); }
+    .rk-screenshots img { width: 180px; height: 120px; object-fit: cover; border-radius: 8px; display: block; }
+    .rk-lightbox {
+      display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.85); z-index: 9999;
+      justify-content: center; align-items: center; cursor: pointer;
+    }
+    .rk-lightbox.active { display: flex; }
+    .rk-lightbox.active img { animation: popIn 0.25s ease-out; }
+    .rk-lightbox img { max-width: 90vw; max-height: 90vh; border-radius: 12px; }
+    @keyframes popIn { from { opacity: 0; transform: scale(0.85); } to { opacity: 1; transform: scale(1); } }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="rk-card">
+      <div class="rk-topbar">
+        <a href="https://tsanghaotian.github.io/404BlogFound/projects.html" class="rk-back" id="back-link">&larr; 返回作品集</a>
+      </div>
+      <div class="rk-header">
+        <img src="screenshot1.png" alt="Harmony CardGame 鸿蒙卡片游戏">
+        <h1>Harmony CardGame 鸿蒙卡片游戏</h1>
+        <p>鸿蒙怀旧掌机风格的多功能娱乐应用</p>
+        <div class="rk-tags">
+          <span>HarmonyOS</span><span>ArkTS</span><span>复古游戏</span>
+        </div>
+      </div>
+      <div class="rk-body">
+        <h2>项目介绍</h2>
+        <p>一款 HarmonyOS NEXT 上的怀旧掌机风格多功能娱乐应用，集成 12 款经典益智互动玩法。复古 Game Boy 风格界面，十字键 + A/B 按键操控，支持手机、平板、电视等多设备。开发环境为 HarmonyOS SDK 6.0.2 (API 22)，使用 ArkUI + ArkTS。</p>
+
+        <h2>包含内容</h2>
+        <table>
+          <tr><th>游戏</th><th>说明</th></tr>
+          <tr><td>2048</td><td>滑动合并数字方块</td></tr>
+          <tr><td>扫雷</td><td>9×9 经典扫雷</td></tr>
+          <tr><td>贪吃蛇</td><td>经典贪吃蛇，穿墙模式</td></tr>
+          <tr><td>俄罗斯方块</td><td>经典下落方块游戏</td></tr>
+          <tr><td>打砖块</td><td>挡板反弹消砖块，多关卡</td></tr>
+          <tr><td>五子棋</td><td>五子连珠，AI 交互</td></tr>
+          <tr><td>围棋</td><td>围棋，支持提子规则与 AI</td></tr>
+          <tr><td>井字棋</td><td>3×3 经典井字棋</td></tr>
+          <tr><td>吃豆人</td><td>迷宫吃豆</td></tr>
+          <tr><td>赛车</td><td>躲避对向来车</td></tr>
+          <tr><td>飞机大战</td><td>竖屏射击躲避</td></tr>
+          <tr><td>华容道</td><td>关卡系统</td></tr>
+        </table>
+
+        <h2>技术栈</h2>
+        <div class="rk-tags" style="margin-bottom:14px">
+          <span>HarmonyOS NEXT</span><span>ArkTS</span><span>ArkUI</span><span>API 22</span>
+        </div>
+
+        <h2>我的贡献</h2>
+        <ul>
+          <li>独立完成项目从设计到开发全流程</li>
+          <li>实现 12 款经典游戏的鸿蒙原生移植</li>
+          <li>实现复古 Game Boy 风格界面与十字键 + A/B 按键操控</li>
+          <li>支持手机、平板、电视等多设备适配</li>
+          <li>实现按键音效与震动反馈</li>
+        </ul>
+
+        <h2>项目地址</h2>
+        <p style="display:flex;gap:12px;flex-wrap:wrap">
+          <a href="https://github.com/TsangHaotian/Harmony_CardGame" target="_blank" rel="noopener" class="rk-btn">GitHub 仓库</a>
+        </p>
+
+        <h2>项目预览</h2>
+        <p style="color:#8888a0;font-size:0.85rem;margin-bottom:4px">点击图片可放大查看</p>
+        <div class="rk-screenshots">
+          <div class="shot"><img src="screenshot1.png" alt="主菜单"></div>
+          <div class="shot"><img src="screenshot2.png" alt="游戏界面1"></div>
+          <div class="shot"><img src="screenshot3.png" alt="游戏界面2"></div>
+          <div class="shot"><img src="screenshot4.png" alt="游戏界面3"></div>
+        </div>
+
+        <h2>个人总结</h2>
+        <p>这个项目本来准备上架华为应用市场的，结果个人开发者不能上架游戏类应用（需要版号），卡在最后一步放弃了，干脆开源出来。所以如果你看到应用里还有隐私政策弹窗、应用截图什么的，那都是当时上架准备留下的痕迹 ¯\\_(ツ)_/¯</p>
+        <p>不过这次上架经历也不是完全白忙活，至少把鸿蒙应用上架的整套流程摸了一遍——从签名、图标双层图层、隐私政策到应用分类，该踩的坑一个没落下。具体的心路历程可以看看博客《上架鸿蒙应用后续来了》。</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="rk-lightbox" id="lightbox" onclick="this.classList.remove('active')">
+    <img id="lightbox-img" src="" alt="">
+  </div>
+  <script>
+    if (location.protocol === 'file:') {
+      document.getElementById('back-link').href = 'file:///' + location.pathname.split('/featured/')[0].replace(/\\/g,'/') + '/projects.html?tab=Harmony';
+    }
+    document.querySelectorAll('.rk-screenshots .shot').forEach(el => {
+      el.addEventListener('click', function() {
+        document.getElementById('lightbox-img').src = this.querySelector('img').src;
+        document.getElementById('lightbox').classList.add('active');
+      });
+    });
+  </script>
+</body>
+</html>
