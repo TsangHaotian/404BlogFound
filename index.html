@@ -89,6 +89,7 @@
         grid.innerHTML = '<p class="empty">暂无 GitHub 项目展示。</p>';
         return;
       }
+      projects.sort((a, b) => b.stars - a.stars);
       grid.innerHTML = projects.slice(0, 6).map(p => `
         <a href="${p.url}" class="project-card" target="_blank" rel="noopener">
           <h3>${p.name}</h3>
