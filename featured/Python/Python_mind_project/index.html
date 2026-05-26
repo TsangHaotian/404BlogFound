@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>基于机器学习的情绪分析系统 - 404 Blog Not Found</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: "Noto Sans SC", "PingFang SC", "Microsoft YaHei", -apple-system, sans-serif;
+      background: #0f0f1a;
+      color: #f0f0f5;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    .container { max-width: 640px; margin: 0 auto; padding: 0 20px; min-height: 100vh; display: flex; flex-direction: column; }
+    .rk-card { animation: fadeUp 0.5s ease-out; }
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+    .rk-card {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 20px;
+      margin: 24px 0 40px;
+      overflow: hidden;
+      backdrop-filter: blur(8px);
+    }
+    .rk-header { text-align: center; padding: 48px 24px 20px; }
+    .rk-header img {
+      width: 120px; height: 120px; border-radius: 50%;
+      border: 3px solid rgba(255,255,255,0.1);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+      margin-bottom: 16px;
+      object-fit: cover;
+    }
+    .rk-header h1 { font-size: 1.8rem; font-weight: 700; margin-bottom: 8px; }
+    .rk-header p { color: #8888a0; font-size: 1rem; }
+    .rk-body { padding: 0 28px 32px; }
+    .rk-body p { line-height: 1.8; margin-bottom: 14px; }
+    .rk-body h2 { font-size: 1.2rem; font-weight: 600; margin-top: 28px; margin-bottom: 12px; }
+    .rk-body ul, .rk-body ol { line-height: 1.8; padding-left: 20px; margin-bottom: 14px; }
+    .rk-body li { margin-bottom: 4px; }
+    .rk-body table { width: 100%; border-collapse: collapse; margin-bottom: 14px; font-size: 0.85rem; }
+    .rk-body th, .rk-body td { border: 1px solid rgba(255,255,255,0.1); padding: 8px 12px; text-align: left; }
+    .rk-body th { background: rgba(108,92,231,0.15); color: #a29bfe; font-weight: 600; }
+    .rk-tags { margin-top: 12px; }
+    .rk-tags span {
+      display: inline-block;
+      padding: 2px 10px; font-size: 0.75rem;
+      background: rgba(108,92,231,0.15);
+      color: #a29bfe;
+      border: 1px solid rgba(108,92,231,0.2);
+      border-radius: 8px;
+      margin: 0 3px;
+    }
+    .rk-topbar {
+      display: flex; align-items: center; padding: 16px 24px 0;
+    }
+    .rk-back {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 7px 18px;
+      background: linear-gradient(135deg, #6c5ce7, #a29bfe);
+      border: none;
+      border-radius: 20px;
+      color: #fff; text-decoration: none; font-size: 0.85rem; font-weight: 500;
+      transition: all 0.2s;
+      box-shadow: 0 2px 10px rgba(108,92,231,0.3);
+    }
+    .rk-back:hover {
+      box-shadow: 0 4px 16px rgba(108,92,231,0.5);
+      transform: translateY(-1px);
+      color: #fff;
+    }
+    .rk-btn {
+      display: inline-block;
+      padding: 10px 24px;
+      background: linear-gradient(135deg, #6c5ce7, #a29bfe);
+      color: #fff;
+      border-radius: 10px;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.9rem;
+      transition: all 0.2s;
+    }
+    .rk-btn:hover {
+      box-shadow: 0 4px 16px rgba(108,92,231,0.4);
+      transform: translateY(-1px);
+      color: #fff;
+    }
+    .rk-screenshots { display: flex; gap: 12px; justify-content: flex-start; margin-top: 16px; flex-wrap: wrap; }
+    .rk-screenshots .shot {
+      background: rgba(255,255,255,0.04); border-radius: 12px; padding: 8px;
+      cursor: pointer; transition: transform 0.2s;
+    }
+    .rk-screenshots .shot:hover { transform: scale(1.02); }
+    .rk-screenshots img { width: 180px; height: 120px; object-fit: cover; border-radius: 8px; display: block; }
+    .rk-lightbox {
+      display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.85); z-index: 9999;
+      justify-content: center; align-items: center; cursor: pointer;
+    }
+    .rk-lightbox.active { display: flex; }
+    .rk-lightbox.active img { animation: popIn 0.25s ease-out; }
+    .rk-lightbox img { max-width: 90vw; max-height: 90vh; border-radius: 12px; }
+    @keyframes popIn { from { opacity: 0; transform: scale(0.85); } to { opacity: 1; transform: scale(1); } }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="rk-card">
+      <div class="rk-topbar">
+        <a href="https://tsanghaotian.github.io/404BlogFound/projects.html" class="rk-back" id="back-link">&larr; 返回作品集</a>
+      </div>
+      <div class="rk-header">
+        <img src="image4.png" alt="Python Mind Project">
+        <h1>基于机器学习的情绪分析系统</h1>
+        <p>深度学习情绪识别与智能对话系统</p>
+        <div class="rk-tags">
+          <span>Python</span><span>PyTorch</span><span>DeepSeek API</span><span>OpenCV</span>
+        </div>
+      </div>
+      <div class="rk-body">
+        <h2>项目介绍</h2>
+        <p>一个基于深度学习的情绪识别与智能对话系统，通过计算机视觉与自然语言处理双通道协同优化，实现实时情绪识别与个性化 AI 对话服务。系统采用全新的多模态融合架构，兼顾情绪识别的精准度与交互的自然性。</p>
+
+        <h2>核心功能</h2>
+        <ul>
+          <li><strong>实时情绪识别</strong> — CNN 模型通过摄像头实时识别人脸情绪，支持 7 种基本情绪（快乐、悲伤、愤怒、恐惧、惊讶、厌恶、中性）</li>
+          <li><strong>智能对话</strong> — 基于 DeepSeek API，根据情绪状态个性化调整回复语气和内容</li>
+          <li><strong>情绪历史追踪</strong> — 每 5 秒记录一次情绪状态，生成可视化趋势图表</li>
+          <li><strong>知识库支持</strong> — 内置 JSON 知识库，提升垂直领域对话准确性</li>
+          <li><strong>Web 界面</strong> — Flask 网页端实时交互</li>
+        </ul>
+
+        <h2>技术栈</h2>
+        <div class="rk-tags" style="margin-bottom:14px">
+          <span>Python</span><span>Flask</span><span>PyTorch</span><span>OpenCV</span><span>DeepSeek API</span><span>InsightFace</span>
+        </div>
+
+        <h2>我的贡献</h2>
+        <ul>
+          <li>独立完成项目从设计到开发全流程</li>
+          <li>设计并训练 CNN 情绪分类模型（7 分类），实现 64×64 灰度人脸图像实时识别</li>
+          <li>实现双频数据更新机制：高频实时面部情绪追踪 + 低频结构化日志记录</li>
+          <li>集成 DeepSeek API 实现情绪感知的个性化对话</li>
+          <li>实现分阶段响应架构：先展示情绪认知与知识库匹配，再生成个性化回复</li>
+          <li>获得国家软件著作权（基于机器学习的情感分析系统 V1.0）</li>
+        </ul>
+
+        <h2>项目地址</h2>
+        <p style="display:flex;gap:12px;flex-wrap:wrap">
+          <a href="https://github.com/TsangHaotian/Python_mind_project" target="_blank" rel="noopener" class="rk-btn">GitHub 仓库</a>
+        </p>
+
+        <h2>项目预览</h2>
+        <p style="color:#8888a0;font-size:0.85rem;margin-bottom:4px">点击图片可放大查看（来源于软件著作权说明文档）</p>
+        <div class="rk-screenshots">
+          <div class="shot"><img src="image2.png" alt="登录界面"></div>
+          <div class="shot"><img src="image4.png" alt="情绪识别界面"></div>
+          <div class="shot"><img src="image5.png" alt="对话界面"></div>
+          <div class="shot"><img src="image6.png" alt="数据统计分析"></div>
+          <div class="shot"><img src="image7.png" alt="历史记录"></div>
+        </div>
+
+        <h2>个人总结</h2>
+        <p>这个项目从最初的小组合作烂尾项目（Android_Mental_health_program）重构而来。之前 6 个人做了个四不像，后来我自己用 Python + PyTorch 重写了一版，把情绪识别、AI 对话、历史追踪都做通了。</p>
+        <p>核心是训练了一个 CNN 情绪分类模型，配合 OpenCV 做实时人脸检测。技术上不算多深，但胜在把整个闭环做完整了——识别到情绪、根据情绪调整对话、记录情绪变化趋势。后面还成功申请了软件著作权，算是第一个有 "官方认证" 的项目哈哈。</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="rk-lightbox" id="lightbox" onclick="this.classList.remove('active')">
+    <img id="lightbox-img" src="" alt="">
+  </div>
+  <script>
+    if (location.protocol === 'file:') {
+      document.getElementById('back-link').href = 'file:///' + location.pathname.split('/featured/')[0].replace(/\\/g,'/') + '/projects.html?tab=Python';
+    }
+    document.querySelectorAll('.rk-screenshots .shot').forEach(el => {
+      el.addEventListener('click', function() {
+        document.getElementById('lightbox-img').src = this.querySelector('img').src;
+        document.getElementById('lightbox').classList.add('active');
+      });
+    });
+  </script>
+</body>
+</html>
