@@ -74,6 +74,14 @@
           </header>
           <div class="post-content">${marked.parse(post.body)}</div>
         `;
+        // 修复图片路径：补全 base path
+        const base = window.location.pathname.replace(/\/[^/]*$/, '') || '.';
+        document.querySelectorAll('.post-content img').forEach(img => {
+          const src = img.getAttribute('src');
+          if (src && !src.startsWith('http') && !src.startsWith('//') && !src.startsWith('data:') && !src.startsWith('/')) {
+            img.src = base + '/' + src;
+          }
+        });
       }).catch(err => {
         document.getElementById('post-content').innerHTML = '<p class="empty">加载失败，请刷新重试</p>';
       });
