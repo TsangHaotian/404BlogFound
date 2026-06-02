@@ -362,6 +362,11 @@ body {
   border-radius: 4px;
 }
 
+.post-content code a {
+  color: #60a5fa;
+  text-decoration: underline;
+}
+
 .post-content pre {
   margin: 18px 0;
   padding: 16px 20px;
@@ -377,6 +382,14 @@ body {
   color: #e5e7eb;
   font-size: 0.87rem;
   line-height: 1.6;
+}
+
+.post-content pre code a {
+  color: #60a5fa;
+  text-decoration: underline;
+}
+.post-content pre code a:hover {
+  color: #93c5fd;
 }
 
 .post-content blockquote {
