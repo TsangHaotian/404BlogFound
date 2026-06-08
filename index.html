@@ -3,9 +3,6 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-  <meta http-equiv="Pragma" content="no-cache">
-  <meta http-equiv="Expires" content="0">
   <title>404 Blog Not Found</title>
   <meta name="description" content="TsangHaotian 的个人技术博客">
   <link rel="stylesheet" href="css/style.css">
@@ -106,49 +103,6 @@
     }).catch(() => {
       document.getElementById('project-grid').innerHTML = '<p class="empty">加载失败</p>';
     });
-  </script>
-
-  <script>
-    // 手机端下拉刷新
-    (function() {
-      if (window.innerWidth > 768) return;
-      var startY = 0, pulling = false, distance = 0;
-      var indicator = document.createElement('div');
-      indicator.id = 'pull-indicator';
-      indicator.textContent = '↓ 下拉刷新';
-      document.body.appendChild(indicator);
-
-      document.addEventListener('touchstart', function(e) {
-        if (window.scrollY > 0) return;
-        startY = e.touches[0].clientY;
-        pulling = true;
-        distance = 0;
-      }, { passive: true });
-
-      document.addEventListener('touchmove', function(e) {
-        if (!pulling || window.scrollY > 0) return;
-        distance = e.touches[0].clientY - startY;
-        if (distance < 0) { distance = 0; return; }
-        var clamped = Math.min(distance, 120);
-        indicator.style.transform = 'translateY(' + (clamped - 50) + 'px)';
-        indicator.style.opacity = Math.min(clamped / 60, 1);
-        if (distance > 60) {
-          indicator.textContent = '释放刷新';
-        } else {
-          indicator.textContent = '↓ 下拉刷新';
-        }
-      }, { passive: true });
-
-      document.addEventListener('touchend', function() {
-        if (distance > 60) {
-          window.location.href = 'index.html?_t=' + Date.now();
-        }
-        indicator.style.transform = '';
-        indicator.style.opacity = '';
-        pulling = false;
-        distance = 0;
-      });
-    })();
   </script>
 </body>
 </html>
