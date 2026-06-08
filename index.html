@@ -138,7 +138,7 @@
 
       document.addEventListener('touchend', function() {
         if (distance > 60) {
-          window.location.reload();
+          window.location.href = 'index.html?_t=' + Date.now();
         }
         indicator.style.transform = '';
         indicator.style.opacity = '';
