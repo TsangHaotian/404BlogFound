@@ -732,7 +732,9 @@ body {
     padding: 20px 24px;
     border-left: 1px solid var(--border);
     transform: translateX(100%);
-    transition: transform 0.3s ease;
+    transition: transform 0.3s ease, visibility 0.3s ease;
+    visibility: hidden;
+    pointer-events: none;
     gap: 0;
     overflow-y: auto;
     z-index: 100;
@@ -740,6 +742,8 @@ body {
 
   .main-nav.active {
     transform: translateX(0);
+    visibility: visible;
+    pointer-events: auto;
   }
 
   .main-nav a {
