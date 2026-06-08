@@ -760,20 +760,6 @@ body {
     display: block;
   }
 
-  /* 菜单遮罩层 — JS动态创建 */
-  .nav-overlay {
-    position: fixed;
-    top: calc(var(--header-height) + 30px);
-    left: 0;
-    right: 25%;
-    bottom: 0;
-    background: rgba(0,0,0,0.4);
-    z-index: 99;
-    display: none;
-    transition: opacity 0.35s cubic-bezier(0.4, 0, 0.2, 1);
-    pointer-events: auto;
-  }
-
   .profile {
     flex-direction: column;
     text-align: center;
