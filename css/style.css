@@ -732,17 +732,17 @@ body {
     padding: 20px 24px;
     border-left: 1px solid var(--border);
     opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-                visibility 0.35s ease;
+    will-change: opacity, transform;
+    transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     gap: 0;
     overflow-y: auto;
     z-index: 100;
+    pointer-events: none;
   }
 
   .main-nav.active {
     opacity: 1;
-    visibility: visible;
+    pointer-events: auto;
   }
 
   .main-nav a {
