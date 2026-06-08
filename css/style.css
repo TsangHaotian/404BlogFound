@@ -694,8 +694,8 @@ body {
 /* ===== 响应式 ===== */
 @media (max-width: 768px) {
   .site-header {
-    padding-top: 44px;
-    height: calc(var(--header-height) + 44px);
+    padding-top: 30px;
+    height: calc(var(--header-height) + 30px);
   }
 
   .site-header .container {
@@ -705,10 +705,10 @@ body {
 
   .main-nav {
     position: fixed;
-    top: calc(var(--header-height) + 44px);
+    top: calc(var(--header-height) + 30px);
     right: 0;
     width: 75%;
-    height: calc(100vh - var(--header-height) - 44px);
+    height: calc(100vh - var(--header-height) - 30px);
     background: rgba(15,15,26,0.97);
     flex-direction: column;
     padding: 20px 24px;
@@ -743,7 +743,7 @@ body {
   body.nav-open::after {
     content: '';
     position: fixed;
-    top: calc(var(--header-height) + 44px);
+    top: calc(var(--header-height) + 30px);
     left: 0;
     right: 25%;
     bottom: 0;
