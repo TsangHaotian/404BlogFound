@@ -4,14 +4,26 @@ document.addEventListener('DOMContentLoaded', function () {
   const nav = document.querySelector('.main-nav');
 
   if (toggleBtn && nav) {
+    function toggleNav(show) {
+      nav.classList.toggle('active', show);
+      document.body.classList.toggle('nav-open', show);
+    }
+
     toggleBtn.addEventListener('click', function () {
-      nav.classList.toggle('active');
+      toggleNav(!nav.classList.contains('active'));
     });
 
     nav.querySelectorAll('a').forEach(function (link) {
       link.addEventListener('click', function () {
-        nav.classList.remove('active');
+        toggleNav(false);
       });
+    });
+
+    // 点击遮罩关闭菜单
+    document.body.addEventListener('click', function (e) {
+      if (document.body.classList.contains('nav-open') && !nav.contains(e.target) && !toggleBtn.contains(e.target)) {
+        toggleNav(false);
+      }
     });
   }
 
