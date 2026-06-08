@@ -30,6 +30,7 @@ body {
                     radial-gradient(ellipse at 80% 80%, rgba(162,155,254,0.10) 0%, transparent 50%);
   background-attachment: fixed;
   -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
 }
 
 .container {
