@@ -691,6 +691,24 @@ body {
   background: rgba(15,15,26,0.5);
 }
 
+/* ===== 下拉刷新指示器 ===== */
+#pull-indicator {
+  position: fixed;
+  top: -50px;
+  left: 0;
+  right: 0;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  background: var(--bg);
+  z-index: 999;
+  transition: none;
+  pointer-events: none;
+}
+
 /* ===== 响应式 ===== */
 @media (max-width: 768px) {
   .site-header {
