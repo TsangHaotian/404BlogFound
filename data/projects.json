@@ -58,7 +58,7 @@
   {
     "name": "JRXY-AutoSign-Reborn",
     "description": "今日校园自动化是一个基于Python的爬虫项目，主要实现今日校园签到、信息收集、查寝等循环表单的自动化任务 — 本分支专攻新疆师范大学查寝签到，提供桌面版GUI和命令行双入口，CAS扫码登录，模拟手机APP签到（DES+AES加密、真实UA、固定设备ID、人类行为模拟）。因9.9.11版本更换加密key导致签到失败，急需root手机+Frida提取新key。如下链接为原项目地址",
-    "stars": 3,
+    "stars": 4,
     "language": "Python",
     "topics": [],
     "url": "https://github.com/TsangHaotian/JRXY-AutoSign-Reborn"
@@ -90,7 +90,7 @@
   {
     "name": "GaokaoHelper",
     "description": "基于 AI 大语言模型的多角色对话工具，专注高考志愿填报辅助。支持单聊和群聊模式，可同时召唤多个 AI 角色围绕同一话题展开讨论。",
-    "stars": 2,
+    "stars": 5,
     "language": "HTML",
     "topics": [],
     "url": "https://github.com/TsangHaotian/GaokaoHelper"
@@ -98,7 +98,7 @@
   {
     "name": "Harmony_EyesNote",
     "description": "鸿蒙应用眨眼笔记",
-    "stars": 2,
+    "stars": 3,
     "language": "Harmony",
     "topics": [],
     "url": "https://github.com/TsangHaotian/Harmony_EyesNote"
@@ -106,7 +106,7 @@
   {
     "name": "openclaw-css-tweaker",
     "description": "openclaw前端修改器",
-    "stars": 2,
+    "stars": 3,
     "language": "Python",
     "topics": [],
     "url": "https://github.com/TsangHaotian/openclaw-css-tweaker"
