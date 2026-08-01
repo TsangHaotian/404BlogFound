@@ -5,10 +5,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title id="page-title">文章 - 404 Blog Not Found</title>
   <meta name="description" content="">
-  <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" type="image/svg+xml" href="img/favicon.svg">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="文章 - 404 Blog Not Found">
+  <meta property="og:description" content="TsangHaotian 的技术文章">
+  <meta property="og:url" content="https://tsanghaotian.github.io/404BlogFound/post.html">
+  <meta property="og:image" content="https://tsanghaotian.github.io/404BlogFound/img/avatar/avatar.jpg">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="文章 - 404 Blog Not Found">
+  <meta name="twitter:description" content="TsangHaotian 的技术文章">
+<link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css">
 </head>
 <body>
+  <div class="reading-progress" id="reading-progress"></div>
   <header class="site-header">
     <div class="container">
       <a href="index.html" class="logo">404 Blog Not Found</a>
@@ -36,6 +46,10 @@
     </div>
   </footer>
 
+  <div class="post-lightbox" id="post-lightbox">
+    <img id="lightbox-img" src="" alt="">
+  </div>
+
   <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/12.0.1/marked.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
   <script src="js/api.js"></script>
@@ -59,7 +73,7 @@
     if (!postId) {
       document.getElementById('post-content').innerHTML = '<p class="empty">未指定文章 ID</p>';
     } else {
-      fetchPost(postId).then(post => {
+      Promise.all([fetchPost(postId), fetchPosts()]).then(([post, posts]) => {
         document.getElementById('page-title').textContent = post.title + ' - 404 Blog Not Found';
 
         // 渲染文章
@@ -74,10 +88,49 @@
           </header>
           <div class="post-content">${marked.parse(post.body)}</div>
         `;
+
+        // 上一篇 / 下一篇导航
+        const idx = posts.findIndex(p => String(p.id) === String(postId));
+        if (idx !== -1) {
+          const newer = idx > 0 ? posts[idx - 1] : null;
+          const older = idx < posts.length - 1 ? posts[idx + 1] : null;
+          if (newer || older) {
+            const nav = document.createElement('nav');
+            nav.className = 'post-nav';
+            nav.innerHTML =
+              (older ? `<a href="post.html?id=${older.id}"><span class="nav-label">&larr; 上一篇</span><span class="nav-title">${older.title}</span></a>` : '<span></span>') +
+              (newer ? `<a href="post.html?id=${newer.id}" class="next"><span class="nav-label">下一篇 &rarr;</span><span class="nav-title">${newer.title}</span></a>` : '<span></span>');
+            document.getElementById('post-content').appendChild(nav);
+          }
+        }
+
+        // 图片灯箱
+        const lightbox = document.getElementById('post-lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+        document.querySelectorAll('.post-content img').forEach(img => {
+          img.addEventListener('click', function () {
+            lightboxImg.src = this.src;
+            lightbox.classList.add('active');
+          });
+        });
+        lightbox.addEventListener('click', function () {
+          this.classList.remove('active');
+        });
+        document.addEventListener('keydown', function (e) {
+          if (e.key === 'Escape') lightbox.classList.remove('active');
+        });
       }).catch(err => {
         document.getElementById('post-content').innerHTML = '<p class="empty">加载失败，请刷新重试</p>';
       });
     }
+
+    // 阅读进度条
+    const progressBar = document.getElementById('reading-progress');
+    window.addEventListener('scroll', function () {
+      const h = document.documentElement;
+      const scrolled = h.scrollTop / (h.scrollHeight - h.clientHeight) * 100;
+      progressBar.style.width = Math.min(scrolled, 100) + '%';
+    }, { passive: true });
   </script>
 </body>
 </html>

@@ -4,7 +4,16 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>关于 - 404 Blog Not Found</title>
-  <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" type="image/svg+xml" href="img/favicon.svg">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="关于 - 404 Blog Not Found">
+  <meta property="og:description" content="关于 TsangHaotian">
+  <meta property="og:url" content="https://tsanghaotian.github.io/404BlogFound/about.html">
+  <meta property="og:image" content="https://tsanghaotian.github.io/404BlogFound/img/avatar/avatar.jpg">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="关于 - 404 Blog Not Found">
+  <meta name="twitter:description" content="关于 TsangHaotian">
+<link rel="stylesheet" href="css/style.css">
   <style>
     .about-header {
       display: flex;
@@ -14,22 +23,36 @@
       padding-bottom: 28px;
       border-bottom: 1px solid var(--border);
     }
+    .about-avatar {
+      position: relative;
+      flex-shrink: 0;
+    }
     .about-avatar img {
       width: 100px;
       height: 100px;
       border-radius: 50%;
       object-fit: cover;
-      border: 3px solid rgba(255,255,255,0.1);
+      border: 3px solid rgba(255,255,255,0.12);
       box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+      transition: transform 0.3s ease;
+    }
+    .about-avatar img:hover {
+      transform: scale(1.05) rotate(2deg);
     }
     .about-name h1 {
       font-size: 1.6rem;
       font-weight: 700;
       margin-bottom: 4px;
+      background: linear-gradient(135deg, #f0f0f5, #a29bfe);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      display: inline-block;
     }
     .about-name p {
       color: var(--text-secondary);
       font-size: 0.95rem;
+      margin-bottom: 8px;
     }
     .about-content {
       max-width: 100%;
@@ -45,38 +68,67 @@
     .about-section h2 {
       font-size: 1.15rem;
       font-weight: 600;
-      margin-bottom: 12px;
-      color: var(--accent2);
+      margin-bottom: 14px;
+      padding-left: 12px;
+      border-left: 4px solid var(--accent);
+      color: var(--text);
     }
-    .about-section ul {
-      padding-left: 20px;
-      line-height: 2;
+    .tech-group {
+      margin-bottom: 14px;
     }
-    .about-section li {
+    .tech-group h3 {
+      font-size: 0.85rem;
+      font-weight: 500;
       color: var(--text-secondary);
+      margin-bottom: 8px;
+    }
+    .tech-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .tech-tags span {
+      display: inline-block;
+      padding: 5px 14px;
+      font-size: 0.82rem;
+      background: rgba(108,92,231,0.12);
+      color: var(--accent2);
+      border: 1px solid rgba(108,92,231,0.25);
+      border-radius: 10px;
+      transition: all 0.2s ease;
+    }
+    .tech-tags span:hover {
+      background: rgba(108,92,231,0.25);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(108,92,231,0.25);
     }
     .about-links {
       display: flex;
       gap: 12px;
       flex-wrap: wrap;
-      margin-top: 24px;
+      margin-top: 28px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border);
     }
     .about-links a {
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      padding: 8px 18px;
+      padding: 9px 20px;
       background: rgba(108,92,231,0.12);
       color: var(--accent2);
-      border: 1px solid rgba(108,92,231,0.2);
+      border: 1px solid rgba(108,92,231,0.25);
       border-radius: 10px;
       text-decoration: none;
       font-size: 0.9rem;
-      transition: all 0.2s;
+      transition: all 0.25s ease;
     }
     .about-links a:hover {
-      background: rgba(108,92,231,0.2);
-      transform: translateY(-1px);
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      color: #fff;
+      border-color: transparent;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(108,92,231,0.4);
     }
     @media (max-width: 640px) {
       .about-header { flex-direction: column; text-align: center; }
@@ -121,13 +173,26 @@
 
         <div class="about-section">
           <h2>技术栈</h2>
-          <ul>
-            <li>前端：HTML / CSS / JavaScript</li>
-            <li>移动端：Android（Java）、鸿蒙（HarmonyOS）</li>
-            <li>后端：Python</li>
-            <li>AI：大语言模型 API 接入、角色 SKILL 设计</li>
-            <li>部署：<svg viewBox="0 0 16 16" width="16" height="16" fill="currentColor" style="vertical-align:-3px;margin-right:2px;display:inline-block"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg> GitHub Pages、云开发</li>
-          </ul>
+          <div class="tech-group">
+            <h3>前端</h3>
+            <div class="tech-tags"><span>HTML</span><span>CSS</span><span>JavaScript</span></div>
+          </div>
+          <div class="tech-group">
+            <h3>移动端</h3>
+            <div class="tech-tags"><span>Android（Java）</span><span>HarmonyOS（ArkUI + ArkTS）</span></div>
+          </div>
+          <div class="tech-group">
+            <h3>后端 / 脚本</h3>
+            <div class="tech-tags"><span>Python</span></div>
+          </div>
+          <div class="tech-group">
+            <h3>AI</h3>
+            <div class="tech-tags"><span>大语言模型 API</span><span>LoRA 微调</span><span>角色 SKILL 设计</span></div>
+          </div>
+          <div class="tech-group">
+            <h3>部署</h3>
+            <div class="tech-tags"><span>GitHub Pages</span><span>微信云开发</span></div>
+          </div>
         </div>
 
         <div class="about-section">

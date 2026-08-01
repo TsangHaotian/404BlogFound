@@ -5,7 +5,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>404 Blog Not Found</title>
   <meta name="description" content="TsangHaotian 的个人技术博客">
-  <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" type="image/svg+xml" href="img/favicon.svg">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="404 Blog Not Found">
+  <meta property="og:description" content="TsangHaotian 的个人技术博客">
+  <meta property="og:url" content="https://tsanghaotian.github.io/404BlogFound/">
+  <meta property="og:image" content="https://tsanghaotian.github.io/404BlogFound/img/avatar/avatar.jpg">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="404 Blog Not Found">
+  <meta name="twitter:description" content="TsangHaotian 的个人技术博客">
+<link rel="stylesheet" href="css/style.css">
 </head>
 <body>
   <header class="site-header">
@@ -31,7 +40,11 @@
       </div>
       <div class="profile-info">
         <h1>TsangHaotian</h1>
-        <p class="profile-bio">记录学习与思考 / 热爱技术 / 持续成长</p>
+        <p class="profile-bio"><span id="bio-text"></span><span class="typing-cursor"></span></p>
+        <div class="profile-stats">
+          <div class="stat-item"><span class="stat-num" id="stat-posts">-</span><span class="stat-label">篇文章</span></div>
+          <div class="stat-item"><span class="stat-num" id="stat-projects">-</span><span class="stat-label">个项目</span></div>
+        </div>
         <div class="profile-contact">
           <span class="contact-item">📧 TsangHaotian@hotmail.com</span>
           <span class="contact-item"><svg viewBox="0 0 16 16" width="18" height="18" fill="currentColor" style="vertical-align:-4px;display:inline-block"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg> <a href="https://github.com/TsangHaotian" target="_blank">TsangHaotian</a></span>
@@ -61,7 +74,25 @@
   <script src="js/api.js"></script>
   <script src="js/main.js"></script>
   <script>
+    // Bio 打字机动画
+    (function () {
+      const text = '记录学习与思考 / 热爱技术 / 持续成长';
+      const el = document.getElementById('bio-text');
+      let i = 0;
+      function type() {
+        if (i <= text.length) {
+          el.textContent = text.slice(0, i);
+          i++;
+          setTimeout(type, 65);
+        }
+      }
+      setTimeout(type, 400);
+    })();
+
     fetchPosts().then(posts => {
+      // 统计文章数
+      document.getElementById('stat-posts').textContent = posts.length;
+
       const list = document.getElementById('post-list');
       if (!posts.length) {
         list.innerHTML = '<p class="empty">还没有文章，敬请期待。</p>';
@@ -82,6 +113,9 @@
     });
 
     fetchRepos().then(projects => {
+      // 统计项目数
+      document.getElementById('stat-projects').textContent = projects.length;
+
       const langMap = {'404BlogFound':'HTML','CardGameYS':'其他','CardGame_Android':'Android','Harmony_CardGame':'Harmony','Harmony_EyesNote':'Harmony','GaokaoHelper':'HTML','openclaw-css-tweaker':'Python','JRXY-AutoSign-Reborn':'Python','Software_Libraries':'其他','RocoKingdomTranslator':'HTML','Python_Visual_Focus_Training_System':'Python','DrawAnythingToYakiji':'HTML','YajijiOracle':'HTML','4C_competition':'竞赛','web_happybirthday':'HTML','Android_login':'Android','python_word_to_excel':'Python','python_Job_Check_tool':'Python','python_pdf_to_word':'Python','Android_login_and_jigsaw_puzzle':'Android','Android_Calculators':'Android','python_Excel_merge_tool':'Python','Android_Mental_health_program':'Android','Python_Probability_theory_gambling_game':'Python','Python_Interactive_somatosensory_operation':'Python','Su-Shi-dingfengbo-poems-fine-tuning-AI-model':'AI大模型微调','python_ppt_assistant':'Python','Python_data_merge_tool':'Python','Python_Probability_theory_gambling_game_V2.0':'Python','python_40_Parallel_College_Volunteering_for_College_Entrance_Examination':'Python','Web_Truth_or_dare':'HTML','Web_Find_a_difference':'HTML','Web_Person':'HTML','Web_Xinjiang_Foods':'HTML','Python_mind_project':'Python','WChatXiaochengxuYun_jizhangben':'微信小程序','WChatXiaoChengxu_jizhangben':'微信小程序','Organizing_the_computer_desktop':'Python','python_web_Question_Bank_Assistant':'Python','Python_hand_language_web':'Python'};
       projects.forEach(p => { p.language = langMap[p.name] || p.language || '其他'; });
       const grid = document.getElementById('project-grid');
