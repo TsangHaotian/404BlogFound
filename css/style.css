@@ -52,7 +52,13 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", "Helvetica Neue", "PingFang SC", "Microsoft YaHei", sans-serif;
   line-height: 1.6;
   color: var(--text);
-  background: var(--bg);
+  background-color: #0d1017;
+  background-image:
+    linear-gradient(rgba(13,16,23,0.42), rgba(13,16,23,0.68)),
+    url('../img/bg.jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
   overflow-x: hidden;
@@ -69,10 +75,10 @@ body {
   position: sticky;
   top: 0;
   z-index: 100;
-  background: rgba(18,18,20,0.55);
+  background: rgba(13,16,23,0.55);
   backdrop-filter: blur(24px) saturate(180%);
   -webkit-backdrop-filter: blur(24px) saturate(180%);
-  border-bottom: 0.5px solid var(--separator);
+  border-bottom: 0.5px solid rgba(255,255,255,0.08);
   height: var(--header-height);
 }
 
@@ -94,17 +100,63 @@ body {
 .main-nav {
   display: flex;
   gap: 26px;
+  position: relative;
+}
+
+/* 液态玻璃滑动指示器 */
+.nav-pill {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  height: 34px;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.05);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+  transform: translateY(-50%);
+  transition: left 0.38s cubic-bezier(0.32, 0.72, 0.35, 1.2), width 0.38s cubic-bezier(0.32, 0.72, 0.35, 1.2);
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.nav-pill::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+  filter: url(#liquid_glass_filter);
+}
+
+.nav-pill::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  box-shadow:
+    inset 1px 1px 1px rgba(255,255,255,0.35),
+    inset -1px -1px 1px rgba(255,255,255,0.1);
 }
 
 .main-nav a {
   color: var(--text-secondary);
   text-decoration: none;
   font-size: 0.9rem;
-  transition: color 0.2s;
+  position: relative;
+  z-index: 1;
+  padding: 0 2px;
+  transition: color 0.2s, font-size 0.3s ease, font-weight 0.3s ease;
 }
 
 .main-nav a:hover {
   color: var(--accent);
+}
+
+.main-nav a.nav-active {
+  color: #fff;
+  font-weight: 700;
+  font-size: 1.05rem;
 }
 
 .menu-toggle {
@@ -131,13 +183,84 @@ body {
   padding-bottom: 48px;
 }
 
+/* ===== 液态玻璃（iOS 26 Liquid Glass） ===== */
+/* 容器：折射层 ::before + 边缘高光层 ::after，内容在最上 */
+.profile,
+.section-card,
+.post-full,
+.archive,
+.about-page {
+  background: rgba(255,255,255,0.01);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.35);
+  position: relative;
+  overflow: hidden;
+}
+
+/* 折射层：先模糊背景，再经置换滤镜扭曲 */
+.profile::before,
+.section-card::before,
+.post-full::before,
+.archive::before,
+.about-page::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  border-radius: inherit;
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+  filter: url(#liquid_glass_filter);
+  pointer-events: none;
+}
+
+/* 边缘高光层：模拟玻璃边缘的反光 */
+.profile::after,
+.section-card::after,
+.post-full::after,
+.archive::after,
+.about-page::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  border-radius: inherit;
+  box-shadow:
+    inset 1px 1px 1px rgba(255,255,255,0.28),
+    inset -1px -1px 1px rgba(255,255,255,0.08);
+  pointer-events: none;
+}
+
+/* 内容层：保持在玻璃之上 */
+.profile > *,
+.section-card > *,
+.post-full > *,
+.archive > *,
+.about-page > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* 内层液态玻璃 */
+.project-card,
+.featured-card,
+.tab-btn,
+.post-nav a,
+.archive-search {
+  background: rgba(255,255,255,0.04);
+  backdrop-filter: blur(12px) saturate(160%) brightness(1.05);
+  -webkit-backdrop-filter: blur(12px) saturate(160%) brightness(1.05);
+  border: 1px solid rgba(255,255,255,0.10);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.12),
+    0 6px 20px rgba(0,0,0,0.22);
+}
+
 /* ===== 个人信息区 ===== */
 .profile {
   display: flex;
   align-items: center;
   gap: 24px;
-  background: var(--bg-card);
-  border-radius: var(--radius);
+  border-radius: 26px;
   padding: 28px 32px;
   margin-bottom: 20px;
 }
@@ -186,8 +309,7 @@ body {
 
 /* ===== Section 卡片 ===== */
 .section-card {
-  background: var(--bg-card);
-  border-radius: var(--radius);
+  border-radius: 26px;
   padding: 24px 28px;
   margin-bottom: 20px;
 }
@@ -274,14 +396,16 @@ body {
 .project-card {
   display: block;
   padding: 16px 18px;
-  background: var(--fill);
-  border-radius: var(--radius-sm);
+  border-radius: 16px;
   text-decoration: none;
-  transition: background 0.2s ease;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .project-card:hover {
-  background: var(--fill-hover);
+  transform: translateY(-2px);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.22),
+    0 10px 28px rgba(0,0,0,0.35);
 }
 
 .project-card h3 {
@@ -326,8 +450,7 @@ body {
 .post-full {
   max-width: var(--max-width);
   margin: 0 auto;
-  background: var(--bg-card);
-  border-radius: var(--radius);
+  border-radius: 26px;
   padding: 32px 38px;
 }
 
@@ -534,9 +657,7 @@ body {
   padding: 6px 16px;
   font-size: 0.85rem;
   font-weight: 500;
-  background: var(--fill);
-  border: none;
-  border-radius: 9px;
+  border-radius: 12px;
   cursor: pointer;
   color: var(--text-secondary);
   transition: all 0.2s;
@@ -544,12 +665,18 @@ body {
 
 .tab-btn:hover {
   color: var(--text);
-  background: var(--fill-hover);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.22),
+    0 6px 16px rgba(0,0,0,0.3);
 }
 
 .tab-btn.active {
-  background: var(--accent);
+  background: linear-gradient(145deg, #2f9bff, #0a84ff);
   color: #fff;
+  border-color: rgba(255,255,255,0.25);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.35),
+    0 6px 20px rgba(10,132,255,0.4);
 }
 
 .tab-panel {
@@ -594,15 +721,17 @@ body {
   display: flex;
   gap: 14px;
   padding: 12px;
-  background: var(--fill);
-  border-radius: var(--radius-sm);
+  border-radius: 16px;
   text-decoration: none;
-  transition: background 0.2s;
+  transition: transform 0.2s, box-shadow 0.2s;
   align-items: center;
 }
 
 .featured-card:hover {
-  background: var(--fill-hover);
+  transform: translateY(-2px);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.22),
+    0 10px 28px rgba(0,0,0,0.35);
 }
 
 .featured-thumb {
@@ -676,15 +805,13 @@ body {
 
 /* ===== 归档页 ===== */
 .archive {
-  background: var(--bg-card);
-  border-radius: var(--radius);
+  border-radius: 26px;
   padding: 26px 30px;
 }
 
 /* ===== 关于页面 ===== */
 .about-page {
-  background: var(--bg-card);
-  border-radius: var(--radius);
+  border-radius: 26px;
   padding: 30px 34px;
 }
 
@@ -727,11 +854,14 @@ body {
   width: 44px;
   height: 44px;
   border-radius: 50%;
-  background: rgba(44,44,46,0.85);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  color: var(--accent);
-  border: 0.5px solid var(--separator);
+  background: linear-gradient(145deg, rgba(255,255,255,0.14), rgba(255,255,255,0.04));
+  backdrop-filter: blur(14px) saturate(160%);
+  -webkit-backdrop-filter: blur(14px) saturate(160%);
+  color: #fff;
+  border: 1px solid rgba(255,255,255,0.16);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.24),
+    0 8px 24px rgba(0,0,0,0.35);
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -751,7 +881,7 @@ body {
 }
 
 .back-to-top:hover {
-  background: rgba(58,58,60,0.95);
+  background: linear-gradient(145deg, rgba(255,255,255,0.22), rgba(255,255,255,0.08));
 }
 
 /* ===== 上一篇 / 下一篇导航 ===== */
@@ -768,16 +898,18 @@ body {
   flex: 1;
   min-width: 0;
   padding: 13px 16px;
-  background: var(--fill);
-  border-radius: var(--radius-sm);
+  border-radius: 14px;
   color: var(--text);
   text-decoration: none;
   font-size: 0.9rem;
-  transition: background 0.2s ease;
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
 }
 
 .post-nav a:hover {
-  background: var(--fill-hover);
+  transform: translateY(-2px);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.22),
+    0 10px 28px rgba(0,0,0,0.35);
 }
 
 .post-nav .nav-label {
@@ -827,15 +959,13 @@ body {
 .archive-search {
   width: 100%;
   padding: 10px 16px;
-  background: var(--fill);
-  border: none;
-  border-radius: var(--radius-sm);
+  border-radius: 14px;
   color: var(--text);
   font-size: 0.9rem;
   font-family: inherit;
   margin: 14px 0 22px;
   outline: none;
-  transition: background 0.2s ease, box-shadow 0.2s ease;
+  transition: box-shadow 0.2s ease;
 }
 
 .archive-search:focus {
@@ -997,6 +1127,10 @@ body {
     display: block;
   }
 
+  .nav-pill {
+    display: none;
+  }
+
   .profile {
     flex-direction: column;
     text-align: center;
@@ -1051,20 +1185,4 @@ body {
   to   { opacity: 1; transform: scale(1); }
 }
 
-/* 导航链接下划线动画 */
-.main-nav a {
-  position: relative;
-}
-.main-nav a::after {
-  content: '';
-  position: absolute;
-  bottom: -2px;
-  left: 0;
-  width: 0;
-  height: 1.5px;
-  background: var(--accent);
-  transition: width 0.25s ease;
-}
-.main-nav a:hover::after {
-  width: 100%;
-}
+/* 导航当前页由液态玻璃 pill 指示，不再使用下划线动画 */

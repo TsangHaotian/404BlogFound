@@ -19,15 +19,49 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
-  // 当前页面导航高亮
-  const current = window.location.pathname.split('/').pop() || 'index.html';
+  // 液态玻璃滑动指示器
   const navEl = document.querySelector('.main-nav');
   if (navEl) {
-    navEl.querySelectorAll('a').forEach(function (link) {
-      const href = link.getAttribute('href');
-      if (href === current || (current === '' && href === 'index.html')) {
-        link.style.color = 'var(--accent)';
+    const pill = document.createElement('span');
+    pill.className = 'nav-pill';
+    navEl.appendChild(pill);
+
+    const links = Array.from(navEl.querySelectorAll('a'));
+    const current = window.location.pathname.split('/').pop() || 'index.html';
+    // 文章页归属于"归档"
+    const currentFile = current === 'post.html' ? 'posts.html' : current;
+
+    const activeLink = links.find(l => l.getAttribute('href') === currentFile)
+      || links.find(l => currentFile === '' && l.getAttribute('href') === 'index.html');
+
+    function movePill(link, animate) {
+      if (!link) return;
+      if (!animate) pill.style.transition = 'none';
+      pill.style.left = (link.offsetLeft - 8) + 'px';
+      pill.style.width = (link.offsetWidth + 16) + 'px';
+      if (!animate) {
+        void pill.offsetHeight;
+        pill.style.transition = '';
       }
+    }
+
+    if (activeLink) {
+      activeLink.classList.add('nav-active');
+      requestAnimationFrame(() => movePill(activeLink, false));
+      window.addEventListener('load', () => movePill(activeLink, false));
+      window.addEventListener('resize', () => movePill(activeLink, false));
+    }
+
+    links.forEach(link => {
+      link.addEventListener('click', function (e) {
+        if (link === activeLink) return;
+        e.preventDefault();
+        const href = this.getAttribute('href');
+        links.forEach(l => l.classList.remove('nav-active'));
+        this.classList.add('nav-active');
+        movePill(this, true);
+        setTimeout(() => { window.location.href = href; }, 400);
+      });
     });
   }
 
