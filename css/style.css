@@ -398,6 +398,7 @@ body {
   padding: 16px 18px;
   border-radius: 16px;
   text-decoration: none;
+  min-width: 0;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
@@ -1105,39 +1106,51 @@ body {
 
   .main-nav {
     position: fixed;
-    top: calc(var(--header-height) + 30px);
-    right: 0;
-    width: 75%;
-    height: calc(100vh - var(--header-height) - 30px);
-    background: rgba(28,28,30,0.98);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
+    top: calc(var(--header-height) + 30px + 10px);
+    right: 12px;
+    width: 62%;
+    max-width: 260px;
+    height: auto;
+    background: rgba(255,255,255,0.04);
+    backdrop-filter: blur(24px) saturate(160%);
+    -webkit-backdrop-filter: blur(24px) saturate(160%);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 20px;
+    box-shadow: 0 16px 48px rgba(0,0,0,0.45);
     flex-direction: column;
-    padding: 20px 24px;
-    border-left: 0.5px solid var(--separator);
+    padding: 8px;
     opacity: 0;
+    transform: translateY(-8px) scale(0.96);
+    transform-origin: top right;
     will-change: opacity, transform;
-    transition: opacity 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: opacity 0.3s ease, transform 0.3s cubic-bezier(0.32, 0.72, 0.35, 1.15);
     gap: 0;
-    overflow-y: auto;
+    overflow: hidden;
     z-index: 100;
     pointer-events: none;
   }
 
   .main-nav.active {
     opacity: 1;
+    transform: translateY(0) scale(1);
     pointer-events: auto;
   }
 
   .main-nav a {
     display: block;
-    padding: 14px 0;
-    font-size: 1.05rem;
-    border-bottom: 0.5px solid var(--separator);
+    padding: 13px 16px;
+    font-size: 1rem;
+    border-radius: 14px;
+    border-bottom: none;
+    transition: background 0.2s ease;
   }
 
-  .main-nav a:last-child {
-    border-bottom: none;
+  .main-nav a:hover {
+    background: rgba(255,255,255,0.08);
+  }
+
+  .main-nav a.nav-active {
+    background: rgba(255,255,255,0.10);
   }
 
   .menu-toggle {
@@ -1167,7 +1180,11 @@ body {
   }
 
   .project-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .featured-grid {
+    grid-template-columns: minmax(0, 1fr);
   }
 
   .post-header h1 {
