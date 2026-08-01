@@ -1076,6 +1076,23 @@ body {
 
 /* ===== 响应式 ===== */
 @media (max-width: 768px) {
+  /* iOS Safari 不支持 background-attachment: fixed，改用固定伪元素做背景 */
+  body {
+    background-image: none;
+  }
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    background-image:
+      linear-gradient(rgba(13,16,23,0.42), rgba(13,16,23,0.68)),
+      url('../img/bg.jpg');
+    background-size: cover;
+    background-position: center 30%;
+    pointer-events: none;
+  }
+
   .site-header {
     padding-top: 30px;
     height: calc(var(--header-height) + 30px);
