@@ -195,6 +195,8 @@
         btn.classList.add('active');
         var panel = document.querySelector('.tab-panel[data-panel="' + btn.dataset.tab + '"]');
         if (panel) panel.classList.add('active');
+        // 同步地址栏，刷新/返回后保持当前 tab
+        history.replaceState(null, '', '?tab=' + encodeURIComponent(btn.dataset.tab));
       });
 
       // 竞赛证书点击放大
