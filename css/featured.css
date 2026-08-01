@@ -263,8 +263,8 @@ body {
     pointer-events: none;
   }
 
-  /* 避开刘海/挖孔 */
-  .rk-topbar { padding-top: calc(16px + env(safe-area-inset-top, 20px)); }
+  /* 避开刘海/挖孔：整个卡片下沉 */
+  .rk-card { margin-top: calc(24px + env(safe-area-inset-top, 24px)); }
 
   .rk-header h1 { font-size: 1.35rem; }
   .rk-body { padding: 0 18px 24px; }
