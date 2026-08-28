@@ -1,10 +1,13 @@
 package com.tsanghaotian.blog404;
 
 import android.app.Activity;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.view.View;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.FrameLayout;
 
 public class MainActivity extends Activity {
 
@@ -15,8 +18,17 @@ public class MainActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        // 状态栏透明,博客自身深色背景透上来,视觉统一
+        getWindow().setStatusBarColor(Color.TRANSPARENT);
+        getWindow().setNavigationBarColor(Color.TRANSPARENT);
+
+        // 用 FrameLayout 包一层,在容器上留白比在 WebView 上更可靠
+        FrameLayout root = new FrameLayout(this);
         webView = new WebView(this);
-        setContentView(webView);
+        root.addView(webView, new FrameLayout.LayoutParams(
+                FrameLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams.MATCH_PARENT));
+        setContentView(root);
 
         WebSettings s = webView.getSettings();
         s.setJavaScriptEnabled(true);
@@ -27,11 +39,13 @@ public class MainActivity extends Activity {
 
         webView.setWebViewClient(new WebViewClient());
 
-        // 状态栏/导航栏留白,避免内容被遮挡
-        webView.setOnApplyWindowInsetsListener((v, insets) -> {
-            v.setPadding(0, insets.getSystemWindowInsetTop(), 0, insets.getSystemWindowInsetBottom());
+        // 按状态栏/导航栏实际高度留白,顶部额外再加 8dp,避免挖孔屏机型内容贴边
+        final int extraTop = (int) (8 * getResources().getDisplayMetrics().density);
+        root.setOnApplyWindowInsetsListener((v, insets) -> {
+            v.setPadding(0, insets.getSystemWindowInsetTop() + extraTop, 0, insets.getSystemWindowInsetBottom());
             return insets;
         });
+        root.requestApplyInsets();
 
         webView.loadUrl(BLOG_URL);
     }
