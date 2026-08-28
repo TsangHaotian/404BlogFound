@@ -2,6 +2,13 @@ plugins {
     id 'com.android.application'
 }
 
+// 正式签名配置,密钥信息在 keystore.properties(不进仓库)
+def keystoreProps = new Properties()
+def keystorePropsFile = rootProject.file('keystore.properties')
+if (keystorePropsFile.exists()) {
+    keystoreProps.load(new FileInputStream(keystorePropsFile))
+}
+
 android {
     namespace 'com.tsanghaotian.blog404'
     compileSdk 36
@@ -12,5 +19,21 @@ android {
         targetSdk 36
         versionCode 3
         versionName "3.0.0"
+    }
+
+    signingConfigs {
+        release {
+            storeFile keystoreProps['storeFile'] ? file(keystoreProps['storeFile']) : null
+            storePassword keystoreProps['storePassword']
+            keyAlias keystoreProps['keyAlias']
+            keyPassword keystoreProps['keyPassword']
+        }
+    }
+
+    buildTypes {
+        release {
+            // 有 keystore.properties 就用正式签名,没有就退回 debug 签名(方便他人克隆后直接构建)
+            signingConfig keystorePropsFile.exists() ? signingConfigs.release : signingConfigs.debug
+        }
     }
 }
