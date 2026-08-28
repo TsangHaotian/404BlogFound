@@ -3,7 +3,6 @@ package com.tsanghaotian.blog404;
 import android.app.Activity;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.view.View;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -14,17 +13,19 @@ public class MainActivity extends Activity {
     private static final String BLOG_URL = "https://tsanghaotian.github.io/404BlogFound/";
 
     private WebView webView;
+    private float statusBarHeightDp = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        // 状态栏透明,博客自身深色背景透上来,视觉统一
+        // 状态栏/导航栏透明,网页全屏沉浸,顶部间距由网页自己控制
         getWindow().setStatusBarColor(Color.TRANSPARENT);
         getWindow().setNavigationBarColor(Color.TRANSPARENT);
 
-        // 用 FrameLayout 包一层,在容器上留白比在 WebView 上更可靠
         FrameLayout root = new FrameLayout(this);
+        // 容器底色与博客背景色一致,页面加载完成前不显突兀
+        root.setBackgroundColor(Color.parseColor("#0d1017"));
         webView = new WebView(this);
         root.addView(webView, new FrameLayout.LayoutParams(
                 FrameLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams.MATCH_PARENT));
@@ -37,17 +38,26 @@ public class MainActivity extends Activity {
         // 不要用 LOAD_CACHE_ELSE_NETWORK,它会无视缓存头一直用旧缓存
         s.setCacheMode(WebSettings.LOAD_DEFAULT);
 
-        webView.setWebViewClient(new WebViewClient());
-
-        // 按状态栏/导航栏实际高度留白,顶部额外再加 8dp,避免挖孔屏机型内容贴边
-        final int extraTop = (int) (8 * getResources().getDisplayMetrics().density);
-        root.setOnApplyWindowInsetsListener((v, insets) -> {
-            v.setPadding(0, insets.getSystemWindowInsetTop() + extraTop, 0, insets.getSystemWindowInsetBottom());
-            return insets;
+        // Android WebView 的 env(safe-area-inset-top) 恒为 0,
+        // 由壳把真实状态栏高度注入 CSS 变量 --native-safe-top,网页优先使用它
+        statusBarHeightDp = getStatusBarHeightDp();
+        webView.setWebViewClient(new WebViewClient() {
+            @Override
+            public void onPageFinished(WebView view, String url) {
+                view.evaluateJavascript(
+                        "document.documentElement.style.setProperty('--native-safe-top','"
+                                + statusBarHeightDp + "px')", null);
+            }
         });
-        root.requestApplyInsets();
 
         webView.loadUrl(BLOG_URL);
+    }
+
+    private float getStatusBarHeightDp() {
+        int id = getResources().getIdentifier("status_bar_height", "dimen", "android");
+        int px = id > 0 ? getResources().getDimensionPixelSize(id)
+                : (int) (24 * getResources().getDisplayMetrics().density);
+        return px / getResources().getDisplayMetrics().density;
     }
 
     @Override
