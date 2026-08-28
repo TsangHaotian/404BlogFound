@@ -1,0 +1,16 @@
+plugins {
+    id 'com.android.application'
+}
+
+android {
+    namespace 'com.tsanghaotian.blog404'
+    compileSdk 36
+
+    defaultConfig {
+        applicationId "com.tsanghaotian.blog404"
+        minSdk 24
+        targetSdk 36
+        versionCode 3
+        versionName "3.0.0"
+    }
+}
