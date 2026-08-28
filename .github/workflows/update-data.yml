@@ -89,3 +89,22 @@ jobs:
           git config user.email "github-actions@github.com"
           git add data/
           git diff --staged --quiet || (git commit -m "自动更新数据" && git push)
+
+      - name: 成功邮件通知
+        if: success()
+        env:
+          RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
+        run: |
+          if [ -z "$RESEND_API_KEY" ]; then
+            echo "未配置 RESEND_API_KEY,跳过邮件通知"
+            exit 0
+          fi
+          curl -s -X POST https://api.resend.com/emails \
+            -H "Authorization: Bearer $RESEND_API_KEY" \
+            -H "Content-Type: application/json" \
+            -d '{
+              "from": "404BlogFound <onboarding@resend.dev>",
+              "to": ["tsanghaotian@hotmail.com"],
+              "subject": "✅ 每周更新项目数据:成功",
+              "text": "GitHub Actions workflow 已成功运行,博客项目数据已更新。"
+            }'
