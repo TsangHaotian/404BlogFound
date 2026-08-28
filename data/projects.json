@@ -2,10 +2,18 @@
   {
     "name": "JRXY-AutoSign-Reborn",
     "description": "今日校园自动化是一个基于Python的爬虫项目，主要实现今日校园签到、信息收集、查寝等循环表单的自动化任务 — 本分支专攻新疆师范大学查寝签到，提供桌面版GUI和命令行双入口，CAS扫码登录，模拟手机APP签到（DES+AES加密、真实UA、固定设备ID、人类行为模拟）。因9.9.11版本更换加密key导致签到失败，急需root手机+Frida提取新key。如下链接为原项目地址",
-    "stars": 6,
+    "stars": 7,
     "language": "Python",
     "topics": [],
     "url": "https://github.com/TsangHaotian/JRXY-AutoSign-Reborn"
+  },
+  {
+    "name": "RocoKingdomTranslator",
+    "description": "洛克王国语翻译器，一个用于翻译英文与洛克王国语之间转换的在线工具。",
+    "stars": 6,
+    "language": "HTML",
+    "topics": [],
+    "url": "https://github.com/TsangHaotian/RocoKingdomTranslator"
   },
   {
     "name": "GaokaoHelper",
@@ -22,14 +30,6 @@
     "language": "Android",
     "topics": [],
     "url": "https://github.com/TsangHaotian/Android_Calculators"
-  },
-  {
-    "name": "RocoKingdomTranslator",
-    "description": "洛克王国语翻译器，一个用于翻译英文与洛克王国语之间转换的在线工具。",
-    "stars": 5,
-    "language": "HTML",
-    "topics": [],
-    "url": "https://github.com/TsangHaotian/RocoKingdomTranslator"
   },
   {
     "name": "python_40_Parallel_College_Volunteering_for_College_Entrance_Examination",
@@ -168,20 +168,20 @@
     "url": "https://github.com/TsangHaotian/python_Excel_merge_tool"
   },
   {
-    "name": "python_ppt_assistant",
-    "description": "古诗词ppt讲解助手",
-    "stars": 1,
-    "language": "Python",
-    "topics": [],
-    "url": "https://github.com/TsangHaotian/python_ppt_assistant"
-  },
-  {
     "name": "Python_data_merge_tool",
     "description": "excel数据合并工具",
     "stars": 1,
     "language": "Python",
     "topics": [],
     "url": "https://github.com/TsangHaotian/Python_data_merge_tool"
+  },
+  {
+    "name": "python_ppt_assistant",
+    "description": "古诗词ppt讲解助手",
+    "stars": 1,
+    "language": "Python",
+    "topics": [],
+    "url": "https://github.com/TsangHaotian/python_ppt_assistant"
   },
   {
     "name": "Web_Xinjiang_Foods",
@@ -230,14 +230,6 @@
     "language": "HTML",
     "topics": [],
     "url": "https://github.com/TsangHaotian/404BlogFound"
-  },
-  {
-    "name": "-",
-    "description": "期末考试临时使用",
-    "stars": 0,
-    "language": "HTML",
-    "topics": [],
-    "url": "https://github.com/TsangHaotian/-"
   },
   {
     "name": "Python_mind_project",
@@ -291,7 +283,7 @@
     "name": "Harmony_CardGame",
     "description": "鸿蒙卡片小游戏",
     "stars": 0,
-    "language": "Harmony",
+    "language": "TypeScript",
     "topics": [],
     "url": "https://github.com/TsangHaotian/Harmony_CardGame"
   },
@@ -299,7 +291,7 @@
     "name": "CardGame_Android",
     "description": "卡片游戏安卓",
     "stars": 0,
-    "language": "Android",
+    "language": "Java",
     "topics": [],
     "url": "https://github.com/TsangHaotian/CardGame_Android"
   },
@@ -307,7 +299,7 @@
     "name": "KidYS",
     "description": "宝宝隐私政策",
     "stars": 0,
-    "language": "其他",
+    "language": "HTML",
     "topics": [],
     "url": "https://github.com/TsangHaotian/KidYS"
   },
