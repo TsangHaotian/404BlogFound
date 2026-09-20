@@ -224,20 +224,20 @@
     "url": "https://github.com/TsangHaotian/Web_Find_a_difference"
   },
   {
-    "name": "Linux-DUO",
-    "description": "linux-duo",
-    "stars": 0,
-    "language": "其他",
-    "topics": [],
-    "url": "https://github.com/TsangHaotian/Linux-DUO"
-  },
-  {
     "name": "404BlogFound",
     "description": "404日志报,一个我自己的个人博客网站",
     "stars": 0,
     "language": "HTML",
     "topics": [],
     "url": "https://github.com/TsangHaotian/404BlogFound"
+  },
+  {
+    "name": "Linux-DUO",
+    "description": "linux-duo",
+    "stars": 0,
+    "language": "其他",
+    "topics": [],
+    "url": "https://github.com/TsangHaotian/Linux-DUO"
   },
   {
     "name": "Python_mind_project",
