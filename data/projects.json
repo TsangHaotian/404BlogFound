@@ -8,20 +8,20 @@
     "url": "https://github.com/TsangHaotian/JRXY-AutoSign-Reborn"
   },
   {
+    "name": "RocoKingdomTranslator",
+    "description": "洛克王国语翻译器，一个用于翻译英文与洛克王国语之间转换的在线工具。",
+    "stars": 7,
+    "language": "HTML",
+    "topics": [],
+    "url": "https://github.com/TsangHaotian/RocoKingdomTranslator"
+  },
+  {
     "name": "GaokaoHelper",
     "description": "基于 AI 大语言模型的多角色对话工具，专注高考志愿填报辅助。支持单聊和群聊模式，可同时召唤多个 AI 角色围绕同一话题展开讨论。",
     "stars": 6,
     "language": "HTML",
     "topics": [],
     "url": "https://github.com/TsangHaotian/GaokaoHelper"
-  },
-  {
-    "name": "RocoKingdomTranslator",
-    "description": "洛克王国语翻译器，一个用于翻译英文与洛克王国语之间转换的在线工具。",
-    "stars": 6,
-    "language": "HTML",
-    "topics": [],
-    "url": "https://github.com/TsangHaotian/RocoKingdomTranslator"
   },
   {
     "name": "Android_Calculators",
